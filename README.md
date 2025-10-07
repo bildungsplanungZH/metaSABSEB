@@ -1,26 +1,23 @@
-# Arbeitstitel
+# Metadaten SAB/SEB
 
-15.09.2022  
-Kontakt: Vorname Nachname <vorname.nachname@bi.zh>
+Repository erstellt am: 07.10.2025
+
+Kontakt: Christina Arn <christina.arn@bi.zh>
 
 ### Kurzbeschreibung
-Hier folgt eine *kurze* Beschreibung, wofür das Repository angelegt wurde:  
-- Was ist das Ziel der Übung?  
-- Für wen wird die Datenauswertung erstellt?  
-- Wer ist das Zielpublikum des Berichts?  
+**Ziel:** Strukturierte Ablage der Metadaten von SAB und SEB gemeinsam mit CEM ZES entwickeln. Die Metadaten sollten in einem maschinen- und menschenlesbaren Format vorhanden sein und mit den Rohdaten der Umfrage einfach verknüpft werden können. Kantonale Vorgaben zu Metadatenattributen sollen in der Entwicklung berücksichtigt werden. 
 
+**Zusammenarbeit:** Folgende Personen von CEM ZES sind am Projekt beteiligt:
+- Caroline Müller <caroline.mueller@zemces.ch> (Bereichsleitung Evaluationen & Befragungen)
+- Marco Schuppisser <marco.schuppisser@zemces.ch> (studentischer Mitarbeiter). 
 
-### Ablage auf dem G:/
-Hier wird festgehalten, wo sich zugehörige Dateien in der Ablage befinden:  
-- `G:\Pfadangaben_einfuegen`  
-- `G:\03_Arbeiten\irgendein_Dossier`  
-- `G:\03_Arbeiten\Projekte\etwas_spannendes`  
+**Vorgesehene Produkte bis Januar 2026:**
+-  Maschinen- und menschenlesbarer Metadatensatz für SAB und SEB
+-  Lade- und Prüfprozess in R: Automatisiserte Checks zur Vollständigkeit der Metadaten und Verknüpfung von Metadaten und Rohdaten
 
-
-### Geplante Arbeiten
-Manchmal hilft eine Liste mit den geplanten Arbeitsschritten inklusive Stand der Arbeiten:  
-- Datenabfrage erstellen/Datenquellen einlesen (OK)  
-- Daten analysieren (WIP)  
-- Resultate berichten (TODO)  
-
+### Nächste Schritte
+Bis 14.10.2025
+- Abkärung CEM ZES zum Export der Metadaten aus der Umfragesoftware
+- Vorschlag Bildungsmonitoring zur zukünftigen Metadatenstruktur
+Danach: Definition der Arbeitspakete und Aufwandeinschätzung
 
