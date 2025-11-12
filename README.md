@@ -16,8 +16,12 @@ Kontakt: Christina Arn <christina.arn@bi.zh>
 -  Lade- und Prüfprozess in R: Automatisiserte Checks zur Vollständigkeit der Metadaten und Verknüpfung von Metadaten und Rohdaten
 
 ### Nächste Schritte
-Bis 14.10.2025
+Bis 3.11.2025
 - Abkärung CEM ZES zum Export der Metadaten aus der Umfragesoftware
 - Vorschlag Bildungsmonitoring zur zukünftigen Metadatenstruktur
 Danach: Definition der Arbeitspakete und Aufwandeinschätzung
+
+Bis 24.11.2025
+- Konzeption Einleseprozess mit R
+- Erstellen einer Tabelle mit Informationen, die händisch befüllt werden müssen. 
 
