@@ -2,7 +2,7 @@
 
 Repository erstellt am: 07.10.2025
 
-Kontakt: Christina Arn <christina.arn@bi.zh>
+Kontakt: Christina Arn <christina.arn@bi.zh.ch>
 
 ### Kurzbeschreibung
 **Ziel:** Strukturierte Ablage der Metadaten von SAB und SEB gemeinsam mit CEM ZES entwickeln. Die Metadaten sollten in einem maschinen- und menschenlesbaren Format vorhanden sein und mit den Rohdaten der Umfrage einfach verknüpft werden können. Kantonale Vorgaben zu Metadatenattributen sollen in der Entwicklung berücksichtigt werden. 
