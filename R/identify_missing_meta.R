@@ -24,8 +24,8 @@ library(pacman)
 ## b) Define necessary packages
 packages <- c(
     "dplyr",
-    "biplaRdb",
-    "readxl"
+    "readxl",
+    "openxlsx"
 )
 
 ## c) Install (if missing) and load necessary packages
@@ -135,7 +135,7 @@ for (v in vars) {
                 .data[[current_col]] != .data[[received_col]] # check current is not received
             ~ paste0( # Indicate conflict in dedicated column
                 to_do,
-                "Conflict: Current and received metadata differ for the column*",
+                "CONFLICT: Current and received metadata differ for the column*",
                 v,
                 '*, "',
                 .data[[current_col]],
@@ -172,12 +172,10 @@ seb24 <- read_excel(
     "K:/BI-BP-03-Arbeiten/QM Sek II/04 SEB 2024/Daten/SEB_2024_Rohdaten Kanton Zürich.xlsx",
     col_names=FALSE
 )
-# Drop variables, where there are no values
-# (all are NA, except the first row containing the column name)
-sab25 <- sab25 |>
-    select(where(~ !all(is.na(.[-1]))))
-seb24 <- seb24 |>
-    select(where(~ !all(is.na(.[-1]))))
+
+# Create indicator if there is only NA values for a variable
+sab25_empty <- sab25 |> summarise(across(everything(), ~ all(is.na(.x[-1])))) |> unlist()
+seb24_empty <- seb24 |> summarise(across(everything(), ~ all(is.na(.x[-1])))) |> unlist()
 
 # Only keep the first row
 first_row_sab25 <- sab25 |>
@@ -186,8 +184,16 @@ first_row_seb24 <- seb24 |>
     slice(1)
 
 # Convert to single column dataframes and drop first row dfs
-sab_vars <- data.frame(variable = unlist(first_row_sab25), var_defs_key = "sab")
-seb_vars <- data.frame(variable = unlist(first_row_seb24), var_defs_key = "seb")
+sab_vars <- data.frame(
+    variable = unlist(first_row_sab25),
+    var_defs_key = "sab",
+    empty_variable = sab25_empty)
+
+seb_vars <- data.frame(
+    variable = unlist(first_row_seb24),
+    var_defs_key = "seb",
+    empty_variable = seb24_empty)
+
 rm(first_row_sab25, first_row_seb24)
 
 # Combine SAB and SEB and identify overlaps
@@ -197,8 +203,14 @@ vars_in_raw_data <- full_join(seb_vars, sab_vars, by = "variable") |>
         !is.na(var_defs_key.x) & is.na(var_defs_key.y) ~ "seb",
         is.na(var_defs_key.x) & !is.na(var_defs_key.y) ~ "sab"
     )) |>
-    select(variable, var_defs_key)
-rm(sab_vars, seb_vars, sab25, seb24)
+    mutate(empty_variable = case_when(
+        empty_variable.x == TRUE & empty_variable.y==TRUE ~ TRUE,
+        TRUE ~ FALSE
+    )) |>
+    select(variable, var_defs_key, empty_variable)
+
+# Remove obsolete vectors and dataframes
+rm(sab_vars, seb_vars, sab25, seb24, sab25_empty, seb24_empty)
 
 
 #-------------------------------------------------------------------------------
@@ -213,40 +225,96 @@ rm(sab_vars, seb_vars, sab25, seb24)
 variables_meta <- full_join(variables_meta, vars_in_raw_data,
                             by = c("variable"),
                             keep = TRUE) |>
+    # Replace to_do NA-values from join (Otherwise printing the messages does not work correctly)
+    mutate(to_do = case_when(
+        is.na(to_do) ~ paste0(""),
+        TRUE ~ to_do
+    )) |>
     # If variable does not exist in current meta but is in received meta,
     # create message in to-do column to add the metadata
     mutate(to_do = case_when(
         is.na(variable.x) & !is.na(variable.y)
         ~ paste0(to_do,
-                 "The variable ",
+                 "ADD INFORMATION: The variable *",
                  variable.y,
-                 " from ",
+                 "* from ",
                  var_defs_key.y,
-                 " is not recorded in the current metadataset. Please add the information./n")
+                 " is not recorded in the metadata. Please add the information. \n"),
+        TRUE ~ to_do
     )) |>
     # If variable exists in current metadata but does not exist in raw data
     # create message in to-do column
     mutate(to_do = case_when(
         !is.na(variable.x) & is.na(variable.y)
         ~ paste0(to_do,
-                 "The variable ",
+                 "CHECK INFORMATION: The variable *",
                  variable.x,
-                 " is recorded in the metadata, but does not match the provided raw data./n")
+                 "* is recorded in the metadata, but is missing the provided raw data. \n"),
+        TRUE ~ to_do
     )) |>
-    #If variable exists in current metadata and raw data, replace and add var_defs_key
+    # If variable exists in current metadata and raw data, replace and add var_defs_key
     mutate(var_defs_key.x = case_when(
         variable.x == variable.y &
         (var_defs_key.x == var_defs_key.y |
          (is.na(var_defs_key.x) & !is.na(var_defs_key.y))) ~ var_defs_key.y
-        ))
+        )) |>
+    # If variable exists in raw data and is not yet in metadata, add to list
+    mutate(variable.x = case_when (
+        is.na(variable.x) & !is.na(variable.y)
+        ~ variable.y,
+        TRUE ~ variable.x
+        )) |>
+    # If variable exists in raw data but is empty, add message
+    mutate(to_do = case_when(
+        empty_variable == TRUE
+        ~ paste0(to_do,
+            "CHECK INFORMATION: The variable *",
+            variable.y,
+            "* is in the raw data, but only contains missing values. \n"),
+            TRUE ~ to_do
+    )) |>
+    # Remove merging columns and rename
+    select(-variable.y, -var_defs_key.y, -empty_variable) |>
+    rename_with(~ gsub("\\.x$", "", .x), ends_with(".x"))
+
+# Remove vars_in_raw_data after join
+rm(vars_in_raw_data)
+
+#-------------------------------------------------------------------------------
+# Step 6: Check logic of provided Metadata
+#-------------------------------------------------------------------------------
 
 
 
 #-------------------------------------------------------------------------------
-# Step 6: Create "Add metadata"-CSV, for missing information
+# Step 7: Create "Add metadata"-Excel, for missing information
 #-------------------------------------------------------------------------------
 
+#Sort by to_do
 
+
+# Create Excel
+missing_meta <- createWorkbook()
+
+# Add each dataframe to a sheet
+# Sheet: Datasets
+addWorksheet(missing_meta, "datasets")
+writeData(missing_meta, "datasets", datasets_meta)
+# Auto-fit columns to data
+setColWidths(missing_meta, "datasets", cols = 1:ncol(datasets_meta), widths = "auto")
+
+# Sheet: Variables
+addWorksheet(missing_meta, "variables")
+writeData(missing_meta, "variables", variables_meta)
+setColWidths(missing_meta, "variables", cols = 1:ncol(variables_meta), widths = "auto")
+
+# Sheet: Values
+addWorksheet(missing_meta, "values")
+writeData(missing_meta, "values", values_meta)
+setColWidths(missing_meta, "values", cols = 1:ncol(values_meta), widths = "auto")
+
+# Save the workbook
+saveWorkbook(missing_meta, "data/missing_meta/missing_meta.xlsx")
 
 
 
