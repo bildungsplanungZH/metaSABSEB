@@ -25,7 +25,7 @@ library(pacman)
 packages <- c(
     "dplyr",
     "biplaRdb",
-    "readr"
+    "readxl"
 )
 
 ## c) Install (if missing) and load necessary packages
@@ -108,18 +108,18 @@ variables_meta <- variables_meta |>
 
 ## a) Deal with conflicting entries
 
-# Initialise conflict column
+# Initialise To Do column (will list all conflicts and other To Do's)
 if(!"var_conflict" %in% colnames(variables_meta)){
-    variables_meta$var_conflict <- NA_character_
+    variables_meta$to_do <- ""
 }
 
 # Define which variables to check
-vars <- c("beschreibung", "item", "itemformulierung")
+vars <- c("var_beschreibung", "var_item", "var_itemformulierung")
 
 # Check for conflicts, replace if no conflict (loops over all defined variables)
 for (v in vars) {
-    current_col <- paste0("var_", v, ".x")
-    received_col <- paste0("var_", v, ".y")
+    current_col <- paste0(v, ".x")
+    received_col <- paste0(v, ".y")
 
     variables_meta <- variables_meta |>
 
@@ -130,41 +130,117 @@ for (v in vars) {
             .data[[current_col]] # else keep current
         )) |>
         # Otherwise check if received metadata = current metadata, else indicate conflict
-        mutate(var_conflict = case_when(
+        mutate(to_do = case_when(
             !is.na(.data[[current_col]]) & # check current is not NA
                 .data[[current_col]] != .data[[received_col]] # check current is not received
             ~ paste0( # Indicate conflict in dedicated column
-                var_conflict,
-                "Conflict:",
+                to_do,
+                "Conflict: Current and received metadata differ for the column*",
+                v,
+                '*, "',
                 .data[[current_col]],
-                "is not equal",
+                '" (current) is not equal to "',
                 .data[[received_col]],
-                "\n"),
-            TRUE ~ NA_character_
+                '" (received).\n'),
+            TRUE ~ to_do
         ))
 }
 
 ## b) Drop received meta and rename current metadata which has been updated
+# Current metadata (updated)
 variables_meta <- variables_meta |>
     # Remove received columns
     select(-ends_with(".y"))  |>
     # Remove .x suffix from updated current data
     rename_with(~ gsub("\\.x$", "", .x), ends_with(".x"))
-# Remove received_meta dataframe
-rm(received_meta)
+
+# Remove received_meta dataframe and helper vectors
+rm(received_meta, columns_to_add, current_col, received_col, target_columns, v, vars)
 
 #-------------------------------------------------------------------------------
 # Step 4: Import variables from raw data
 #-------------------------------------------------------------------------------
 
-## a) Import raw data
+## a) Import variable names which are in raw data (Excels we get from ZEM CES)
+# Only read the first row
+# SAB 2025
+sab25 <- read_excel(
+    "K:/BI-BP-03-Arbeiten/QM Sek II/11 SAB 2025/3_Daten/76-SAB_2025_Datensatz Kt ZH BfS 250825.xlsx",
+    col_names=FALSE)
+# SEB 2024
+seb24 <- read_excel(
+    "K:/BI-BP-03-Arbeiten/QM Sek II/04 SEB 2024/Daten/SEB_2024_Rohdaten Kanton Zürich.xlsx",
+    col_names=FALSE
+)
+# Drop variables, where there are no values
+# (all are NA, except the first row containing the column name)
+sab25 <- sab25 |>
+    select(where(~ !all(is.na(.[-1]))))
+seb24 <- seb24 |>
+    select(where(~ !all(is.na(.[-1]))))
 
+# Only keep the first row
+first_row_sab25 <- sab25 |>
+    slice(1)
+first_row_seb24 <- seb24 |>
+    slice(1)
 
+# Convert to single column dataframes and drop first row dfs
+sab_vars <- data.frame(variable = unlist(first_row_sab25), var_defs_key = "sab")
+seb_vars <- data.frame(variable = unlist(first_row_seb24), var_defs_key = "seb")
+rm(first_row_sab25, first_row_seb24)
+
+# Combine SAB and SEB and identify overlaps
+vars_in_raw_data <- full_join(seb_vars, sab_vars, by = "variable") |>
+    mutate(var_defs_key = case_when(
+        !is.na(var_defs_key.x) & !is.na(var_defs_key.y) ~ "sabseb",  # in both
+        !is.na(var_defs_key.x) & is.na(var_defs_key.y) ~ "seb",
+        is.na(var_defs_key.x) & !is.na(var_defs_key.y) ~ "sab"
+    )) |>
+    select(variable, var_defs_key)
+rm(sab_vars, seb_vars, sab25, seb24)
 
 
 #-------------------------------------------------------------------------------
 # Step 5: Identify variables which have not yet been added to metadata
 #-------------------------------------------------------------------------------
+
+# Note: This code is not yet entirely complete, I still need to include handling of dates
+# For current purposes this is not yet important, but it will be once we introduce
+# the next wave of surveys.
+
+# Merge with current meta based on varname
+variables_meta <- full_join(variables_meta, vars_in_raw_data,
+                            by = c("variable"),
+                            keep = TRUE) |>
+    # If variable does not exist in current meta but is in received meta,
+    # create message in to-do column to add the metadata
+    mutate(to_do = case_when(
+        is.na(variable.x) & !is.na(variable.y)
+        ~ paste0(to_do,
+                 "The variable ",
+                 variable.y,
+                 " from ",
+                 var_defs_key.y,
+                 " is not recorded in the current metadataset. Please add the information./n")
+    )) |>
+    # If variable exists in current metadata but does not exist in raw data
+    # create message in to-do column
+    mutate(to_do = case_when(
+        !is.na(variable.x) & is.na(variable.y)
+        ~ paste0(to_do,
+                 "The variable ",
+                 variable.x,
+                 " is recorded in the metadata, but does not match the provided raw data./n")
+    )) |>
+    #If variable exists in current metadata and raw data, replace and add var_defs_key
+    mutate(var_defs_key.x = case_when(
+        variable.x == variable.y &
+        (var_defs_key.x == var_defs_key.y |
+         (is.na(var_defs_key.x) & !is.na(var_defs_key.y))) ~ var_defs_key.y
+        ))
+
+
 
 #-------------------------------------------------------------------------------
 # Step 6: Create "Add metadata"-CSV, for missing information
