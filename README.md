@@ -5,9 +5,9 @@ Repository erstellt am: 07.10.2025
 Kontakt: Christina Arn <christina.arn@bi.zh.ch>
 
 ### Kurzbeschreibung
-**Ziel:** Strukturierte Ablage der Metadaten von SAB und SEB gemeinsam mit CEM ZES entwickeln. Die Metadaten sollten in einem maschinen- und menschenlesbaren Format vorhanden sein und mit den Rohdaten der Umfrage einfach verknüpft werden können. Kantonale Vorgaben zu Metadatenattributen sollen in der Entwicklung berücksichtigt werden. 
+**Ziel:** Strukturierte Ablage der Metadaten von SAB und SEB gemeinsam mit ZEM CES entwickeln. Die Metadaten sollten in einem maschinen- und menschenlesbaren Format vorhanden sein und mit den Rohdaten der Umfrage einfach verknüpft werden können. Kantonale Vorgaben zu Metadatenattributen sollen in der Entwicklung berücksichtigt werden. 
 
-**Zusammenarbeit:** Folgende Personen von CEM ZES sind am Projekt beteiligt:
+**Zusammenarbeit:** Folgende Personen von ZEM CES sind am Projekt beteiligt:
 - Caroline Müller <caroline.mueller@zemces.ch> (Bereichsleitung Evaluationen & Befragungen)
 - Marco Schuppisser <marco.schuppisser@zemces.ch> (studentischer Mitarbeiter). 
 
@@ -17,7 +17,7 @@ Kontakt: Christina Arn <christina.arn@bi.zh.ch>
 
 ### Nächste Schritte
 Bis 3.11.2025
-- Abkärung CEM ZES zum Export der Metadaten aus der Umfragesoftware
+- Abkärung ZEM CES zum Export der Metadaten aus der Umfragesoftware
 - Vorschlag Bildungsmonitoring zur zukünftigen Metadatenstruktur
 Danach: Definition der Arbeitspakete und Aufwandeinschätzung
 
