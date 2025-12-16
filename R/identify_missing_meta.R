@@ -243,23 +243,34 @@ variables_meta <- full_join(variables_meta, vars_in_raw_data,
     mutate(to_do = case_when(
         !is.na(variable.x) & is.na(variable.y)
         ~ paste0(to_do,
-                 "CHECK dcat_endddate for the variable *",
+                 "CHECK the variable *",
                  variable.x,
-                 "*, (recorded in metadata but missing in raw data -> might be old).  \n"),
+                 "*, (recorded in metadata but missing in raw data).  \n"),
         TRUE ~ to_do
     )) |>
-    # If variable exists in current metadata and raw data, replace and add var_defs_key
-    mutate(var_defs_key.x = case_when(
-        variable.x == variable.y &
-        (var_defs_key.x == var_defs_key.y |
-         (is.na(var_defs_key.x) & !is.na(var_defs_key.y))) ~ var_defs_key.y
-        )) |>
     # If variable exists in raw data and is not yet in metadata, add to list
     mutate(variable.x = case_when (
         is.na(variable.x) & !is.na(variable.y)
         ~ variable.y,
         TRUE ~ variable.x
+    )) |>
+    # Add var_defs_key from raw data if missing in current metadata
+    mutate(var_defs_key.x = case_when (
+        is.na(var_defs_key.x) & !is.na(var_defs_key.y)
+        ~ var_defs_key.y,
+        TRUE ~ var_defs_key.x
         )) |>
+    # If var_defs_key differ between raw data and current metadata. Generate to do message
+    mutate(to_do= case_when(
+        var_defs_key.x != var_defs_key.y
+        ~ paste0(to_do,
+                 "CHECK KEYS: Conflicting var_defs_key: Current metadata contains",
+                 var_defs_key.x,
+                 "Raw data contains",
+                 var_defs_key.y,
+                 "check, and when in doubt, assign both datasets."),
+        TRUE ~ to_do
+    )) |>
     # If variable exists in raw data but is empty, add message
     mutate(to_do = case_when(
         empty_variable == TRUE
@@ -306,7 +317,7 @@ writeData(missing_meta, "values", values_meta)
 setColWidths(missing_meta, "values", cols = 1:ncol(values_meta), widths = "auto")
 
 # Save the workbook
-saveWorkbook(missing_meta, "data/missing_meta/missing_meta.xlsx")
+saveWorkbook(missing_meta, "data/missing_meta/missing_meta.xlsx", overwrite = TRUE)
 
 
 
