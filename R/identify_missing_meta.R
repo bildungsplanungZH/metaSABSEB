@@ -8,11 +8,11 @@
 # - Import the metadata export from the survey agency.
 # - Restructure the provided metadata to fit our metadata-model.
 # - Join with variable_names from raw data.
-# - Identify not defined variables and missing fields.
+# - Identify not defined variables (appear in raw data but not provided metadata)
 # - Create an Excel-Table with the metadata that still needs to be added manually.
 
 #-------------------------------------------------------------------------------
-# Step 0: Install packages / load libraries using "pacman"
+# Step 0: Configuration: Install packages and load libraries using "pacman"
 #-------------------------------------------------------------------------------
 
 ## a) Ensure that the package "pacman" itself is installed and loaded
@@ -21,11 +21,12 @@ if (!requireNamespace("pacman", quietly = TRUE)) {
 }
 library(pacman)
 
-## b) Define necessary packages
+## b) Define necessary packages to run this script
 packages <- c(
-    "dplyr",
+    "readr",
     "readxl",
-    "openxlsx"
+    "openxlsx",
+    "dplyr"
 )
 
 ## c) Install (if missing) and load necessary packages
@@ -41,10 +42,10 @@ received_meta <- read.csv(
     "data/received_meta/2025-11-07_metadata.csv",
     header = FALSE,
     stringsAsFactors = FALSE
-    )
+)
 
 ## b) Fix delimiter issues
-    # Note: Issues arise from having some observations quoted and some not
+# Note: Issues arise from having some observations quoted and some not
 
 received_meta <- received_meta |>
 
@@ -76,7 +77,6 @@ received_meta <- received_meta |>
 colnames(received_meta) <- received_meta[1, ]
 received_meta <- received_meta[-1, ]
 
-
 #-------------------------------------------------------------------------------
 # Step 2: Add received metadata to the structure
 #-------------------------------------------------------------------------------
@@ -86,11 +86,11 @@ load("data/metadata.RData")
 
 ## b) Fill existing structure with received_meta
 
-# Map
+### i) Map column names
 columns_to_add <- c("Skalenname","ItemName", "Gruppentitel", "Itemtext")
 target_columns <- c("var_beschreibung", "variable", "var_item", "var_itemformulierung")
 
-# Rename and ensure compatibility
+### ii) Rename and ensure compatibility
 received_meta <- received_meta |>
     select(all_of(columns_to_add)) |>
     rename_with(~ target_columns, everything()) |>
@@ -98,7 +98,7 @@ received_meta <- received_meta |>
 variables_meta <- variables_meta |>
     mutate(across(everything(), ~ as.character(.)))
 
-# Full join based on variable name (keep all observations from both datasets)
+### iii) Full join based on variable name (keep all observations from both datasets)
 variables_meta <- variables_meta |>
     full_join(received_meta, by = "variable")
 
@@ -199,7 +199,7 @@ rm(first_row_sab25, first_row_seb24)
 # Combine SAB and SEB and identify overlaps
 vars_in_raw_data <- full_join(seb_vars, sab_vars, by = "variable") |>
     mutate(var_defs_key = case_when(
-        !is.na(var_defs_key.x) & !is.na(var_defs_key.y) ~ "sabseb",  # in both
+        !is.na(var_defs_key.x) & !is.na(var_defs_key.y) ~ "sab&seb",  # in both
         !is.na(var_defs_key.x) & is.na(var_defs_key.y) ~ "seb",
         is.na(var_defs_key.x) & !is.na(var_defs_key.y) ~ "sab"
     )) |>
@@ -216,10 +216,6 @@ rm(sab_vars, seb_vars, sab25, seb24, sab25_empty, seb24_empty)
 #-------------------------------------------------------------------------------
 # Step 5: Identify variables which have not yet been added to metadata
 #-------------------------------------------------------------------------------
-
-# Note: This code is not yet entirely complete, I still need to include handling of dates
-# For current purposes this is not yet important, but it will be once we introduce
-# the next wave of surveys.
 
 # Merge with current meta based on varname
 variables_meta <- full_join(variables_meta, vars_in_raw_data,
@@ -239,7 +235,7 @@ variables_meta <- full_join(variables_meta, vars_in_raw_data,
                  variable.y,
                  "* from ",
                  var_defs_key.y,
-                 " is not recorded in the metadata. Please add the information. \n"),
+                 " is only in the raw data and not recorded in the metadata. Please add the information. \n"),
         TRUE ~ to_do
     )) |>
     # If variable exists in current metadata but does not exist in raw data
@@ -247,9 +243,9 @@ variables_meta <- full_join(variables_meta, vars_in_raw_data,
     mutate(to_do = case_when(
         !is.na(variable.x) & is.na(variable.y)
         ~ paste0(to_do,
-                 "CHECK INFORMATION: The variable *",
+                 "CHECK dcat_endddate for the variable *",
                  variable.x,
-                 "* is recorded in the metadata, but is missing the provided raw data. \n"),
+                 "*, (recorded in metadata but missing in raw data -> might be old).  \n"),
         TRUE ~ to_do
     )) |>
     # If variable exists in current metadata and raw data, replace and add var_defs_key
@@ -268,7 +264,7 @@ variables_meta <- full_join(variables_meta, vars_in_raw_data,
     mutate(to_do = case_when(
         empty_variable == TRUE
         ~ paste0(to_do,
-            "CHECK INFORMATION: The variable *",
+            "EMPTY DATA COLUMN: The variable *",
             variable.y,
             "* is in the raw data, but only contains missing values. \n"),
             TRUE ~ to_do
@@ -280,18 +276,14 @@ variables_meta <- full_join(variables_meta, vars_in_raw_data,
 # Remove vars_in_raw_data after join
 rm(vars_in_raw_data)
 
-#-------------------------------------------------------------------------------
-# Step 6: Check logic of provided Metadata
-#-------------------------------------------------------------------------------
-
-
 
 #-------------------------------------------------------------------------------
 # Step 7: Create "Add metadata"-Excel, for missing information
 #-------------------------------------------------------------------------------
 
-#Sort by to_do
-
+#Sort by varname
+variables_meta <- variables_meta |>
+    arrange(variable)
 
 # Create Excel
 missing_meta <- createWorkbook()
@@ -315,8 +307,6 @@ setColWidths(missing_meta, "values", cols = 1:ncol(values_meta), widths = "auto"
 
 # Save the workbook
 saveWorkbook(missing_meta, "data/missing_meta/missing_meta.xlsx")
-
-
 
 
 
