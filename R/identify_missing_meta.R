@@ -88,7 +88,7 @@ load("data/metadata.RData")
 
 ### i) Map column names
 columns_to_add <- c("Skalenname","ItemName", "Gruppentitel", "Itemtext")
-target_columns <- c("var_beschreibung", "variable", "var_item", "var_itemformulierung")
+target_columns <- c("var_gruppe", "variable", "var_item", "var_itemformulierung")
 
 ### ii) Rename and ensure compatibility
 received_meta <- received_meta |>
@@ -114,7 +114,7 @@ if(!"var_conflict" %in% colnames(variables_meta)){
 }
 
 # Define which variables to check
-vars <- c("var_beschreibung", "var_item", "var_itemformulierung")
+vars <- c("var_gruppe", "var_item", "var_itemformulierung")
 
 # Check for conflicts, replace if no conflict (loops over all defined variables)
 for (v in vars) {
