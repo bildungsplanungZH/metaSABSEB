@@ -23,5 +23,8 @@ Danach: Definition der Arbeitspakete und Aufwandeinschätzung
 
 Bis 24.11.2025
 - Konzeption Einleseprozess mit R
-- Erstellen einer Tabelle mit Informationen, die händisch befüllt werden müssen. 
+- Erstellen einer Tabelle mit Informationen, die händisch befüllt werden müssen.
+
+Bis 23.12.2025
+Befüllen des Excels mit den fehlenden Informationen (oder min. damit anfangen)
 
