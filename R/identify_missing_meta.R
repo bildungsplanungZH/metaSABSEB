@@ -204,7 +204,8 @@ vars_in_raw_data <- full_join(seb_vars, sab_vars, by = "variable") |>
         is.na(var_defs_key.x) & !is.na(var_defs_key.y) ~ "sab"
     )) |>
     mutate(empty_variable = case_when(
-        empty_variable.x == TRUE & empty_variable.y==TRUE ~ TRUE,
+        (empty_variable.x == TRUE & (empty_variable.y == TRUE | is.na(empty_variable.y))) |
+        ((empty_variable.x == TRUE | is.na(empty_variable.x)) & empty_variable.y == TRUE)  ~ TRUE,
         TRUE ~ FALSE
     )) |>
     select(variable, var_defs_key, empty_variable)
