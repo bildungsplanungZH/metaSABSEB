@@ -1,0 +1,446 @@
+﻿value_label_key;value;value_label
+kreuz;0;Nicht angekreuzt
+kreuz;1;Angekreuzt
+likert6_zutreffen;1;trifft überhaupt nicht zu
+likert6_zutreffen;2;
+likert6_zutreffen;3;
+likert6_zutreffen;4;
+likert6_zutreffen;5;
+likert6_zutreffen;6;trifft voll und ganz zu
+likert6_lehrp;1;keine Lehrpersonen
+likert6_lehrp;2;
+likert6_lehrp;3;
+likert6_lehrp;4;
+likert6_lehrp;5;
+likert6_lehrp;6;alle Lehrpersonen
+cat_ausbild;1;zweijährige Ausbildung
+cat_ausbild;2;dreijährige Ausbildung
+cat_ausbild;3;vierjährige Ausbildung
+bm_typ;1;BM1
+bm_typ;2;BM2
+beginn_taet;1;Direkt nach dem Schulabschluss bis maximal 3 Monate danach
+beginn_taet;2;Mehr als 3 Monate bis maximal ein halbes Jahr nach Schulabschluss
+beginn_taet;3;Mehr als ein halbes bis maximal ein Jahr nach Schulabschluss
+beginn_taet;4;Mehr als ein Jahr bis maximal eineinhalb Jahre nach Schulabschluss
+beginn_taet;5;Mehr als eineinhalb bis maximal zwei Jahre nach Schulabschluss
+beginn_taet;6;Später als zwei Jahre nach Schulabschluss
+berfeld;1;In der gleichen Branche wie mein Lehrabschluss (BfS) / meine BMS-Ausbildung (BfS, BMS)
+berfeld;2;In einer anderen Branche als mein Lehrabschluss (BfS) / meine BMS-Ausbildung (BfS, BMS)
+berfeld;3;Industrielles, gewerbliches oder technisches Berufsfeld (Gym, FMS, HMS/WMS/IMS)
+berfeld;4;Kaufmännisches Berufsfeld (Gym, FMS, HMS/WMS/IMS)
+berfeld;5;Gesundheitliches oder soziales Berufsfeld (Gym, FMS, HMS/WMS/IMS)
+berfeld;6;Gestalterisches Berufsfeld (Gym, FMS, HMS/WMS/IMS)
+berfeld;7;Sonstiges, nämlich (Gym, FMS, HMS/WMS/IMS)
+sbfi_berufe;51914;Abdichter EFZ (Berufsfeld Gebäudehülle)
+sbfi_berufe;51919;Abdichtungspraktiker EBA (Berufsfeld Gebäudehülle)
+sbfi_berufe;15008;Agrarpraktiker EBA
+sbfi_berufe;44727;Anlagen- und Apparatebauer EFZ
+sbfi_berufe;44702;Anlagenführer EFZ
+sbfi_berufe;40105;Apparateglasbläser EFZ
+sbfi_berufe;54603;Architekturmodellbauer EFZ
+sbfi_berufe;86913;Assistent Gesundheit und Soziales EBA
+sbfi_berufe;85506;Augenoptiker EFZ
+sbfi_berufe;47416;Automatiker EFZ
+sbfi_berufe;46426;Automatikmonteur EFZ
+sbfi_berufe;46318;Automobil-Assistent EBA
+sbfi_berufe;46324;Automobil-Fachmann EFZ
+sbfi_berufe;46321;Automobil-Mechatroniker EFZ
+sbfi_berufe;21107;Bäcker-Konditor-Confiseur EBA
+sbfi_berufe;21104;Bäcker-Konditor-Confiseur EFZ
+sbfi_berufe;43906;Baumaschinenmechaniker EFZ
+sbfi_berufe;51007;Baupraktiker EBA
+sbfi_berufe;51005;Bauwerktrenner EFZ
+sbfi_berufe;27121;Bekleidungsgestalter EFZ
+sbfi_berufe;27122;Bekleidungsnäher EBA
+sbfi_berufe;39905;Betonwerker EFZ
+sbfi_berufe;88614;Betriebsinformatiker EFZ
+sbfi_berufe;35317;Bindetechnologe EFZ
+sbfi_berufe;54215;Blasinstrumentenbauer EFZ (Berufsfeld Musikinstrumentenbau)
+sbfi_berufe;51706;Boden-Parkettleger EFZ
+sbfi_berufe;30405;Bootbauer EFZ
+sbfi_berufe;30404;Bootfachwart EFZ
+sbfi_berufe;70512;Buchhändler EFZ
+sbfi_berufe;43102;Büchsenmacher EFZ
+sbfi_berufe;90904;Bühnentänzer EFZ
+sbfi_berufe;45307;Carrosserielackierer EFZ
+sbfi_berufe;45308;Carrosseriereparateur EFZ
+sbfi_berufe;45306;Carrosseriespengler EFZ
+sbfi_berufe;37006;Chemie- und Pharmapraktiker EBA
+sbfi_berufe;37005;Chemie- und Pharmatechnologe EFZ
+sbfi_berufe;82013;Coiffeur EBA
+sbfi_berufe;82014;Coiffeur EFZ
+sbfi_berufe;51915;Dachdecker EFZ (Berufsfeld Gebäudehülle)
+sbfi_berufe;51920;Dachdeckerpraktiker EBA (Berufsfeld Gebäudehülle)
+sbfi_berufe;28503;Dekorationsnäher EBA
+sbfi_berufe;86916;Dentalassistent EFZ
+sbfi_berufe;71800;Detailhandelsassistent EBA
+sbfi_berufe;71900;Detailhandelsfachmann EFZ
+sbfi_berufe;70604;Drogist EFZ
+sbfi_berufe;35318;Druckausrüster EFZ
+sbfi_berufe;50009;Edelsteinfasser EFZ (Berufsfeld Schmuck- und Objektegestaltung)
+sbfi_berufe;47418;Elektroinstallateur EFZ
+sbfi_berufe;46505;Elektroniker EFZ
+sbfi_berufe;64505;Elektroplaner EFZ
+sbfi_berufe;52505;Entwässerungspraktiker EBA
+sbfi_berufe;52504;Entwässerungstechnologe EFZ
+sbfi_berufe;69201;Entwickler digitales Business EFZ
+sbfi_berufe;70611;Fachmann Apotheke EFZ
+sbfi_berufe;94308;Fachmann Betreuung EFZ
+sbfi_berufe;80202;Fachmann Betriebsunterhalt EFZ
+sbfi_berufe;85701;Fachmann Bewegungs- und Gesundheitsförderung EFZ
+sbfi_berufe;86914;Fachmann Gesundheit EFZ
+sbfi_berufe;79615;Fachmann Hauswirtschaft EFZ
+sbfi_berufe;70508;Fachmann Information und Dokumentation EFZ
+sbfi_berufe;76501;Fachmann Kundendialog EFZ
+sbfi_berufe;36504;Fachmann Leder und Textil EFZ
+sbfi_berufe;74115;Fachmann öffentlicher Verkehr EFZ
+sbfi_berufe;80607;Fachmann Textilpflege EFZ
+sbfi_berufe;46105;Fahrradmechaniker EFZ
+sbfi_berufe;44903;Fahrzeugschlosser EFZ
+sbfi_berufe;51916;Fassadenbauer EFZ (Berufsfeld Gebäudehülle)
+sbfi_berufe;51921;Fassadenbaupraktiker EBA (Berufsfeld Gebäudehülle)
+sbfi_berufe;40312;Feinwerkoptiker EFZ
+sbfi_berufe;21812;Fleischfachassistent EBA
+sbfi_berufe;21808;Fleischfachmann EFZ
+sbfi_berufe;17205;Florist EBA
+sbfi_berufe;17204;Florist EFZ
+sbfi_berufe;30905;Formenbauer EFZ
+sbfi_berufe;30906;Formenpraktiker EBA
+sbfi_berufe;19103;Forstpraktiker EBA
+sbfi_berufe;19104;Forstwart EFZ
+sbfi_berufe;90602;Fotograf EFZ
+sbfi_berufe;35214;Fotomedienfachmann EFZ
+sbfi_berufe;17018;Gärtner EBA
+sbfi_berufe;17000;Gärtner EFZ
+sbfi_berufe;88607;Gebäudeinformatiker EFZ
+sbfi_berufe;80103;Gebäudereiniger EBA
+sbfi_berufe;80102;Gebäudereiniger EFZ
+sbfi_berufe;64616;Gebäudetechnikplaner Heizung EFZ (Berufsfeld Gebäudetechnikplanung)
+sbfi_berufe;64617;Gebäudetechnikplaner Lüftung EFZ  (Berufsfeld Gebäudetechnikplanung)
+sbfi_berufe;64618;Gebäudetechnikplaner Sanitär EFZ  (Berufsfeld Gebäudetechnikplanung)
+sbfi_berufe;16403;Geflügelfachmann EFZ (Berufsfeld Landwirtschaft)
+sbfi_berufe;54213;Geigenbauer EFZ
+sbfi_berufe;17011;Gemüsegärtner EFZ (Berufsfeld Landwirtschaft)
+sbfi_berufe;64104;Geomatiker EFZ
+sbfi_berufe;51917;Gerüstbauer EFZ (Berufsfeld Gebäudehülle)
+sbfi_berufe;51922;Gerüstbaupraktiker EBA (Berufsfeld Gebäudehülle)
+sbfi_berufe;53109;Gestalter Werbetechnik EFZ
+sbfi_berufe;25805;Gewebegestalter EFZ
+sbfi_berufe;52002;Gipser-Trockenbauer EFZ
+sbfi_berufe;52003;Gipserpraktiker EBA
+sbfi_berufe;40403;Glaser EFZ
+sbfi_berufe;39605;Glasmaler EFZ
+sbfi_berufe;51416;Gleisbauer EFZ (Berufsfeld Verkehrswegbau)
+sbfi_berufe;51422;Gleisbaupraktiker EBA (Berufsfeld Verkehrswegbau)
+sbfi_berufe;50007;Goldschmied EFZ (Berufsfeld Schmuck- und Objektegestaltung)
+sbfi_berufe;90306;Grafiker EFZ
+sbfi_berufe;44305;Graveur EFZ
+sbfi_berufe;51417;Grundbauer EFZ (Berufsfeld Verkehrswegbau)
+sbfi_berufe;51423;Grundbaupraktiker EBA (Berufsfeld Verkehrswegbau)
+sbfi_berufe;41208;Gussformer EFZ
+sbfi_berufe;41211;Gusstechnologe EFZ
+sbfi_berufe;79616;Hauswirtschaftspraktiker EBA
+sbfi_berufe;47605;Heizungsinstallateur EFZ
+sbfi_berufe;47606;Heizungspraktiker EBA (Berufsfeld Gebäudetechnik)
+sbfi_berufe;30206;Holzbearbeiter EBA
+sbfi_berufe;90003;Holzbildhauer EFZ
+sbfi_berufe;30203;Holzhandwerker EFZ
+sbfi_berufe;30004;Holzindustriefachmann EFZ
+sbfi_berufe;85505;Hörsystemakustiker EFZ
+sbfi_berufe;79200;Hotel-Kommunikationsfachmann EFZ
+sbfi_berufe;78403;Hotelfachmann EFZ
+sbfi_berufe;78420;Hotellerieangestellter EBA
+sbfi_berufe;43703;Hufschmied EFZ
+sbfi_berufe;88605;ICT-Fachmann EFZ
+sbfi_berufe;51418;Industrie- und Unterlagsbodenbauer EFZ (Berufsfeld Verkehrswegbau)
+sbfi_berufe;51424;Industrie- und Unterlagsbodenbaupraktiker EBA (Berufsfeld Verkehrswegbau)
+sbfi_berufe;39508;Industriekeramiker EFZ
+sbfi_berufe;53304;Industrielackierer EFZ
+sbfi_berufe;28404;Industriepolsterer EFZ
+sbfi_berufe;88611;Informatiker EFZ
+sbfi_berufe;47117;Interactive Media Designer EFZ
+sbfi_berufe;52204;Isolierspengler EFZ
+sbfi_berufe;47808;Kältemontage-Praktiker EBA
+sbfi_berufe;47806;Kältesystem-Monteur EFZ
+sbfi_berufe;47807;Kältesystem-Planer EFZ
+sbfi_berufe;80004;Kaminfeger EFZ
+sbfi_berufe;75105;Kapitän der Binnenschifffahrt EFZ
+sbfi_berufe;68104;Kaufmann EBA
+sbfi_berufe;68800;Kaufmann EFZ
+sbfi_berufe;39506;Keramiker EFZ
+sbfi_berufe;54216;Klavierbauer EFZ (Berufsfeld Musikinstrumentenbau)
+sbfi_berufe;46106;Kleinmotorrad- und Fahrradmechaniker EFZ
+sbfi_berufe;79007;Koch EFZ
+sbfi_berufe;64208;Konstrukteur EFZ
+sbfi_berufe;54402;Korb- und Flechtwerkgestalter EFZ
+sbfi_berufe;82112;Kosmetiker EFZ
+sbfi_berufe;79022;Küchenangestellter EBA
+sbfi_berufe;31703;Küfer EFZ
+sbfi_berufe;38329;Kunststoffpraktiker EBA
+sbfi_berufe;38328;Kunststofftechnologe EFZ
+sbfi_berufe;65400;Laborant EFZ
+sbfi_berufe;45305;Lackierassistent EBA
+sbfi_berufe;43905;Landmaschinenmechaniker EFZ
+sbfi_berufe;15005;Landwirt EFZ (Berufsfeld Landwirtschaft)
+sbfi_berufe;21415;Lebensmittelpraktiker EBA
+sbfi_berufe;21416;Lebensmitteltechnologe EFZ
+sbfi_berufe;95511;Logistiker EBA
+sbfi_berufe;95506;Logistiker EFZ
+sbfi_berufe;47907;Lüftungsanlagenbauer EFZ
+sbfi_berufe;47607;Lüftungsanlagenpraktiker EBA (Berufsfeld Gebäudetechnik)
+sbfi_berufe;53002;Maler EFZ
+sbfi_berufe;53003;Malerpraktiker EBA
+sbfi_berufe;51006;Maurer EFZ
+sbfi_berufe;45906;Mechanikpraktiker EBA
+sbfi_berufe;88606;Mediamatiker EFZ
+sbfi_berufe;34200;Medientechnologe EFZ
+sbfi_berufe;86915;Medizinischer Praxisassistent EFZ
+sbfi_berufe;87101;Medizinproduktetechnologe EFZ
+sbfi_berufe;43813;Messerschmied EFZ
+sbfi_berufe;44503;Metallbauer EFZ
+sbfi_berufe;64404;Metallbaukonstrukteur EFZ
+sbfi_berufe;44506;Metallbaupraktiker EBA
+sbfi_berufe;48308;Mikromechaniker EFZ (Berufsfeld Mikrotechnik)
+sbfi_berufe;48309;Mikrozeichner EFZ (Berufsfeld Mikrotechnik)
+sbfi_berufe;21607;Milchpraktiker EBA
+sbfi_berufe;21606;Milchtechnologe EFZ
+sbfi_berufe;47419;Montage-Elektriker EFZ
+sbfi_berufe;43907;Motorgerätemechaniker EFZ
+sbfi_berufe;46204;Motorradmechaniker EFZ
+sbfi_berufe;21005;Müller EFZ
+sbfi_berufe;47006;Multimediaelektroniker EFZ
+sbfi_berufe;75104;nautischer Fachmann EFZ
+sbfi_berufe;47421;Netzelektriker EFZ
+sbfi_berufe;42003;Oberflächenbeschichter EFZ
+sbfi_berufe;42004;Oberflächenpraktiker EBA
+sbfi_berufe;49707;Oberflächenveredler Uhren und Schmuck EFZ
+sbfi_berufe;16003;Obstfachmann EFZ (Berufsfeld Landwirtschaft)
+sbfi_berufe;51204;Ofenbauer EFZ
+sbfi_berufe;54217;Orgelbauer EFZ (Berufsfeld Musikinstrumentenbau)
+sbfi_berufe;36105;Orthopädieschuhmacher EFZ
+sbfi_berufe;54005;Orthopädist EFZ
+sbfi_berufe;33004;Papiertechnologe EFZ
+sbfi_berufe;18114;Pferdefachmann EFZ
+sbfi_berufe;18121;Pferdewart EBA
+sbfi_berufe;51419;Pflästerer EFZ (Berufsfeld Verkehrswegbau)
+sbfi_berufe;65328;Physiklaborant EFZ
+sbfi_berufe;51103;Plattenleger EFZ
+sbfi_berufe;51104;Plattenlegerpraktiker EBA
+sbfi_berufe;82118;Podologe EFZ
+sbfi_berufe;50305;Polisseur EBA
+sbfi_berufe;90503;Polydesigner 3D EFZ
+sbfi_berufe;34711;Polygraf EFZ
+sbfi_berufe;45705;Polymechaniker EFZ
+sbfi_berufe;35316;Printmedienpraktiker EBA
+sbfi_berufe;45716;Produktionsmechaniker EFZ
+sbfi_berufe;48310;Qualitätsfachmann in Mikrotechnik EFZ (Berufsfeld Mikrotechnik)
+sbfi_berufe;28420;Raumausstatter EFZ
+sbfi_berufe;95006;Recyclist EFZ
+sbfi_berufe;46320;Reifenpraktiker EBA
+sbfi_berufe;79024;Restaurantangestellter EBA
+sbfi_berufe;78705;Restaurantfachmann EFZ
+sbfi_berufe;47706;Sanitärinstallateur EFZ
+sbfi_berufe;47608;Sanitärpraktiker EBA (Berufsfeld Gebäudetechnik)
+sbfi_berufe;30513;Schreiner EFZ
+sbfi_berufe;30506;Schreinerpraktiker EBA
+sbfi_berufe;36104;Schuhmacher EFZ
+sbfi_berufe;56504;Seilbahn-Mechatroniker EFZ
+sbfi_berufe;56505;Seilbahner EBA
+sbfi_berufe;50008;Silberschmied EFZ (Berufsfeld Schmuck- und Objektegestaltung)
+sbfi_berufe;45405;Spengler EFZ
+sbfi_berufe;47609;Spenglerpraktiker EBA (Berufsfeld Gebäudetechnik)
+sbfi_berufe;39207;Steinmetz EFZ
+sbfi_berufe;51425;Steinsetzer EBA (Berufsfeld Verkehrswegbau)
+sbfi_berufe;51923;Storenmontagepraktiker EBA (Berufsfeld Gebäudehülle)
+sbfi_berufe;51918;Storenmonteur EFZ (Berufsfeld Gebäudehülle)
+sbfi_berufe;51420;Strassenbauer EFZ (Berufsfeld Verkehrswegbau)
+sbfi_berufe;51426;Strassenbaupraktiker EBA (Berufsfeld Verkehrswegbau)
+sbfi_berufe;73304;Strassentransportfachmann EFZ
+sbfi_berufe;73305;Strassentransportpraktiker EBA
+sbfi_berufe;79008;Systemgastronomiefachmann EFZ
+sbfi_berufe;26309;Textilpraktiker EBA
+sbfi_berufe;26311;Textiltechnologe EFZ
+sbfi_berufe;53107;Theatermaler EFZ
+sbfi_berufe;86917;Tiermedizinischer Praxisassistent EFZ
+sbfi_berufe;18110;Tierpfleger EFZ
+sbfi_berufe;49208;Uhrenarbeiter EBA
+sbfi_berufe;49005;Uhrmacher EFZ
+sbfi_berufe;49207;Uhrmacher Produktion EFZ
+sbfi_berufe;80203;Unterhaltspraktiker EBA
+sbfi_berufe;66500;Veranstaltungsfachmann EFZ
+sbfi_berufe;31604;Vergolder-Einrahmer EFZ
+sbfi_berufe;33315;Verpackungsdrucker EFZ
+sbfi_berufe;33316;Verpackungstechnologe EFZ
+sbfi_berufe;22603;Weintechnologe EFZ (Berufsfeld Landwirtschaft)
+sbfi_berufe;16103;Winzer EFZ (Berufsfeld Landwirtschaft)
+sbfi_berufe;28502;Wohntextilgestalter EFZ
+sbfi_berufe;54104;Zahntechniker EFZ
+sbfi_berufe;64000;Zeichner EFZ (Berufsfeld Raum- und Bauplanung)
+sbfi_berufe;30303;Zimmermann EFZ
+sbfi_berufe;54218;Zinnpfeifenmacher EFZ (Berufsfeld Musikinstrumentenbau)
+efz_typ;3;dreijährige Ausbildung EFZ
+efz_typ;4;vierjährige Ausbildung EFZ
+efz_typ;;zweijährige Ausbildung EBA (wenn school_type=EBA)
+ergaenzungsf;1;Physik
+ergaenzungsf;2;Chemie
+ergaenzungsf;3;Biologie
+ergaenzungsf;4;Anwendungen der Mathematik
+ergaenzungsf;5;Geschichte
+ergaenzungsf;6;Geographie
+ergaenzungsf;7;Philosophie
+ergaenzungsf;8;Religionslehre
+ergaenzungsf;9;Wirtschaft und Recht
+ergaenzungsf;10;Pädagogik/Psychologie
+ergaenzungsf;11;Bildnerisches Gestalten
+ergaenzungsf;12;Musik
+ergaenzungsf;13;Sport
+ergaenzungsf;14;Informatik
+likert6_zutreffen2;1;trifft überhaupt nicht zu
+likert6_zutreffen2;2;trifft überwiegend nicht zu
+likert6_zutreffen2;3;trifft eher nicht zu
+likert6_zutreffen2;4;trifft eher zu
+likert6_zutreffen2;5;trifft überwiegend zu
+likert6_zutreffen2;6;trifft voll und ganz zu
+hb_fach;1;Technik
+hb_fach;2;Wirtschaft
+hb_fach;3;Gastgewerbe, Tourismus, Hotellerie, Hauswirtschaft
+hb_fach;4;Land- und Waldwirtschaft
+hb_fach;5;Gesundheit
+hb_fach;6;Soziales und Erwachsenenbildung
+hb_fach;7;Künste, Gestaltung und Design
+hb_fach;8;Verkehr und Transport
+kleiner_groesser;-1;kleiner geworden
+kleiner_groesser;0;gleich geblieben
+kleiner_groesser;1;grösser geworden
+lgkg;1;Ab dem 7. Schuljahr oder früher (Langzeitgymnasium)
+lgkg;2;Ab dem 8. Schuljahr oder später (Kurzzeitgymnasium)
+likert6_lernen;1;sehr wenig gelernt
+likert6_lernen;2;
+likert6_lernen;3;
+likert6_lernen;4;
+likert6_lernen;5;
+likert6_lernen;6;sehr viel gelernt
+schwerpunktf;1;Latein
+schwerpunktf;2;Griechisch
+schwerpunktf;3;Italienisch
+schwerpunktf;4;Deutsch (für it. sprachige CH)
+schwerpunktf;5;Französisch (für it. sprachige CH)
+schwerpunktf;6;Spanisch
+schwerpunktf;7;Englisch
+schwerpunktf;8;Russisch
+schwerpunktf;9;Physik und Anwendungen der Mathematik
+schwerpunktf;10;Biologie und Chemie
+schwerpunktf;11;Wirtschaft und Recht
+schwerpunktf;12;Philosophie/Pädagogik/Psychologie
+schwerpunktf;13;Bildnerisches Gestalten
+schwerpunktf;14;Musik
+sex;1;männlich
+sex;2;weiblich
+sex;3;keine Antwort
+likert6_tief_hoch;1;sehr tief
+likert6_tief_hoch;2;
+likert6_tief_hoch;3;
+likert6_tief_hoch;4;
+likert6_tief_hoch;5;
+likert6_tief_hoch;6;sehr hoch
+taetigkeit;1;Ich studiere an einer Universität oder der ETH / EPFL
+taetigkeit;2;Ich bin erwerbstätig (aber nicht in Ausbildung oder Praktikum
+taetigkeit;3;Ich absolviere die BMS
+taetigkeit;4;Ich mache die Fachmatura
+taetigkeit;5;Ich mache die gymnasiale Matura
+taetigkeit;6;Ich mache die Passerelle Berufsmaturität - universitäre Hochschule
+taetigkeit;7;Ich absolviere einen Vorkurs für die Pädagogische Hochschule.
+taetigkeit;8;Ich studiere an einer Pädagogischen Hochschule.
+taetigkeit;9;Ich studiere an einer Fachhochschule (ohne Pädagogische Hochschule).
+taetigkeit;10;Ich absolviere eine höhere Fachausbildung bzw. besuche eine höhere Fachschule.
+taetigkeit;11;Ich absolviere einen Vorkurs / ein Propädeutikum für eine gestalterische Hochschule
+taetigkeit;12;Ich bin in einer beruflichen Grundbildung (Lehre).
+taetigkeit;13;Ich bin in einer firmeninternen Ausbildung.
+taetigkeit;14;Ich absolviere ein Praktikum.
+taetigkeit;15;Ich leiste Militär- bzw. Zivildienst.
+taetigkeit;16;Ich bin arbeitslos.
+taetigkeit;17;Sonstiges
+likert6_schlecht_gut;1;sehr schlecht
+likert6_schlecht_gut;2;
+likert6_schlecht_gut;3;
+likert6_schlecht_gut;4;
+likert6_schlecht_gut;5;
+likert6_schlecht_gut;6;sehr gut
+likert6_wichtigkeit;1;sehr unwichtig
+likert6_wichtigkeit;2;
+likert6_wichtigkeit;3;
+likert6_wichtigkeit;4;
+likert6_wichtigkeit;5;
+likert6_wichtigkeit;6;sehr wichtig
+likert6_zufriedenheit;1;sehr unzufrieden
+likert6_zufriedenheit;2;
+likert6_zufriedenheit;3;
+likert6_zufriedenheit;4;
+likert6_zufriedenheit;5;
+likert6_zufriedenheit;6;sehr zufrieden
+laengrfr_pl;1;Ja, Studium an der Universität oder ETH
+laengrfr_pl;2;Ja, feste Anstellung ohne weiter Ausbildung (arbeiten, für mehr als ein Jahr, keine Zwischenlösung)
+laengrfr_pl;3;Ja, Ausbildung an einer Pädagogischen Hochschule
+laengrfr_pl;4;Ja, Ausbildung an einer Fachhochschule (ohne Pädagogische Hochschule)
+laengrfr_pl;5;Ja, interne Weiterbildung im Betrieb
+laengrfr_pl;6;Ja, berufliche Grundbildung (Lehre)
+laengrfr_pl;7;Ja, Berufsmaturität (berufsbegleitend oder Vollzeit)
+laengrfr_pl;8;Ja, Fachmaturität
+laengrfr_pl;9;Ja, gymnasiale Matur (inkl. Erwachsenenmatur)
+laengrfr_pl;10;Ja, Studium an einer Höheren Fachschule
+laengrfr_pl;11;Ja, Vorbereitungskurs für die Pädagogische Hochschule
+laengrfr_pl;12;Ja, Vorbereitungskurs/Propädeutikum für die Schule für Gestaltung
+laengrfr_pl;13;Ja, Passerelle Berufsmaturität – universitäre Hochschule
+laengrfr_pl;14;Ja, arbeiten mit weiterer Teilzeitausbildung (inkl. Interne Ausbildung in einem Betrieb / ohne berufsbegleitende Berufsmatura)
+laengrfr_pl;15;Ja, etwas anderes
+laengrfr_pl;16;Nein, ich weiss noch nicht genau, was ich tun werde
+bms_richt;11;Technik, Architektur und Life Sciences
+bms_richt;12;Wirtschaft und Dienstleistungen
+bms_richt;13;Gestaltung und Kunst
+bms_richt;14;Gesundheit und Soziales
+bms_richt;15;Natur, Landschaft und Lebensmittel
+fms_feld;1;Gesundheit/Naturwissenschaften
+fms_feld;2;Soziales/Soziale Arbeit
+fms_feld;3;Pädagogik
+fms_feld;4;Kommunikation und Information
+fms_feld;5;Gestaltung/Kunst
+fms_feld;6;Musik/Tanz/Theater
+fms_feld;7;Angewandte Psychologie
+fms_feld;8;Gesundheit und Soziale Arbeit
+fms_feld;9;Gesundheit und Pädagogik
+fms_feld;10;Pädagogik und Gestaltung/Kunst
+fms_feld;11;Pädagogik und Musik/Tanz/Theater
+fms_feld;12;Andere Kombinationen
+hms_ims;1;HMS oder WMS
+hms_ims;2;IMS
+likert6_freq;1;fast nie
+likert6_freq;2;
+likert6_freq;3;
+likert6_freq;4;
+likert6_freq;5;
+likert6_freq;6;fast jede Lektion
+zweisprach;1;nein
+zweisprach;2;Ja, Deutsch-Französisch resp. Französisch-Deutsch
+zweisprach;3;Ja, Deutsch-Italienisch resp. Italienisch-Deutsch
+zweisprach;4;Ja, rumantsch-tudestg resp. Deutsch-Romanisch
+zweisprach;5;Ja, Italienisch-Französisch resp. Französisch-Italienisch
+zweisprach;6;Ja, Deutsch-Englisch (ohne International Baccalaureate)
+zweisprach;7;Ja, Deutsch-Englisch (mit International Baccalaureate)
+zweisprach;8;Ja, Französisch-Englisch (ohne International Baccalaureate)
+zweisprach;9;Ja, Französisch-Englisch (mit International Baccalaureate)
+zweisprach;10;Ja, Italienisch-Englisch (ohne International Baccalaureate)
+zweisprach;11;Ja, Italienisch-Englisch (mit International Baccalaureate)
+wohnsitz;0;Nicht Schweiz
+wohnsitz;1;Schweiz
+ueberford;-1;zu niedrig
+ueberford;0;angemessen gefordert
+ueberford;1;überfordert
+zeitbelast;-1;zu niedrig
+zeitbelast;0;angemessen
+zeitbelast;1;zu hoch
+school_type;2;GYM
+school_type;3;BMS
+school_type;4;FMS
+school_type;5;HMS/WMS/IMS
+school_type;8;EFZ
+school_type;9;EBA
