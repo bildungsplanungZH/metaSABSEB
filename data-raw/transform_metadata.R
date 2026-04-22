@@ -20,6 +20,7 @@ variables_list <- setNames(
 
     # Get value label key
     key <- row$value_label_key
+    row$value_label_key <- NULL
 
     # If the key exists, extract rows from value_meta
     if (!is.na(key)) {
