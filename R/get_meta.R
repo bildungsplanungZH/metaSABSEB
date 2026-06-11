@@ -11,12 +11,12 @@
 #'          or a single field value if `field` is specified
 #'
 #' @examples
-#' get_var_meta(var = "EFZ_Typ")
-#' get_var_meta(var = "Anst_best", "quelle")
+#' get_meta(var = "EFZ_Typ")
+#' get_meta(var = "Anst_best", "quelle")
 #'
 #' @export
 
-get_var_meta <- function(var, field = NULL) {
+get_meta <- function(var, field = NULL) {
   meta <- yaml::read_yaml(system.file("qm_sekII_metadata.yaml",
                                       package = "metaSABSEB"))
 
