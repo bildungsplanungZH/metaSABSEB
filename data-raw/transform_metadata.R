@@ -6,6 +6,9 @@
 library(readr)
 library(yaml)
 
+# Ensure UTF-8 encoding
+Sys.setlocale("LC_CTYPE", "German_Switzerland.utf8")
+
 # Read the CSVs (semicolon delimited)
 variable_meta <- read_csv2("data-raw/qm_sekII_variable-meta.csv")
 value_meta <- read_csv2("data-raw/qm_sekII_value-meta.csv")
@@ -49,4 +52,7 @@ variables_list <- setNames(
 dir.create("inst", recursive = TRUE)
 
 # Convert R list into YAML format and save it
-write_yaml(variables_list, "inst/qm_sekII_metadata.yaml", indent = 2)
+# Please do not overwrite the YAML again.
+# Otherwise changes made using `add_meta` or `update_meta` may be lost.
+# write_yaml(variables_list, "inst/qm_sekII_metadata.yaml", indent = 2)
+
