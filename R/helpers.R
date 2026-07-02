@@ -114,8 +114,8 @@ confirm_replacement <- function(yaml_path, meta, var, field, new_entry) {
 
     # "No" = Exit, no change made
     if (replace_choice !=1) {
-        cli::cli_alert_warning("Das Anpassen der Metadaten wurde abgebrochen.
-                                    Es wurden keine Änderungen vorgenommen.")
+        cli::cli_alert_warning("Das Anpassen der Metadaten wurde abgebrochen.")
+        cli::cli_alert_info("Es wurden keine Änderungen vorgenommen.")
         return(invisible(NULL))
     }
 
