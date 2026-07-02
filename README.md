@@ -2,29 +2,35 @@
 
 Repository erstellt am: 07.10.2025
 
-Kontakt: Christina Arn <christina.arn@bi.zh.ch>
+**Kontakt**
+
+- Christina Arn: <christina.arn@bi.zh.ch>
+- Marco Schuppisser: <marco.schuppisser@zemces.ch>
 
 ### Kurzbeschreibung
-**Ziel:** Strukturierte Ablage der Metadaten von SAB und SEB gemeinsam mit ZEM CES entwickeln. Die Metadaten sollten in einem maschinen- und menschenlesbaren Format vorhanden sein und mit den Rohdaten der Umfrage einfach verknüpft werden können. Kantonale Vorgaben zu Metadatenattributen sollen in der Entwicklung berücksichtigt werden. 
+Dieses R-Package [metaSABSEB](https://github.com/bildungsplanungZH/metaSABSEB) 
+enthält **Metadaten** zum Qualitätsmonitoring Sek II. Es wurde durch die 
+[Bildungsplanung des Kantons Zürich](https://www.zh.ch/de/bildungsdirektion/generalsekretariat-der-bildungsdirektion/bildungsplanung.html)
+in Zusammenarbeit mit dem
+[Schweizerischen Zentrum für die Mittelschule und für Schulevaluation auf Sekundarstufe ||](https://www.zemces.ch/de)
+(ZEM CES) erarbeitet. 
+Konkret geht es um Informationen zu folgenden Befragungen:
 
-**Zusammenarbeit:** Folgende Personen von ZEM CES sind am Projekt beteiligt:
-- Caroline Müller <caroline.mueller@zemces.ch> (Bereichsleitung Evaluationen & Befragungen)
-- Marco Schuppisser <marco.schuppisser@zemces.ch> (studentischer Mitarbeiter). 
+- Die standardisierte Abschlussklassenbefragung ([SAB](https://www.zemces.ch/de/evaluationen-und-befragungen/standardisierte-befragungen/abschlussklassenbefragung))
+- Die standardisierte Ehemaligenbefragung ([SEB](https://www.zemces.ch/de/evaluationen-und-befragungen/standardisierte-befragungen/ehemaligenbefragung))
 
-**Vorgesehene Produkte bis Januar 2026:**
--  Maschinen- und menschenlesbarer Metadatensatz für SAB und SEB
--  Lade- und Prüfprozess in R: Automatisiserte Checks zur Vollständigkeit der Metadaten und Verknüpfung von Metadaten und Rohdaten
+Die Metadaten beschreiben Spalten und Werteausprägungen und liefern wichtige 
+Hintergrundinformationen zu den Daten.
+Die gesammelten Metadaten beschränken sich auf die gesamtschweizerisch erhobenen 
+Merkmale sowie auf Fokusmodule für den Kanton Zürich.
+Metadaten zu den Fokusmodulen von anderen Kantonen wurden nicht berücksichtigt.
 
-### Nächste Schritte
-Bis 3.11.2025
-- Abkärung ZEM CES zum Export der Metadaten aus der Umfragesoftware
-- Vorschlag Bildungsmonitoring zur zukünftigen Metadatenstruktur
-Danach: Definition der Arbeitspakete und Aufwandeinschätzung
 
-Bis 24.11.2025
-- Konzeption Einleseprozess mit R
-- Erstellen einer Tabelle mit Informationen, die händisch befüllt werden müssen.
+Darüber hinaus enthält das Package **Funktionen**, zum Abrufen, Anpassen und Ergänzen von Metadaten.
 
-Bis 23.12.2025
-Befüllen des Excels mit den fehlenden Informationen (oder min. damit anfangen)
+### Minimales Beispiel
+```{r}
+
+```
+
 
