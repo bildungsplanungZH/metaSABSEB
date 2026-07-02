@@ -24,19 +24,13 @@ check_var_exists <- function(var, meta) {
         max.distance = 0.2
     )
 
-    # No close match found
-    if (length(close_match) == 0) {
-        cli::cli_abort(
-            "Variable {.var {var}} konnte in den Metadaten nicht gefunden werden.",
-            call = NULL
-        )
-    }
 
     # Close match found, but non-interactive
     if (!interactive()) {
         cli::cli_abort(c(
             "Variable {.var {var}} konnte nicht in den Metadaten gefunden werden.",
-            "i" = "Meinten Sie vielleicht: {.var {close_match}}?"
+            "i" = "Meinten Sie vielleicht eine der folgenden Variablen: {.var {close_match}}?
+            Bitte versuchen Sie es erneut."
         ), call = NULL)
     }
 
@@ -48,18 +42,18 @@ check_var_exists <- function(var, meta) {
         )
     )
 
-    if (var_choice == 0) {
-        cli::cli_abort("Abgebrochen.", call = NULL)
+    # User does not take any suggestions or aborts
+    if (var_choice == 0 || var_choice == length(close_match) + 1) {
+        cli::cli_abort("Das Anpassen der Metadaten wurde abgebrochen.
+                               Variable {.var {var}} konnte nicht in den Metadaten gefunden werden.",
+                       call = NULL)
+
     }
 
+    # User chooses close match
     if (var_choice <= length(close_match)) {
         return(close_match[var_choice])
     }
-
-    cli::cli_abort(
-        "Variable {.var {var}} konnte nicht in den Metadaten gefunden werden.",
-        call = NULL
-    )
 }
 
 #' Confirm that an existing entry should be replaced
