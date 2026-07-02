@@ -84,8 +84,8 @@ change_meta <- function(var = NULL, field = NULL, new_entry = NULL) {
             )
             # If the user cancelled the menu
             if (field_choice==0) {
-                cli::cli_alert_warning("Das Anpassen der Metadaten wurde abgebrochen.
-                                            Es wurden keine Änderungen vorgenommen.")
+                cli::cli_alert_warning("Das Anpassen der Metadaten wurde abgebrochen.")
+                cli::cli_alert_info("Es wurden keine Änderungen vorgenommen.")
                 return(invisible(NULL))
             }
 
