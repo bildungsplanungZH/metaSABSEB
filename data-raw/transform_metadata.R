@@ -13,6 +13,12 @@ Sys.setlocale("LC_CTYPE", "German_Switzerland.utf8")
 variable_meta <- read_csv2("data-raw/qm_sekII_variable-meta.csv")
 value_meta <- read_csv2("data-raw/qm_sekII_value-meta.csv")
 
+# Drop variables for other cantons
+variable_meta <- variable_meta[
+    is.na(variable_meta$umfrage_item) |
+        variable_meta$umfrage_item != "Zusatzfragen von anderen Kantonen/Schulen, ignorieren",
+]
+
 # Loop over each variable i in variable_meta and create a list
 variables_list <- setNames(
   lapply(seq_len(nrow(variable_meta)), function(i) {
