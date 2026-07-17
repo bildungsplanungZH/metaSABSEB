@@ -4369,6 +4369,7 @@ Lern_es:
   umfrage_item: Sind Sie der Meinung, in den von Ihnen belegten Fächern viel gelernt
     zu haben?
   itemformulierung: Spanisch
+  var_typ: 'Einzelitem-Gruppe: Selbsteinschätzung des Lernerfolgs'
   umfrage_filter: school_type_id = 1
   quelle: Basierend auf Fächerangebot (MAR95, BMV 2009, Kantonale Verordnungen für
     FMS, HMS/WMS/IMS)
@@ -4426,6 +4427,7 @@ Lern_geo:
     zu haben?
   itemformulierung: Geografie (auch in Kombination Geografie-Physik oder Geografie-Bildnerisches
     Gestalten)
+  var_typ: 'Einzelitem-Gruppe: Selbsteinschätzung des Lernerfolgs'
   umfrage_filter: school_type_id = 1, 4
   quelle: Basierend auf Fächerangebot (MAR95, BMV 2009, Kantonale Verordnungen für
     FMS, HMS/WMS/IMS)
@@ -4903,6 +4905,7 @@ Lern_vbr:
   umfrage_item: Sind Sie der Meinung, in den von Ihnen belegten Fächern viel gelernt
     zu haben?
   itemformulierung: Volkswirtschaft / Betriebswirtschaft / Recht
+  var_typ: 'Einzelitem-Gruppe: Selbsteinschätzung des Lernerfolgs'
   umfrage_filter: school_type_id = 5
   quelle: Basierend auf Fächerangebot (MAR95, BMV 2009, Kantonale Verordnungen für
     FMS, HMS/WMS/IMS)
@@ -4921,6 +4924,7 @@ Lern_wug:
   umfrage_item: Sind Sie der Meinung, in den von Ihnen belegten Fächern viel gelernt
     zu haben?
   itemformulierung: Wirtschaft und Gesellschaft
+  var_typ: 'Einzelitem-Gruppe: Selbsteinschätzung des Lernerfolgs'
   umfrage_filter: school_type_id = 5
   quelle: Basierend auf Fächerangebot (MAR95, BMV 2009, Kantonale Verordnungen für
     FMS, HMS/WMS/IMS)
@@ -4939,7 +4943,7 @@ Lern_wur:
   umfrage_item: Sind Sie der Meinung, in den von Ihnen belegten Fächern viel gelernt
     zu haben?
   itemformulierung: Wirtschaft und Recht
-  var_typ: 'Einzelitem: Selbsteinschätzung des Lernerfolgs'
+  var_typ: 'Einzelitem-Gruppe: Selbsteinschätzung des Lernerfolgs'
   umfrage_filter: school_type_id = 1, 3, 4
   quelle: Basierend auf Fächerangebot (MAR95, BMV 2009, Kantonale Verordnungen für
     FMS, HMS/WMS/IMS)
@@ -10508,10 +10512,12 @@ school_code:
 school_name:
   datensatz: qm_sekII
   umfrage_item: Offizieller Schulname
+  var_typ: 'Einzelitem: Schulname'
   status: aktiv
 school_type:
   datensatz: qm_sekII
   umfrage_item: Schultyp
+  var_typ: 'Einzelitem: Schultyp'
   status: aktiv
   values:
     '2': GYM
@@ -10657,6 +10663,7 @@ tis_lehrp_bera:
   itemformulierung: '... können uns beim Lernen mit digitalen Medien gut beraten.'
   var_typ: 'Skala: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
+  quelle: Petko, 2020
   status: aktiv
   values:
     '1': trifft überhaupt nicht zu
@@ -10672,6 +10679,7 @@ tis_lehrp_faecher:
   itemformulierung: '... setzen digitale Medien in ihren Fächern passend ein.'
   var_typ: 'Skala: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
+  quelle: Petko, 2020
   status: aktiv
   values:
     '1': trifft überhaupt nicht zu
@@ -10687,6 +10695,7 @@ tis_lehrp_konz:
   itemformulierung: '... setzen digitale Medien so ein, dass wir konzentriert mitarbeiten.'
   var_typ: 'Skala: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
+  quelle: Petko, 2020
   status: aktiv
   values:
     '1': trifft überhaupt nicht zu
@@ -10702,6 +10711,7 @@ tis_lehrp_pos:
   itemformulierung: '... sind digitalen Medien gegenüber positiv eingestellt.'
   var_typ: 'Skala: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
+  quelle: Petko, 2020
   status: aktiv
   values:
     '1': trifft überhaupt nicht zu
@@ -10717,6 +10727,7 @@ tis_lehrp_umge:
   itemformulierung: '... können mit digitalen Medien gut umgehen.'
   var_typ: 'Skala: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
+  quelle: Petko, 2020
   status: aktiv
   values:
     '1': trifft überhaupt nicht zu
