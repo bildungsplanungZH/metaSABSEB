@@ -7,6 +7,12 @@ Repository erstellt am: 07.10.2025
 - Christina Arn: <christina.arn@bi.zh.ch>
 - Marco Schuppisser: <marco.schuppisser@zemces.ch>
 
+<div style="background-color:#fff3cd; padding:10px; border-left:5px solid #ffc107;">
+⚠️ Das Paket befindet sich noch in der Development Phase. ⚠️ <br><br>
+Einige Features, Dokumentation und Tests sind immer noch in der Entwicklung.
+</div>
+
+
 ### Kurzbeschreibung
 Dieses R-Package [metaSABSEB](https://github.com/bildungsplanungZH/metaSABSEB) 
 enthält **Metadaten** zum Qualitätsmonitoring Sek II. Es wurde durch die 
@@ -28,9 +34,9 @@ Metadaten zu den Fokusmodulen von anderen Kantonen wurden nicht berücksichtigt.
 
 Darüber hinaus enthält das Package **Funktionen**, zum Abrufen, Anpassen und Ergänzen von Metadaten.
 
-### Minimales Beispiel
-```{r}
+* `get_meta()`: Zum Abrufen von Metadaten; *erste Version verfügbar*
+* `change_meta()`: Zum Ändern von einzelnen Metadatenfeldern; *erste Version verfügbar*
+* `add_meta()`: Zum Hinzufügen einer ganzen neuen Variable inkl. vorgeschriebener Metadatenfelder; *work in progress* 
 
-```
 
 
