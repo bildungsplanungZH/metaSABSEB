@@ -1,7 +1,6 @@
 #' @description
-#' Change an already existing metadata entry.
+#' Change metadata for a variable that is already registered
 #' The function:
-#'
 #' - reads the metadata yaml
 #' - locates the desired variable and field
 #' - shows the current metadata entry
@@ -84,9 +83,7 @@ change_meta <- function(var = NULL, field = NULL, new_entry = NULL) {
             )
             # If the user cancelled the menu
             if (field_choice==0) {
-                cli::cli_alert_warning("Das Anpassen der Metadaten wurde abgebrochen.")
-                cli::cli_alert_info("Es wurden keine Änderungen vorgenommen.")
-                return(invisible(NULL))
+                abort_changes_msg()
             }
 
             # If user wants to add a new field

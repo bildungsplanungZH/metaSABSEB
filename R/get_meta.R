@@ -64,13 +64,12 @@ get_meta <- function(var, field = NULL, refresh = FALSE) {
 
         # If a field is specified but it does not exist for that var
         else {
-            warning("Es existiert kein Metadateneintrag für das Feld '",
-                    field,
-                    "'\n",
-                    "Es werden alle verfügbaren Einträge für die Variable '",
-                    var,
-                    "' aufgelistet",
-                    call.= FALSE)
+            cli::cli_alert_warning(paste0(
+                "Es existiert kein Metadateneintrag für das Feld ",
+                "{.field {field}}. \n\n",
+                "Es werden alle verfügbaren Einträge für die ",
+                "Variable {.var {var}} aufgelistet."
+            ))
             return(var_info)
         }}
 

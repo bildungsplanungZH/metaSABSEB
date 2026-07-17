@@ -1,3 +1,4 @@
+#' @description
 #' Check variable existence in metadata
 #'
 #' Checks if a variable name exists in the metadata list.
@@ -56,6 +57,8 @@ check_var_exists <- function(var, meta) {
     }
 }
 
+#' @description
+#'
 #' Confirm that an existing entry should be replaced
 #' Compares current metadata entry to new entry
 #' Asks interactively, if the entry should be replaced
@@ -108,9 +111,23 @@ confirm_replacement <- function(yaml_path, meta, var, field, new_entry) {
 
     # "No" = Exit, no change made
     if (replace_choice !=1) {
-        cli::cli_alert_warning("Das Anpassen der Metadaten wurde abgebrochen.")
-        cli::cli_alert_info("Es wurden keine Änderungen vorgenommen.")
-        return(invisible(NULL))
+        abort_changes_msg()
     }
 
+}
+
+#' @description
+#' Error message, for when menu has been exited
+#' or changes have been aborted
+#'
+#' @return cli messages:
+#' - changing metadata has been aborted
+#' - no changes made
+#'
+#' @keywords internal
+
+abort_changes_msg <- function() {
+    cli::cli_alert_warning("Das Anpassen der Metadaten wurde abgebrochen.")
+    cli::cli_alert_info("Es wurden keine Änderungen vorgenommen.")
+    return(invisible(NULL))
 }
