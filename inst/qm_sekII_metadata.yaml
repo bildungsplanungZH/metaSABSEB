@@ -472,7 +472,7 @@ Aktiv_aktu:
   umfrage_item: Wie viel können Sie selber aktiv sein im Unterricht?
   itemformulierung: Wir werden oft aufgefordert, unser Wissen auf aktuelle Ereignisse
     und alltägliche Situationen anzuwenden.
-  var_typ: 'Skala: Selbstaktivität'
+  var_typ: 'Skalenitem: Selbstaktivität'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu Kontextmerkmalen
@@ -493,7 +493,7 @@ Aktiv_eigen:
   umfrage_item: Wie viel können Sie selber aktiv sein im Unterricht?
   itemformulierung: Im Unterricht gibt es für uns Schülerinnen und Schüler immer wieder
     Gelegenheiten, eigene Ideen zu realisieren.
-  var_typ: 'Skala: Selbstaktivität'
+  var_typ: 'Skalenitem: Selbstaktivität'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu Kontextmerkmalen
@@ -514,7 +514,7 @@ Aktiv_selber:
   umfrage_item: Wie viel können Sie selber aktiv sein im Unterricht?
   itemformulierung: Von uns Schülerinnen und Schülern wird oft verlangt, etwas selber
     darzustellen, zu analysieren oder zu beurteilen.
-  var_typ: 'Skala: Selbstaktivität'
+  var_typ: 'Skalenitem: Selbstaktivität'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu Kontextmerkmalen
@@ -534,7 +534,7 @@ Aktiv_sorg:
   unterthema: Unterricht
   umfrage_item: Wie viel können Sie selber aktiv sein im Unterricht?
   itemformulierung: Wir werden darin unterstützt, uns mit Texten sorgfältig auseinanderzusetzen.
-  var_typ: 'Skala: Selbstaktivität'
+  var_typ: 'Skalenitem: Selbstaktivität'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu Kontextmerkmalen
@@ -625,7 +625,7 @@ Anst_best:
   unterthema: Individuelle Eingangsvoraussetzungen der Schülerinnen und Schüler
   umfrage_item: Wie beurteilen Sie Ihr eigenes Lernverhalten?
   itemformulierung: Wenn ich lerne, gebe ich mein Bestes.
-  var_typ: 'Skala: Eigene Anstrengung'
+  var_typ: 'Skalenitem: Eigene Anstrengung'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: '1) PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation
@@ -646,7 +646,7 @@ Anst_schwierig:
   umfrage_item: Wie beurteilen Sie Ihr eigenes Lernverhalten?
   itemformulierung: Wenn ich lerne, arbeite ich auch dann weiter, wenn der Stoff schwierig
     ist.
-  var_typ: 'Skala: Eigene Anstrengung'
+  var_typ: 'Skalenitem: Eigene Anstrengung'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: '1) PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation
@@ -667,7 +667,7 @@ Anst_schwierig_a:
   umfrage_item: Wie beurteilen Sie Ihr eigenes Lernverhalten?
   itemformulierung: Ich arbeite auch dann weiter, wenn der Unterrichtsstoff schwierig
     ist.
-  var_typ: 'Skala: Eigene Anstrengung'
+  var_typ: 'Skalenitem: Eigene Anstrengung'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: '1) PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation
@@ -687,7 +687,7 @@ Anst_sehr:
   unterthema: Individuelle Eingangsvoraussetzungen der Schülerinnen und Schüler
   umfrage_item: Wie beurteilen Sie Ihr eigenes Lernverhalten?
   itemformulierung: Ich strenge mich in der Schule sehr an.
-  var_typ: 'Skala: Eigene Anstrengung'
+  var_typ: 'Skalenitem: Eigene Anstrengung'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: '1) PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation
@@ -707,7 +707,7 @@ Anst_sehr_a:
   unterthema: Individuelle Eingangsvoraussetzungen der Lernenden
   umfrage_item: Wie beurteilen Sie Ihr eigenes Lernverhalten?
   itemformulierung: Ich strenge mich in der Schule an.
-  var_typ: 'Skala: Eigene Anstrengung'
+  var_typ: 'Skalenitem: Eigene Anstrengung'
   umfrage_filter: school_type_id = 3, 8, 9
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: '1) PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation
@@ -727,7 +727,7 @@ Anst_voll:
   unterthema: Individuelle Eingangsvoraussetzungen der Schülerinnen und Schüler
   umfrage_item: Wie beurteilen Sie Ihr eigenes Lernverhalten?
   itemformulierung: In der Schule bin ich meistens voll bei der Sache.
-  var_typ: 'Skala: Eigene Anstrengung'
+  var_typ: 'Skalenitem: Eigene Anstrengung'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: '1) PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation
@@ -747,7 +747,7 @@ Anst_voll_a:
   unterthema: Individuelle Eingangsvoraussetzungen der Lernenden
   umfrage_item: Wie beurteilen Sie Ihr eigenes Lernverhalten?
   itemformulierung: Ich bin in der Schule voll bei der Sache.
-  var_typ: 'Skala: Eigene Anstrengung'
+  var_typ: 'Skalenitem: Eigene Anstrengung'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: '1) PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation
@@ -1190,7 +1190,7 @@ Bll_freude:
   umfrage_item: Wie erleben Sie das Klima in Ihrer Klasse?
   itemformulierung: Wenn jemand einen Fehler macht oder eine schlechte Leistung erbringt,
     freuen sich die anderen.
-  var_typ: 'Skala: Interaktion zwischen Schülerinnen und Schülern'
+  var_typ: 'Skalenitem: Interaktion zwischen Schülerinnen und Schülern'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -1212,7 +1212,7 @@ Bll_helf:
   umfrage_item: Wie erleben Sie das Klima in Ihrer Klasse?
   itemformulierung: Die meisten Schülerinnen und Schüler in unserer Klasse helfen
     einander gegenseitig im Unterricht.
-  var_typ: 'Skala: Interaktion zwischen Schülerinnen und Schülern'
+  var_typ: 'Skalenitem: Interaktion zwischen Schülerinnen und Schülern'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -1234,7 +1234,7 @@ Bll_ober:
   umfrage_item: Wie erleben Sie das Klima in Ihrer Klasse?
   itemformulierung: Freundschaften zwischen den Schülerinnen und Schülern sind bei
     uns nur oberflächlich, letzten Endes arbeitet jeder gegen jeden.
-  var_typ: 'Skala: Interaktion zwischen Schülerinnen und Schülern'
+  var_typ: 'Skalenitem: Interaktion zwischen Schülerinnen und Schülern'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -1255,7 +1255,7 @@ Bll_streit:
   unterthema: Soziale Beziehungen
   umfrage_item: Wie erleben Sie das Klima in Ihrer Klasse?
   itemformulierung: Es gibt unter den Schülerinnen und Schülern oft Streit.
-  var_typ: 'Skala: Interaktion zwischen Schülerinnen und Schülern'
+  var_typ: 'Skalenitem: Interaktion zwischen Schülerinnen und Schülern'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -1276,7 +1276,7 @@ Blp_hilft:
   unterthema: Soziale Beziehungen
   umfrage_item: Wie verhalten sich Ihre Lehrpersonen Ihnen gegenüber?
   itemformulierung: Wenn ich eine Lehrperson um Unterstützung bitte, hilft sie mir.
-  var_typ: 'Skala: Interaktion zwischen Lehrpersonen und Lernenden'
+  var_typ: 'Skalenitem: Interaktion zwischen Lehrpersonen und Lernenden'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -1297,7 +1297,7 @@ Blp_korr:
   unterthema: Soziale Beziehungen
   umfrage_item: Wie verhalten sich Ihre Lehrpersonen Ihnen gegenüber?
   itemformulierung: Ich fühle mich von den Lehrpersonen respektvoll behandelt.
-  var_typ: 'Skala: Interaktion zwischen Lehrpersonen und Lernenden'
+  var_typ: 'Skalenitem: Interaktion zwischen Lehrpersonen und Lernenden'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -1318,7 +1318,7 @@ Blp_korr_a:
   unterthema: Soziale Beziehungen
   umfrage_item: Wie verhalten sich Ihre Lehrpersonen Ihnen gegenüber?
   itemformulierung: Ich fühle mich von unseren Lehrpersonen respektvoll behandelt.
-  var_typ: 'Skala: Soziale Interaktion zwischen Lehrpersonen und Lernenden'
+  var_typ: 'Skalenitem: Soziale Interaktion zwischen Lehrpersonen und Lernenden'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -1340,7 +1340,7 @@ Blp_mein:
   umfrage_item: Wie verhalten sich Ihre Lehrpersonen Ihnen gegenüber?
   itemformulierung: Bei uns dürfen Schülerinnen und Schüler ihre Meinung im Unterricht
     sagen, auch wenn diese von der Meinung der Lehrperson abweicht.
-  var_typ: 'Skala: Interaktion zwischen Lehrpersonen und Lernenden'
+  var_typ: 'Skalenitem: Interaktion zwischen Lehrpersonen und Lernenden'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -1362,7 +1362,7 @@ Blp_mein_a:
   umfrage_item: Wie verhalten sich Ihre Lehrpersonen Ihnen gegenüber?
   itemformulierung: Ich darf einer Lehrperson meine Meinung sagen, auch wenn sie von
     der Meinung der Lehrperson abweicht.
-  var_typ: 'Skala: Soziale Interaktion zwischen Lehrpersonen und Lernenden'
+  var_typ: 'Skalenitem: Soziale Interaktion zwischen Lehrpersonen und Lernenden'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -1384,7 +1384,7 @@ Blp_zeit:
   umfrage_item: Wie verhalten sich Ihre Lehrpersonen Ihnen gegenüber?
   itemformulierung: Wenn wir mit unseren Lehrpersonen etwas bereden wollen, dann finden
     sie auch Zeit dazu.
-  var_typ: 'Skala: Interaktion zwischen Lehrpersonen und Lernenden'
+  var_typ: 'Skalenitem: Interaktion zwischen Lehrpersonen und Lernenden'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -1406,7 +1406,7 @@ Blp_zeit_a:
   umfrage_item: Wie verhalten sich Ihre Lehrpersonen Ihnen gegenüber?
   itemformulierung: Wenn ich mit einer Lehrperson über etwas reden will, dann findet
     sie Zeit dazu.
-  var_typ: 'Skala: Soziale Interaktion zwischen Lehrpersonen und Lernenden'
+  var_typ: 'Skalenitem: Soziale Interaktion zwischen Lehrpersonen und Lernenden'
   umfrage_filter: school_type_id = 3, 8, 9
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -2795,7 +2795,7 @@ Foe_anst:
   umfrage_item: Fühlen Sie sich von Ihren Lehrpersonen gefördert?
   itemformulierung: Wenn ich mich besonders angestrengt habe, loben mich die Lehrpersonen
     meistens, auch wenn andere Schülerinnen und Schüler noch besser sind als ich.
-  var_typ: 'Skala: Individuelle Förderung'
+  var_typ: 'Skalenitem: Individuelle Förderung'
   umfrage_filter: school_type_id = 1, 4, 5
   quelle: '1) Clausen, 2002. Unterrichtsqualität: Eine Frage der Perspektive?  (2
     von 4 Items, individuelle Bezugsnormorientierung) (zit. Leutwyler und Maag Merki,
@@ -2842,7 +2842,7 @@ Foe_begab:
   umfrage_item: Fühlen Sie sich von Ihren Lehrpersonen gefördert?
   itemformulierung: Unsere Lehrpersonen fördern auch besonders begabte Schülerinnen
     und Schüler (z.B. mit interessanten Aufgaben und Projekten, Teilnahme an Wettbewerben)
-  var_typ: 'Skala: Individuelle Förderung'
+  var_typ: 'Skalenitem: Individuelle Förderung'
   umfrage_filter: school_type_id = 1, 4, 5
   quelle: '1) Clausen, 2002. Unterrichtsqualität: Eine Frage der Perspektive?  (2
     von 4 Items, individuelle Bezugsnormorientierung) (zit. Leutwyler und Maag Merki,
@@ -2889,7 +2889,7 @@ Foe_kuemm:
   umfrage_item: Fühlen Sie sich von Ihren Lehrpersonen gefördert?
   itemformulierung: Bei uns kümmern sich die Lehrpersonen auch um die Schülerinnen
     und Schüler, die nicht so schnell mitkommen.
-  var_typ: 'Skala: Individuelle Förderung'
+  var_typ: 'Skalenitem: Individuelle Förderung'
   umfrage_filter: school_type_id = 1, 4, 5
   quelle: '1) Clausen, 2002. Unterrichtsqualität: Eine Frage der Perspektive?  (2
     von 4 Items, individuelle Bezugsnormorientierung) (zit. Leutwyler und Maag Merki,
@@ -2913,7 +2913,7 @@ Foe_sch:
   umfrage_item: Fühlen Sie sich von Ihren Lehrpersonen gefördert?
   itemformulierung: Unsere Lehrpersonen loben auch die leistungsschwächeren Schülerinnen
     und Schüler, wenn sie merken, dass sie sich verbessern.
-  var_typ: 'Skala: Individuelle Förderung'
+  var_typ: 'Skalenitem: Individuelle Förderung'
   umfrage_filter: school_type_id = 1, 4, 5
   quelle: '1) Clausen, 2002. Unterrichtsqualität: Eine Frage der Perspektive?  (2
     von 4 Items, individuelle Bezugsnormorientierung) (zit. Leutwyler und Maag Merki,
@@ -3790,7 +3790,7 @@ Klar_merk:
   unterthema: Unterricht
   umfrage_item: Wie klar und strukturiert erleben Sie den Unterricht?
   itemformulierung: Unsere Lehrpersonen sagen, was wir uns besonders gut merken sollen.
-  var_typ: 'Skala: Klarheit und Struktur'
+  var_typ: 'Skalenitem: Klarheit und Struktur'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 'Zusammenstellung basierend auf 3 Skalen zu Klarheit und Strukturiertheit
@@ -3813,7 +3813,7 @@ Klar_reih:
   unterthema: Unterricht
   umfrage_item: Wie klar und strukturiert erleben Sie den Unterricht?
   itemformulierung: Unsere Lehrpersonen erklären die Dinge schön der Reihe nach.
-  var_typ: 'Skala: Klarheit und Struktur'
+  var_typ: 'Skalenitem: Klarheit und Struktur'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >4
   quelle: 'Zusammenstellung basierend auf 3 Skalen zu Klarheit und Strukturiertheit
@@ -3837,7 +3837,7 @@ Klar_verst:
   umfrage_item: Wie klar und strukturiert erleben Sie den Unterricht?
   itemformulierung: Unsere Lehrpersonen erklären so, dass man auch bei schwierigen
     Aufgaben gut nachkommt.
-  var_typ: 'Skala: Klarheit und Struktur'
+  var_typ: 'Skalenitem: Klarheit und Struktur'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >5
   quelle: 'Zusammenstellung basierend auf 3 Skalen zu Klarheit und Strukturiertheit
@@ -3861,7 +3861,7 @@ Klar_ziel:
   umfrage_item: Wie klar und strukturiert erleben Sie den Unterricht?
   itemformulierung: Unsere Lehrpersonen geben uns am Anfang der Unterrichtsstunde
     bekannt, was sie mit uns lernen wollen.
-  var_typ: 'Skala: Klarheit und Struktur'
+  var_typ: 'Skalenitem: Klarheit und Struktur'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >6
   quelle: 'Zusammenstellung basierend auf 3 Skalen zu Klarheit und Strukturiertheit
@@ -3885,7 +3885,7 @@ Klar_zuku:
   umfrage_item: Wie klar und strukturiert erleben Sie den Unterricht?
   itemformulierung: Unsere Lehrpersonen sagen regelmässig, was in nächster Zeit im
     Unterricht gelernt wird.
-  var_typ: 'Skala: Klarheit und Struktur'
+  var_typ: 'Skalenitem: Klarheit und Struktur'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >7
   quelle: 'Zusammenstellung basierend auf 3 Skalen zu Klarheit und Strukturiertheit
@@ -3909,7 +3909,7 @@ Klar_zusam:
   umfrage_item: Wie klar und strukturiert erleben Sie den Unterricht?
   itemformulierung: Unsere Lehrpersonen fassen häufig nochmals den Stoff zusammen,
     damit wir ihn uns gut merken können.
-  var_typ: 'Skala: Klarheit und Struktur'
+  var_typ: 'Skalenitem: Klarheit und Struktur'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >8
   quelle: 'Zusammenstellung basierend auf 3 Skalen zu Klarheit und Strukturiertheit
@@ -3933,7 +3933,7 @@ Klima_ansp:
   umfrage_item: Wie beurteilen Sie das Klima an Ihrer Schule?
   itemformulierung: Bei Problemen stehen mir Ansprechpersonen an der Schule zur Verfügung,
     mit denen ich mich besprechen kann.
-  var_typ: 'Skala: Klarheit und Struktur'
+  var_typ: 'Skalenitem: Klarheit und Struktur'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -3953,7 +3953,7 @@ Klima_ansp_a:
   umfrage_item: Wie beurteilen Sie das Klima an Ihrer Schule? An unserer Schule...
   itemformulierung: '... stehen uns bei Problemen Ansprechpersonen zur Verfügung,
     mit denen wir uns besprechen können.'
-  var_typ: 'Skala: Schulklima'
+  var_typ: 'Skalenitem: Schulklima'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -3972,7 +3972,7 @@ Klima_ernst:
   unterthema: Schulführung
   umfrage_item: Wie beurteilen Sie das Klima an Ihrer Schule?
   itemformulierung: Ich werde an meiner Schule ernst genommen.
-  var_typ: 'Skala: Schulklima'
+  var_typ: 'Skalenitem: Schulklima'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -3991,7 +3991,7 @@ Klima_ernst_a:
   unterthema: Schulführung
   umfrage_item: Wie beurteilen Sie das Klima an Ihrer Schule? An unserer Schule...
   itemformulierung: '... werden wir ernst genommen.'
-  var_typ: 'Skala: Schulklima'
+  var_typ: 'Skalenitem: Schulklima'
   umfrage_filter: school_type_id = 3, 8, 9
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -4011,7 +4011,7 @@ Klima_kuem:
   umfrage_item: Wie beurteilen Sie das Klima an Ihrer Schule?
   itemformulierung: An der Schule kümmert man sich darum, wie es den Schülerinnen
     und Schülern geht.
-  var_typ: 'Skala: Schulklima'
+  var_typ: 'Skalenitem: Schulklima'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -4030,7 +4030,7 @@ Klima_kuem_a:
   unterthema: Schulführung
   umfrage_item: Wie beurteilen Sie das Klima an Ihrer Schule? An unserer Schule...
   itemformulierung: '... kümmert man sich darum, wie es uns geht.'
-  var_typ: 'Skala: Schulklima'
+  var_typ: 'Skalenitem: Schulklima'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -4049,7 +4049,7 @@ Klima_resp:
   unterthema: Schulführung
   umfrage_item: Wie beurteilen Sie das Klima an Ihrer Schule?
   itemformulierung: An unserer Schule wird ein respektvoller Umgang miteinander gepflegt.
-  var_typ: 'Skala: Schulklima'
+  var_typ: 'Skalenitem: Schulklima'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -4068,7 +4068,7 @@ Klima_resp_a:
   unterthema: Schulführung
   umfrage_item: Wie beurteilen Sie das Klima an Ihrer Schule? An unserer Schule...
   itemformulierung: '... wird ein respektvoller Umgang miteinander gepflegt.'
-  var_typ: 'Skala: Schulklima'
+  var_typ: 'Skalenitem: Schulklima'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -4088,7 +4088,7 @@ Klima_sl:
   umfrage_item: Wie beurteilen Sie das Klima an Ihrer Schule?
   itemformulierung: Die Schulleitung nimmt Vorschläge und Rückmeldungen der Schülerschaft
     oder der Schülerorganisation ernst.
-  var_typ: 'Skala: Schulklima'
+  var_typ: 'Skalenitem: Schulklima'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -4107,7 +4107,7 @@ Klima_sl_a:
   unterthema: Schulführung
   umfrage_item: Wie beurteilen Sie das Klima an Ihrer Schule? An unserer Schule...
   itemformulierung: '... werden unsere Vorschläge und Rückmeldungen angehört.'
-  var_typ: 'Skala: Schulklima'
+  var_typ: 'Skalenitem: Schulklima'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -4973,7 +4973,7 @@ MK_zusam_a:
   umfrage_item: Haben Sie in der Zeit an Ihrer Schule in folgenden Bereichen dazu
     gelernt? Ich habe an der Schule gelernt, ...
   itemformulierung: '... Zusammenhänge zu verstehen.'
-  var_typ: 'Skala: Selbsteinschätzung des Zuwachses der methodischen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung des Zuwachses der methodischen Kompetenzen'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5011,7 +5011,7 @@ Mk_eff_a:
   umfrage_item: Haben Sie in der Zeit an Ihrer Schule in folgenden Bereichen dazu
     gelernt? Ich habe an der Schule gelernt, ...
   itemformulierung: '... schnell und sorgfältig zu arbeiten'
-  var_typ: 'Skala: Selbsteinschätzung des Zuwachses der methodischen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung des Zuwachses der methodischen Kompetenzen'
   umfrage_filter: school_type_id = 3, 8, 9
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5031,7 +5031,7 @@ Mk_info:
   umfrage_item: Wie beurteilen Sie Ihre methodischen Kompetenzen?
   itemformulierung: Es fällt mir leicht, Informationen aus Medien (Bücher, Internet,
     etc.) zu entnehmen und zusammenzustellen.
-  var_typ: 'Skala: Selbsteinschätzung der methodischen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der methodischen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5051,7 +5051,7 @@ Mk_info_a:
   umfrage_item: Haben Sie in der Zeit an Ihrer Schule in folgenden Bereichen dazu
     gelernt? Ich habe an der Schule gelernt, ...
   itemformulierung: '... nötige Informationen zu beschaffen.'
-  var_typ: 'Skala: Selbsteinschätzung des Zuwachses der methodischen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung des Zuwachses der methodischen Kompetenzen'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5070,7 +5070,7 @@ Mk_plan:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre methodischen Kompetenzen?
   itemformulierung: Ich überlege mir vorher, wie ich am besten etwas lerne oder bearbeite.
-  var_typ: 'Skala: Selbsteinschätzung der methodischen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der methodischen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5089,7 +5089,7 @@ Mk_prae:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre methodischen Kompetenzen?
   itemformulierung: Ich kann Arbeitsergebnisse verständlich und überzeugend vortragen.
-  var_typ: 'Skala: Selbsteinschätzung der methodischen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der methodischen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5109,7 +5109,7 @@ Mk_strate:
   umfrage_item: Wie beurteilen Sie Ihre methodischen Kompetenzen?
   itemformulierung: Zum Lösen schwieriger Aufgaben / Probleme habe ich selber Strategien,
     die ich einsetzen kann.
-  var_typ: 'Skala: Selbsteinschätzung der methodischen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der methodischen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5128,7 +5128,7 @@ Mk_ueber:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre methodischen Kompetenzen?
   itemformulierung: Während des Lernens überprüfe ich, ob ich es verstanden habe.
-  var_typ: 'Skala: Selbsteinschätzung der methodischen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der methodischen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5147,7 +5147,7 @@ Mk_wort:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre methodischen Kompetenzen?
   itemformulierung: Ich kann Gelerntes mit eigenen Worten wiedergeben.
-  var_typ: 'Skala: Selbsteinschätzung der methodischen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der methodischen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5166,7 +5166,7 @@ Mk_ziel:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre methodischen Kompetenzen?
   itemformulierung: Ich setze mir beim Lernen eigene Ziele.
-  var_typ: 'Skala: Selbsteinschätzung der methodischen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der methodischen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5186,7 +5186,7 @@ Mk_ziel_a:
   umfrage_item: Haben Sie in der Zeit an Ihrer Schule in folgenden Bereichen dazu
     gelernt? Ich habe an der Schule gelernt, ...
   itemformulierung: '... mir Ziele zu setzen, die ich erreichen kann.'
-  var_typ: 'Skala: Selbsteinschätzung des Zuwachses der methodischen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung des Zuwachses der methodischen Kompetenzen'
   umfrage_filter: school_type_id = 3, 8, 9
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5206,7 +5206,7 @@ Mot_beg:
   umfrage_item: Werden Sie von Ihren Lehrpersonen beim Lernen unterstützt?
   itemformulierung: Unsere Lehrpersonen können uns Schülerinnen und Schüler manchmal
     richtig begeistern.
-  var_typ: 'Skala: Motivation durch die Lehrperson'
+  var_typ: 'Skalenitem: Motivation durch die Lehrperson'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: 'BIJU (Baumert et al., 1997. Indikatoren zu Kontextmerkmalen gymnasialer
@@ -5232,7 +5232,7 @@ Mot_inter:
   umfrage_item: Werden Sie von Ihren Lehrpersonen beim Lernen unterstützt?
   itemformulierung: Unsere Lehrpersonen können auch trockenen Stoff wirklich interessant
     machen.
-  var_typ: 'Skala: Motivation durch die Lehrperson'
+  var_typ: 'Skalenitem: Motivation durch die Lehrperson'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: 'BIJU (Baumert et al., 1997. Indikatoren zu Kontextmerkmalen gymnasialer
@@ -5257,7 +5257,7 @@ Mot_span:
   unterthema: Lehrpersonenexpertise
   umfrage_item: Werden Sie von Ihren Lehrpersonen beim Lernen unterstützt?
   itemformulierung: Unsere Lehrpersonen gestalten den Unterricht oft sehr spannend.
-  var_typ: 'Skala: Motivation durch die Lehrperson'
+  var_typ: 'Skalenitem: Motivation durch die Lehrperson'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: 'BIJU (Baumert et al., 1997. Indikatoren zu Kontextmerkmalen gymnasialer
@@ -5546,7 +5546,7 @@ Org_anl_a:
   unterthema: Schulführung
   umfrage_item: Wie gut ist Ihre Schule organisiert?
   itemformulierung: Ich weiss, an wen ich mich bei Anliegen und Problemen wenden kann.
-  var_typ: 'Skala: Schulorganisation'
+  var_typ: 'Skalenitem: Schulorganisation'
   umfrage_filter: school_type_id = 3, 8, 9
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -5565,7 +5565,7 @@ Org_gut:
   unterthema: Schulführung
   umfrage_item: Wie gut ist Ihre Schule organisiert?
   itemformulierung: Die Schule ist insgesamt gut organisiert.
-  var_typ: 'Skala: Schulorganisation'
+  var_typ: 'Skalenitem: Schulorganisation'
   skalen_berechnung: 'school_type_id = 1, 4,5: Mean, Ausschluss wenn Missings >1 &
     school_type_id = 3, 8: Mean, Auschluss wenn Missings > 2'
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -5584,7 +5584,7 @@ Org_inet:
   unterthema: Schulführung
   umfrage_item: Wie gut ist Ihre Schule organisiert?
   itemformulierung: Internet- bzw. Intranetauftritt der Schule sind informativ.
-  var_typ: 'Skala: Schulorganisation'
+  var_typ: 'Skalenitem: Schulorganisation'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -5604,7 +5604,7 @@ Org_inet_a:
   umfrage_item: Wie gut ist Ihre Schule organisiert?
   itemformulierung: Ich finde die wichtigen Informationen im Internet- und Intranetauftritt
     der Schule.
-  var_typ: 'Skala: Schulorganisation'
+  var_typ: 'Skalenitem: Schulorganisation'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -5623,7 +5623,7 @@ Org_info:
   unterthema: Schulführung
   umfrage_item: Wie gut ist Ihre Schule organisiert?
   itemformulierung: Ich erhalte die nötigen Informationen rechtzeitig.
-  var_typ: 'Skala: Schulorganisation'
+  var_typ: 'Skalenitem: Schulorganisation'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -5643,7 +5643,7 @@ Org_info_a:
   umfrage_item: Wie gut ist Ihre Schule organisiert?
   itemformulierung: Ich erhalte wichtige Informationen zu Anlässen oder Änderungen
     rechtzeitig.
-  var_typ: 'Skala: Schulorganisation'
+  var_typ: 'Skalenitem: Schulorganisation'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 1) Ehemaligenbefragung des Kantons Zürich (Statistisches Amt des Kantons
@@ -5680,7 +5680,7 @@ Pk_eigen:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre personalen Kompetenzen?
   itemformulierung: Ich bearbeite Aufgaben eigenständig.
-  var_typ: 'Skala: Selbsteinschätzung der personalen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der personalen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5701,7 +5701,7 @@ Pk_eigen_a:
   umfrage_item: Haben Sie in der Zeit an Ihrer Schule in folgenden Bereichen dazu
     gelernt? Ich habe an der Schule gelernt, ...
   itemformulierung: '... selbständig zu arbeiten.'
-  var_typ: 'Skala: Selbsteinschätzung des Zuwachses der personalen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung des Zuwachses der personalen Kompetenzen'
   umfrage_filter: school_type_id = 3, 8, 9
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5721,7 +5721,7 @@ Pk_frag:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre personalen Kompetenzen?
   itemformulierung: Ich frage nach, wenn ich etwas nicht verstehe.
-  var_typ: 'Skala: Selbsteinschätzung der personalen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der personalen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5741,7 +5741,7 @@ Pk_idee:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre personalen Kompetenzen?
   itemformulierung: Ich habe eigene Ideen, die ich auch umsetze.
-  var_typ: 'Skala: Selbsteinschätzung der personalen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der personalen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5761,7 +5761,7 @@ Pk_schw:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre personalen Kompetenzen?
   itemformulierung: Ich kenne meine eigenen Stärken und Schwächen.
-  var_typ: 'Skala: Selbsteinschätzung der personalen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der personalen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5782,7 +5782,7 @@ Pk_schw_a:
   umfrage_item: Haben Sie in der Zeit an Ihrer Schule in folgenden Bereichen dazu
     gelernt? Ich habe an der Schule gelernt, ...
   itemformulierung: '... wo meine Stärken und Schwächen liegen.'
-  var_typ: 'Skala: Selbsteinschätzung des Zuwachses der personalen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung des Zuwachses der personalen Kompetenzen'
   umfrage_filter: school_type_id = 3, 8, 9
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5802,7 +5802,7 @@ Pk_selbst:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre personalen Kompetenzen?
   itemformulierung: Probleme löse ich selbstständig.
-  var_typ: 'Skala: Selbsteinschätzung der personalen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der personalen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5823,7 +5823,7 @@ Pk_selbst_a:
   umfrage_item: Haben Sie in der Zeit an Ihrer Schule in folgenden Bereichen dazu
     gelernt? Ich habe an der Schule gelernt, ...
   itemformulierung: '... Probleme selbständig zu lösen.'
-  var_typ: 'Skala: Selbsteinschätzung des Zuwachses der personalen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung des Zuwachses der personalen Kompetenzen'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5843,7 +5843,7 @@ Pk_time:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre personalen Kompetenzen?
   itemformulierung: Meine Arbeiten für die Schule stelle ich jeweils rechtzeitig fertig.
-  var_typ: 'Skala: Selbsteinschätzung der personalen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der personalen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5864,7 +5864,7 @@ Pk_time_a:
   umfrage_item: Haben Sie in der Zeit an Ihrer Schule in folgenden Bereichen dazu
     gelernt? Ich habe an der Schule gelernt, ...
   itemformulierung: '... meine Arbeit rechtzeitig fertig zu stellen.'
-  var_typ: 'Skala: Selbsteinschätzung des Zuwachses der personalen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung des Zuwachses der personalen Kompetenzen'
   umfrage_filter: school_type_id = 3, 8, 9
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -5884,7 +5884,7 @@ Pk_urteil:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre personalen Kompetenzen?
   itemformulierung: Ich bin in der Lage eigenständig zu urteilen.
-  var_typ: 'Skala: Selbsteinschätzung der personalen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der personalen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 1) SEIS - Selbstevaluation in Schulen, 2) Fragebogen zur Einschätzung überfachlicher
@@ -6032,7 +6032,7 @@ Ref_bera:
   umfrage_item: Wie viel können Sie selber aktiv sein im Unterricht?
   itemformulierung: Unsere Lehrpersonen führen häufig individuelle Lernberatungen
     mit uns durch (z.B. aufgrund von Lernplänen, Lernverträgen und / oder Lerntagebüchern).
-  var_typ: 'Skala: Selbstkontrolle und Arbeitsreflexion'
+  var_typ: 'Skalenitem: Selbstkontrolle und Arbeitsreflexion'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu Kontextmerkmalen
@@ -6053,7 +6053,7 @@ Ref_bericht:
   umfrage_item: Wie viel können Sie selber aktiv sein im Unterricht?
   itemformulierung: Wir berichten im Unterricht häufig darüber, wie wir lernen (z.B.
     Prüfungen vorbereiten oder eine komplexe Aufgabenstellung bearbeiten).
-  var_typ: 'Skala: Selbstkontrolle und Arbeitsreflexion'
+  var_typ: 'Skalenitem: Selbstkontrolle und Arbeitsreflexion'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu Kontextmerkmalen
@@ -6074,7 +6074,7 @@ Ref_beur:
   umfrage_item: Wie viel können Sie selber aktiv sein im Unterricht?
   itemformulierung: Unsere Lehrpersonen weisen uns häufig an, unsere Arbeiten gegenseitig
     zu beurteilen.
-  var_typ: 'Skala: Selbstkontrolle und Arbeitsreflexion'
+  var_typ: 'Skalenitem: Selbstkontrolle und Arbeitsreflexion'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu Kontextmerkmalen
@@ -6095,7 +6095,7 @@ Ref_korr:
   umfrage_item: Wie viel können Sie selber aktiv sein im Unterricht?
   itemformulierung: Unsere Lehrpersonen geben uns häufig Gelegenheit zur Selbstkontrolle
     des Gelernten.
-  var_typ: 'Skala: Selbstkontrolle und Arbeitsreflexion'
+  var_typ: 'Skalenitem: Selbstkontrolle und Arbeitsreflexion'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu Kontextmerkmalen
@@ -6561,7 +6561,7 @@ Sk_achte:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre sozialen Kompetenzen?
   itemformulierung: Ich achte andere Werte und Lebensweisen.
-  var_typ: 'Skala: Selbsteinschätzung der sozialen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der sozialen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 'Lehrplan 21: Kooperationsfähigkeit, Konfliktfähigkeit, Umgang mit Vielfalt'
@@ -6579,7 +6579,7 @@ Sk_gruppe:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre sozialen Kompetenzen?
   itemformulierung: In Gruppen kann ich Verantwortung übernehmen.
-  var_typ: 'Skala: Selbsteinschätzung der sozialen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der sozialen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 'Lehrplan 21: Kooperationsfähigkeit, Konfliktfähigkeit, Umgang mit Vielfalt'
@@ -6598,7 +6598,7 @@ Sk_gruppe_a:
   umfrage_item: Haben Sie in der Zeit an Ihrer Schule in folgenden Bereichen dazu
     gelernt? Ich habe an der Schule gelernt, ...
   itemformulierung: '... in einer Gruppe Verantwortung zu übernehmen.'
-  var_typ: 'Skala: Selbsteinschätzung des Zuwachses der sozialen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung des Zuwachses der sozialen Kompetenzen'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 'Lehrplan 21: Kooperationsfähigkeit, Konfliktfähigkeit, Umgang mit Vielfalt'
@@ -6617,7 +6617,7 @@ Sk_konfl:
   umfrage_item: Wie beurteilen Sie Ihre sozialen Kompetenzen?
   itemformulierung: Ich gehe Konflikten nicht aus dem Weg, sondern versuche, diese
     zu klären und zu lösen.
-  var_typ: 'Skala: Selbsteinschätzung der sozialen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der sozialen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 'Lehrplan 21: Kooperationsfähigkeit, Konfliktfähigkeit, Umgang mit Vielfalt'
@@ -6636,7 +6636,7 @@ Sk_konfl_a:
   umfrage_item: Haben Sie in der Zeit an Ihrer Schule in folgenden Bereichen dazu
     gelernt? Ich habe an der Schule gelernt, ...
   itemformulierung: '... mit Konflikten umzugehen.'
-  var_typ: 'Skala: Selbsteinschätzung des Zuwachses der sozialen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung des Zuwachses der sozialen Kompetenzen'
   umfrage_filter: school_type_id = 3, 8, 9
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 'Lehrplan 21: Kooperationsfähigkeit, Konfliktfähigkeit, Umgang mit Vielfalt'
@@ -6654,7 +6654,7 @@ Sk_kritik:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre sozialen Kompetenzen?
   itemformulierung: Ich kann Kritik und Verbesserungsvorschläge annehmen.
-  var_typ: 'Skala: Selbsteinschätzung der sozialen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der sozialen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 'Lehrplan 21: Kooperationsfähigkeit, Konfliktfähigkeit, Umgang mit Vielfalt'
@@ -6673,7 +6673,7 @@ Sk_kritik_a:
   umfrage_item: Haben Sie in der Zeit an Ihrer Schule in folgenden Bereichen dazu
     gelernt? Ich habe an der Schule gelernt, ...
   itemformulierung: '... mit Kritik und Verbesserungsvorschlägen umzugehen.'
-  var_typ: 'Skala: Selbsteinschätzung des Zuwachses der sozialen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung des Zuwachses der sozialen Kompetenzen'
   umfrage_filter: school_type_id = 3, 8, 9
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 'Lehrplan 21: Kooperationsfähigkeit, Konfliktfähigkeit, Umgang mit Vielfalt'
@@ -6691,7 +6691,7 @@ Sk_rueck:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre sozialen Kompetenzen?
   itemformulierung: Ich nehme Rücksicht auf andere.
-  var_typ: 'Skala: Selbsteinschätzung der sozialen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der sozialen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 'Lehrplan 21: Kooperationsfähigkeit, Konfliktfähigkeit, Umgang mit Vielfalt'
@@ -6710,7 +6710,7 @@ Sk_rueck_a:
   umfrage_item: Haben Sie in der Zeit an Ihrer Schule in folgenden Bereichen dazu
     gelernt? Ich habe an der Schule gelernt, ...
   itemformulierung: '... auf Andere Rücksicht zu nehmen.'
-  var_typ: 'Skala: Selbsteinschätzung des Zuwachses der sozialen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung des Zuwachses der sozialen Kompetenzen'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 'Lehrplan 21: Kooperationsfähigkeit, Konfliktfähigkeit, Umgang mit Vielfalt'
@@ -6728,7 +6728,7 @@ Sk_zusamm:
   unterthema: Überfachliche Kompetenzen
   umfrage_item: Wie beurteilen Sie Ihre sozialen Kompetenzen?
   itemformulierung: Ich kann gut mit anderen zusammenarbeiten.
-  var_typ: 'Skala: Selbsteinschätzung der sozialen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung der sozialen Kompetenzen'
   umfrage_filter: school_type_id = 1, 4, 5
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 'Lehrplan 21: Kooperationsfähigkeit, Konfliktfähigkeit, Umgang mit Vielfalt'
@@ -6747,7 +6747,7 @@ Sk_zusamm_a:
   umfrage_item: Haben Sie in der Zeit an Ihrer Schule in folgenden Bereichen dazu
     gelernt? Ich habe an der Schule gelernt, ...
   itemformulierung: '... im Team zu arbeiten.'
-  var_typ: 'Skala: Selbsteinschätzung des Zuwachses der sozialen Kompetenzen'
+  var_typ: 'Skalenitem: Selbsteinschätzung des Zuwachses der sozialen Kompetenzen'
   umfrage_filter: school_type_id = 3, 8, 9
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: 'Lehrplan 21: Kooperationsfähigkeit, Konfliktfähigkeit, Umgang mit Vielfalt'
@@ -7694,7 +7694,7 @@ Stoer_andere:
   umfrage_item: Wie erleben Sie das Klima in Ihrer Klasse?
   itemformulierung: Manche Schülerinnen und Schüler beschäftigen sich häufig mit anderen
     Dingen, ohne sich viel um den Unterricht zu kümmern.
-  var_typ: 'Skala: Störungen im Unterricht'
+  var_typ: 'Skalenitem: Störungen im Unterricht'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 'Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -7719,7 +7719,7 @@ Stoer_beginn:
   umfrage_item: Wie erleben Sie das Klima in Ihrer Klasse?
   itemformulierung: Bei uns dauert es zu Beginn der Stunde häufig sehr lange, bis
     die Schülerinnen und Schüler ruhig werden und zu arbeiten beginnen.
-  var_typ: 'Skala: Störungen im Unterricht'
+  var_typ: 'Skalenitem: Störungen im Unterricht'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 'Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -7744,7 +7744,7 @@ Stoer_lp:
   umfrage_item: Wie erleben Sie das Klima in Ihrer Klasse?
   itemformulierung: Für unsere Lehrpersonen ist es oft schwierig, im Unterricht die
     Ruhe aufrecht zu erhalten.
-  var_typ: 'Skala: Störungen im Unterricht'
+  var_typ: 'Skalenitem: Störungen im Unterricht'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 'Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -7769,7 +7769,7 @@ Stoer_mit:
   umfrage_item: Wie erleben Sie das Klima in Ihrer Klasse?
   itemformulierung: Einige Schülerinnen oder Schüler stören immer wieder den Unterricht,
     obwohl die anderen im Unterricht mitmachen möchten.
-  var_typ: 'Skala: Störungen im Unterricht'
+  var_typ: 'Skalenitem: Störungen im Unterricht'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: 'Mittelschulerhebung 2004 (Leutwyler & Maag Merki, 2004. Indikatoren zu
@@ -8022,7 +8022,7 @@ Sw_fert:
   umfrage_item: Wie beurteilen Sie Ihr eigenes Lernverhalten?
   itemformulierung: Ich bin überzeugt, dass ich die Fertigkeiten, die gelehrt werden,
     beherrschen kann.
-  var_typ: 'Skala: Selbstwirksamkeitserwartung'
+  var_typ: 'Skalenitem: Selbstwirksamkeitserwartung'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation der
@@ -8042,7 +8042,7 @@ Sw_kompl:
   umfrage_item: Wie beurteilen Sie Ihr eigenes Lernverhalten?
   itemformulierung: Ich bin überzeugt, dass ich auch den kompliziertesten Stoff, den
     die Lehrperson vorstellt, verstehen kann.
-  var_typ: 'Skala: Selbstwirksamkeitserwartung'
+  var_typ: 'Skalenitem: Selbstwirksamkeitserwartung'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation der
@@ -8062,7 +8062,7 @@ Sw_leist:
   umfrage_item: Wie beurteilen Sie Ihr eigenes Lernverhalten?
   itemformulierung: Ich bin überzeugt, dass ich in Hausaufgaben und Prüfungen gute
     Leistungen erzielen kann.
-  var_typ: 'Skala: Selbstwirksamkeitserwartung'
+  var_typ: 'Skalenitem: Selbstwirksamkeitserwartung'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation der
@@ -8557,7 +8557,7 @@ Unt_fort:
   umfrage_item: Werden Sie von Ihren Lehrpersonen beim Lernen unterstützt?
   itemformulierung: Unsere Lehrpersonen interessieren sich für den Lernfortschritt
     jedes einzelnen Schülers / jeder einzelnen Schülerin.
-  var_typ: 'Skala: Unterstützung durch die Lehrpersonen'
+  var_typ: 'Skalenitem: Unterstützung durch die Lehrpersonen'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation der
@@ -8576,7 +8576,7 @@ Unt_fort_a:
   unterthema: Unterricht
   umfrage_item: Werden Sie von Ihren Lehrpersonen beim Lernen unterstützt?
   itemformulierung: Meine Lehrpersonen interessieren sich für meinen Lernfortschritt.
-  var_typ: 'Skala: Unterstützung durch die Lehrpersonen'
+  var_typ: 'Skalenitem: Unterstützung durch die Lehrpersonen'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation der
@@ -8595,7 +8595,7 @@ Unt_helfen:
   unterthema: Lehrpersonenexpertise
   umfrage_item: Werden Sie von Ihren Lehrpersonen beim Lernen unterstützt?
   itemformulierung: Unsere Lehrpersonen tun viel, um uns zu helfen.
-  var_typ: 'Skala: Unterstützung durch die Lehrpersonen'
+  var_typ: 'Skalenitem: Unterstützung durch die Lehrpersonen'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation der
@@ -8614,7 +8614,7 @@ Unt_helfen_a:
   unterthema: Unterricht
   umfrage_item: Werden Sie von Ihren Lehrpersonen beim Lernen unterstützt?
   itemformulierung: Meine Lehrpersonen helfen mir, wenn ich etwas nicht verstehe.
-  var_typ: 'Skala: Unterstützung durch die Lehrpersonen'
+  var_typ: 'Skalenitem: Unterstützung durch die Lehrpersonen'
   umfrage_filter: school_type_id = 3, 8, 9
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation der
@@ -8633,7 +8633,7 @@ Unt_lernen:
   unterthema: Lehrpersonenexpertise
   umfrage_item: Werden Sie von Ihren Lehrpersonen beim Lernen unterstützt?
   itemformulierung: Unsere Lehrpersonen unterstützen uns beim Lernen.
-  var_typ: 'Skala: Unterstützung durch die Lehrpersonen'
+  var_typ: 'Skalenitem: Unterstützung durch die Lehrpersonen'
   umfrage_filter: school_type_id = 1
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation der
@@ -8653,7 +8653,7 @@ Unt_lernen_a:
   umfrage_item: Werden Sie von Ihren Lehrpersonen beim Lernen unterstützt?
   itemformulierung: Meine Lehrpersonen unterstützen mich beim Lernen (z. B. dabei,
     wie man etwas lernt oder wo man Informationen bekommt).
-  var_typ: 'Skala: Unterstützung durch die Lehrpersonen'
+  var_typ: 'Skalenitem: Unterstützung durch die Lehrpersonen'
   umfrage_filter: school_type_id = 3, 8
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: PISA 2000 (Kunter, M. et al., 2002, S.117. PISA 2000 - Dokumentation der
@@ -10653,7 +10653,7 @@ tis_lehrp_bera:
   oberthema: Wahlmodul zum Digitalen Wandel
   umfrage_item: Wie gehen Ihre Lehrpersonen mit digitalen Medien um? Unsere Lehrpersonen…
   itemformulierung: '... können uns beim Lernen mit digitalen Medien gut beraten.'
-  var_typ: 'Skala: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
+  var_typ: 'Skalenitem: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Petko, 2020
   status: aktiv
@@ -10669,7 +10669,7 @@ tis_lehrp_faecher:
   oberthema: Wahlmodul zum Digitalen Wandel
   umfrage_item: Wie gehen Ihre Lehrpersonen mit digitalen Medien um? Unsere Lehrpersonen…
   itemformulierung: '... setzen digitale Medien in ihren Fächern passend ein.'
-  var_typ: 'Skala: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
+  var_typ: 'Skalenitem: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Petko, 2020
   status: aktiv
@@ -10685,7 +10685,7 @@ tis_lehrp_konz:
   oberthema: Wahlmodul zum Digitalen Wandel
   umfrage_item: Wie gehen Ihre Lehrpersonen mit digitalen Medien um? Unsere Lehrpersonen…
   itemformulierung: '... setzen digitale Medien so ein, dass wir konzentriert mitarbeiten.'
-  var_typ: 'Skala: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
+  var_typ: 'Skalenitem: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Petko, 2020
   status: aktiv
@@ -10701,7 +10701,7 @@ tis_lehrp_pos:
   oberthema: Wahlmodul zum Digitalen Wandel
   umfrage_item: Wie gehen Ihre Lehrpersonen mit digitalen Medien um? Unsere Lehrpersonen…
   itemformulierung: '... sind digitalen Medien gegenüber positiv eingestellt.'
-  var_typ: 'Skala: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
+  var_typ: 'Skalenitem: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Petko, 2020
   status: aktiv
@@ -10717,7 +10717,7 @@ tis_lehrp_umge:
   oberthema: Wahlmodul zum Digitalen Wandel
   umfrage_item: Wie gehen Ihre Lehrpersonen mit digitalen Medien um? Unsere Lehrpersonen…
   itemformulierung: '... können mit digitalen Medien gut umgehen.'
-  var_typ: 'Skala: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
+  var_typ: 'Skalenitem: Wie gehen Ihre Lehrpersonen mit digitalen Medien um?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Petko, 2020
   status: aktiv
@@ -10734,7 +10734,7 @@ tis_lern_gefahr:
   umfrage_item: Wie viel haben Sie in der Schule über den Umgang mit digitalen Medien
     gelernt? Ich habe in der Schule etwas darüber gelernt, …
   itemformulierung: '... wie ich Auswirkungen und Gefahren digitaler Medien erkenne.'
-  var_typ: 'Skala: Wie viel haben Sie in der Schule über den Umgang mit digitalen
+  var_typ: 'Skalenitem: Wie viel haben Sie in der Schule über den Umgang mit digitalen
     Medien gelernt?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Chai, Koh, & Tsai, 2013; Gesellschaft für Informatik, 2016
@@ -10752,7 +10752,7 @@ tis_lern_schul:
   umfrage_item: Wie viel haben Sie in der Schule über den Umgang mit digitalen Medien
     gelernt? Ich habe in der Schule etwas darüber gelernt, …
   itemformulierung: '... wie ich digitale Medien für schulische Aufträge nutze.'
-  var_typ: 'Skala: Wie viel haben Sie in der Schule über den Umgang mit digitalen
+  var_typ: 'Skalenitem: Wie viel haben Sie in der Schule über den Umgang mit digitalen
     Medien gelernt?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Chai, Koh, & Tsai, 2013; Gesellschaft für Informatik, 2016
@@ -10770,7 +10770,7 @@ tis_lern_selbst:
   umfrage_item: Wie viel haben Sie in der Schule über den Umgang mit digitalen Medien
     gelernt? Ich habe in der Schule etwas darüber gelernt, …
   itemformulierung: '... wie ich digitale Medien nutze, um selbstständig zu lernen.'
-  var_typ: 'Skala: Wie viel haben Sie in der Schule über den Umgang mit digitalen
+  var_typ: 'Skalenitem: Wie viel haben Sie in der Schule über den Umgang mit digitalen
     Medien gelernt?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Chai, Koh, & Tsai, 2013; Gesellschaft für Informatik, 2016
@@ -10788,7 +10788,7 @@ tis_lern_tools:
   umfrage_item: Wie viel haben Sie in der Schule über den Umgang mit digitalen Medien
     gelernt? Ich habe in der Schule etwas darüber gelernt, …
   itemformulierung: '... wie digitale Tools technisch funktionieren (Informatik, Programmierung)'
-  var_typ: 'Skala: Wie viel haben Sie in der Schule über den Umgang mit digitalen
+  var_typ: 'Skalenitem: Wie viel haben Sie in der Schule über den Umgang mit digitalen
     Medien gelernt?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Chai, Koh, & Tsai, 2013; Gesellschaft für Informatik, 2016
@@ -10806,7 +10806,7 @@ tis_lern_zweck:
   umfrage_item: Wie viel haben Sie in der Schule über den Umgang mit digitalen Medien
     gelernt? Ich habe in der Schule etwas darüber gelernt, …
   itemformulierung: '... wie ich digitale Medien für private Zwecke nutze.'
-  var_typ: 'Skala: Wie viel haben Sie in der Schule über den Umgang mit digitalen
+  var_typ: 'Skalenitem: Wie viel haben Sie in der Schule über den Umgang mit digitalen
     Medien gelernt?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >2
   quelle: Chai, Koh, & Tsai, 2013; Gesellschaft für Informatik, 2016
@@ -10824,7 +10824,7 @@ tis_unt_eff:
   umfrage_item: Wie nützlich sind für Sie digitale Medien im Unterricht? An unserer
     Schule werden digitale Medien so eingesetzt, dass …
   itemformulierung: '... ich vieles für die Schule effizienter erledigen kann.'
-  var_typ: 'Skala: Wie nützlich sind für Sie digitale Medien im Unterricht?'
+  var_typ: 'Skalenitem: Wie nützlich sind für Sie digitale Medien im Unterricht?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: Davis, 1989; Venkatesh, Thong, & Xu, 2016
   status: aktiv
@@ -10841,7 +10841,7 @@ tis_unt_lern:
   umfrage_item: Wie nützlich sind für Sie digitale Medien im Unterricht? An unserer
     Schule werden digitale Medien so eingesetzt, dass …
   itemformulierung: '... ich im Unterricht besser lernen kann.'
-  var_typ: 'Skala: Wie nützlich sind für Sie digitale Medien im Unterricht?'
+  var_typ: 'Skalenitem: Wie nützlich sind für Sie digitale Medien im Unterricht?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: Davis, 1989; Venkatesh, Thong, & Xu, 2016
   status: aktiv
@@ -10858,7 +10858,7 @@ tis_unt_span:
   umfrage_item: Wie nützlich sind für Sie digitale Medien im Unterricht? An unserer
     Schule werden digitale Medien so eingesetzt, dass …
   itemformulierung: '... der Unterricht interessanter wird.'
-  var_typ: 'Skala: Wie nützlich sind für Sie digitale Medien im Unterricht?'
+  var_typ: 'Skalenitem: Wie nützlich sind für Sie digitale Medien im Unterricht?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >1
   quelle: Davis, 1989; Venkatesh, Thong, & Xu, 2016
   status: aktiv
@@ -10876,7 +10876,7 @@ tis_verw_disk:
     im Unterricht verwendet? Wir verwenden digitale Medien im Unterricht …
   itemformulierung: '... für Gruppenarbeiten und Diskussionen (z.B. Chats, Online-Foren,
     Videokonferenzen, Dokumente gemeinsam bearbeiten)'
-  var_typ: 'Skala: Wie werden digitalen Medien (z.B. Notebooks, Tablets, Smartphones)
+  var_typ: 'Skalenitem: Wie werden digitalen Medien (z.B. Notebooks, Tablets, Smartphones)
     im Unterricht verwendet?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: Chi & Wylie, 2014; Petko, 2020
@@ -10895,7 +10895,7 @@ tis_verw_erkl:
     im Unterricht verwendet? Wir verwenden digitale Medien im Unterricht …
   itemformulierung: '... um etwas gezeigt oder erklärt zu bekommen (z.B. mit Präsentationen,
     Lernvideos, Wikipedia)'
-  var_typ: 'Skala: Wie werden digitalen Medien (z.B. Notebooks, Tablets, Smartphones)
+  var_typ: 'Skalenitem: Wie werden digitalen Medien (z.B. Notebooks, Tablets, Smartphones)
     im Unterricht verwendet?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: Chi & Wylie, 2014; Petko, 2020
@@ -10914,7 +10914,7 @@ tis_verw_kont:
     im Unterricht verwendet? Wir verwenden digitale Medien im Unterricht …
   itemformulierung: '... für Lernkontrollen und Prüfungen (z.B. Selbsttests, Quiz,
     Online-Prüfungen)'
-  var_typ: 'Skala: Wie werden digitalen Medien (z.B. Notebooks, Tablets, Smartphones)
+  var_typ: 'Skalenitem: Wie werden digitalen Medien (z.B. Notebooks, Tablets, Smartphones)
     im Unterricht verwendet?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: Chi & Wylie, 2014; Petko, 2020
@@ -10932,7 +10932,7 @@ tis_verw_lern:
   umfrage_item: Wie werden digitalen Medien (z.B. Notebooks, Tablets, Smartphones)
     im Unterricht verwendet? Wir verwenden digitale Medien im Unterricht …
   itemformulierung: '... um Gelerntes zu üben und anzuwenden (z.B. Lernaufgaben, Lernsoftware)'
-  var_typ: 'Skala: Wie werden digitalen Medien (z.B. Notebooks, Tablets, Smartphones)
+  var_typ: 'Skalenitem: Wie werden digitalen Medien (z.B. Notebooks, Tablets, Smartphones)
     im Unterricht verwendet?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: Chi & Wylie, 2014; Petko, 2020
@@ -10951,7 +10951,7 @@ tis_verw_plan:
     im Unterricht verwendet? Wir verwenden digitale Medien im Unterricht …
   itemformulierung: '... um für die Schule zu planen und zu organisieren (z.B. mit
     Kalender, Lernplattform, Moodle, Teams)'
-  var_typ: 'Skala: Wie werden digitalen Medien (z.B. Notebooks, Tablets, Smartphones)
+  var_typ: 'Skalenitem: Wie werden digitalen Medien (z.B. Notebooks, Tablets, Smartphones)
     im Unterricht verwendet?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: Chi & Wylie, 2014; Petko, 2020
@@ -10970,7 +10970,7 @@ tis_verw_prod:
     im Unterricht verwendet? Wir verwenden digitale Medien im Unterricht …
   itemformulierung: '... um eigene Produkte herzustellen (z.B. Texte, Tabellen, Bilder,
     Videos, Programmierung)'
-  var_typ: 'Skala: Wie werden digitalen Medien (z.B. Notebooks, Tablets, Smartphones)
+  var_typ: 'Skalenitem: Wie werden digitalen Medien (z.B. Notebooks, Tablets, Smartphones)
     im Unterricht verwendet?'
   skalen_berechnung: Mean, Ausschluss wenn Missings >3
   quelle: Chi & Wylie, 2014; Petko, 2020
@@ -10988,7 +10988,7 @@ tis_vorr_andere:
   umfrage_item: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen Medien
     an Ihrer Schule?
   itemformulierung: Unterstützung durch andere Schülerinnen und Schüler
-  var_typ: 'Skala: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen
+  var_typ: 'Skalenitem: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen
     Medien an Ihrer Schule?'
   quelle: Christensen & Knezek, 2001; Petko, 2020
   status: aktiv
@@ -11005,7 +11005,7 @@ tis_vorr_eltern:
   umfrage_item: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen Medien
     an Ihrer Schule?
   itemformulierung: Unterstützung durch meine Eltern
-  var_typ: 'Skala: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen
+  var_typ: 'Skalenitem: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen
     Medien an Ihrer Schule?'
   quelle: Christensen & Knezek, 2001; Petko, 2020
   status: aktiv
@@ -11022,7 +11022,7 @@ tis_vorr_inter:
   umfrage_item: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen Medien
     an Ihrer Schule?
   itemformulierung: Internetzugang in der Schule
-  var_typ: 'Skala: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen
+  var_typ: 'Skalenitem: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen
     Medien an Ihrer Schule?'
   quelle: Christensen & Knezek, 2001; Petko, 2020
   status: aktiv
@@ -11039,7 +11039,7 @@ tis_vorr_soft:
   umfrage_item: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen Medien
     an Ihrer Schule?
   itemformulierung: Von der Schule zur Verfügung gestellte Software und Plattformen
-  var_typ: 'Skala: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen
+  var_typ: 'Skalenitem: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen
     Medien an Ihrer Schule?'
   quelle: Christensen & Knezek, 2001; Petko, 2020
   status: aktiv
@@ -11056,7 +11056,7 @@ tis_vorr_support:
   umfrage_item: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen Medien
     an Ihrer Schule?
   itemformulierung: Unterstützung durch unseren IT-Support
-  var_typ: 'Skala: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen
+  var_typ: 'Skalenitem: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen
     Medien an Ihrer Schule?'
   quelle: Christensen & Knezek, 2001; Petko, 2020
   status: aktiv
@@ -11073,7 +11073,7 @@ tis_vorr_unterstlp:
   umfrage_item: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen Medien
     an Ihrer Schule?
   itemformulierung: Unterstützung durch meine Lehrpersonen
-  var_typ: 'Skala: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen
+  var_typ: 'Skalenitem: Wie beurteilen Sie die Voraussetzungen zur Nutzung von digitalen
     Medien an Ihrer Schule?'
   quelle: Christensen & Knezek, 2001; Petko, 2020
   status: aktiv
