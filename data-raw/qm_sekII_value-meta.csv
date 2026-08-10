@@ -438,7 +438,7 @@ ueberford;1;überfordert
 zeitbelast;-1;zu niedrig
 zeitbelast;0;angemessen
 zeitbelast;1;zu hoch
-school_type;2;GYM
+school_type;1;GYM
 school_type;3;BMS
 school_type;4;FMS
 school_type;5;HMS/WMS/IMS
