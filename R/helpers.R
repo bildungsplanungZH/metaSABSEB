@@ -127,7 +127,10 @@ confirm_replacement <- function(yaml_path, meta, var, field, new_entry) {
 #' @keywords internal
 
 abort_changes_msg <- function() {
-    cli::cli_alert_warning("Das Anpassen der Metadaten wurde abgebrochen.")
-    cli::cli_alert_info("Es wurden keine Änderungen vorgenommen.")
-    return(invisible(NULL))
+    cli::cli_abort(
+        c(
+        "Das Anpassen der Metadaten wurde abgebrochen.",
+        "i" = "Es wurden keine Änderungen vorgenommen."
+        ),
+        call = NULL)
 }
