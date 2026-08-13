@@ -9,21 +9,25 @@
 #'
 #' @param var Character string. Defines variable name.
 #' No empty spaces, snake case (always required)
-#' @param oberthema Character string. Defines topic of survey question (always required)
+#' @param oberthema Character string. Defines topic of survey question
+#' (always required)
 #' @param unterthema Character string. (optional)
 #' @param var_typ Character string. Describes type of survey question
 #' (Einzelitem, Item-Gruppe, Skala) (always required)
-#' @param umfrage_item Character string. Defines survey question (always required)
+#' @param umfrage_item Character string. Defines survey question
+#' (always required)
 #' @param itemformulierung Character string. Further defines the survey
 #' question. (required if var_typ = Item-Gruppe)
-#' @param skalenberechnung Character string. Only required if var_typ == Skala
+#' @param skalenberechnung Character string.
+#' (only required if var_typ == Skala)
 #' @param umfrage_filter Character string. Defines survey filters.
 #' -> what is required for the item to be shown in the survey (optional)
 #' @param quelle Character string. Source for construction of survey item
 #' (optional)
-#' @param status Character string. Defines whether variable is still actively used
-#' or deprecated. Default is "aktiv"
-#' @param values List-Object. Lists encoding of all values. (always required)
+#' @param status Character string. Defines whether variable is actively used
+#' or deprecated. Default when adding a new variable to metadata is "aktiv"
+#' @param values List-Object. Lists encoding of all values.
+#' (required if values are encoded)
 #' @param ... Character string. Allows to add more metadata entries.
 #' Must be a named argument.
 #'
@@ -412,11 +416,13 @@ add_meta <- function(var = NULL,
 
                 # -> extract "Skalenitem" within var_typ
                 current_scales_raw <- unique(
-                    var_types[!is.na(var_types) & startsWith(var_types, "Skalenitem:")]
+                    var_types[!is.na(var_types) &
+                                  startsWith(var_types, "Skalenitem:")]
                 )
 
                 # -> remove prefix
-                current_scales <- sub("^Skalenitem:\\s*", "", current_scales_raw)
+                current_scales <- sub("^Skalenitem:\\s*", "",
+                                      current_scales_raw)
 
                 # Issue warning that group must be specified
                 cli::cli_alert_warning(paste0(
@@ -455,7 +461,7 @@ add_meta <- function(var = NULL,
                     # Get original scale name to look up in meta
                     selected_scale_raw <- current_scales_raw[scale_choice]
 
-                    # Filter out first variable where var_typ matches chosen scale
+                    # Filter out first var where var_typ matches chosen scale
                     matching_meta <- Filter(
                         function(x) identical(x$var_typ, selected_scale_raw),
                         meta
@@ -649,7 +655,7 @@ add_meta <- function(var = NULL,
                         label <- trimws(readline("Label: "))
 
                         # Break if value has been entered
-                        if (nzchar(value)) break
+                        if (nzchar(label)) break
 
                         # Issue warning if label wasn't provided
                         cli::cli_alert_danger(paste0(
@@ -679,7 +685,7 @@ add_meta <- function(var = NULL,
                     # Ask whether another value should be added
                     more <- utils::menu(
                         choices = c("Ja", "Nein"),
-                        title = "Möchten Sie weitere Wertekodierungen hinzufügen?"
+                        title = "Weitere Wertekodierungen hinzufügen?"
                     )
 
                     if (more == 2) break
