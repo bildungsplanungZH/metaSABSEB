@@ -17,9 +17,7 @@
 change_meta <- function(var = NULL, field = NULL, new_entry = NULL) {
 
 
-    # ----------------------------
-    # 1. Enforce no missing args
-    # ----------------------------
+    # 1. Enforce no missing args ----------------------------------------------
     if (is.null(var)) {
         cli::cli_abort("Das Argument {.field var} muss mitgegeben werden.",
                        call = NULL)
@@ -29,12 +27,13 @@ change_meta <- function(var = NULL, field = NULL, new_entry = NULL) {
                        call = NULL)
     }
     if (is.null(new_entry)) {
-        cli::cli_abort("Das Argument {.field new_entry} muss mitgegeben werden.",
-                       call = NULL)
+        cli::cli_abort(paste0(
+            "Das Argument {.field new_entry} ",
+            "muss mitgegeben werden."
+        ), call = NULL)
     }
-    # ----------------------------
-    # 2. Get metadata from disk
-    # ----------------------------
+
+    # . Get metadata from disk -----------------------------------------------
 
     # Get path to metadata yaml
     yaml_path <- system.file(
@@ -46,9 +45,8 @@ change_meta <- function(var = NULL, field = NULL, new_entry = NULL) {
     meta <- yaml::read_yaml(yaml_path)
 
 
-    # ----------------------------
-    # 3. Check variable existence
-    # ----------------------------
+    # 3 Check variable existence ---------------------------------------------
+
     # Check if the variable already is in the metadata.
     # -> use internal helper function from helpers.R
     var <- check_var_exists(var, meta)
@@ -56,11 +54,7 @@ change_meta <- function(var = NULL, field = NULL, new_entry = NULL) {
     # Retrieve metadata for the requested variable and save in vector
     var_info <- meta[[var]]
 
-    # --------------------------------
-    # 4. Check field existence
-    #    and replace field
-    # --------------------------------
-
+    # 4 Check field existence and replace field ------------------------------
     # If field exists for specified variable
     # Confirm that the field should be replaced
     # -> use internal helper function from helpers.R
@@ -78,8 +72,11 @@ change_meta <- function(var = NULL, field = NULL, new_entry = NULL) {
             field_choice <- utils::menu(
                 choices = c("Neues Feld hinzufügen.",
                             names(var_info)),
-                title = cli::format_inline("Das Feld {.field {field}} existiert nicht für die Variable {.var {var}}.\n",
-                                           "Wählen Sie ein bestehendes Feld aus oder fügen Sie es neu hinzu:")
+                title = cli::format_inline(paste0(
+                    "Das Feld {.field {field}} existiert nicht für die ",
+                    "Variable {.var {var}}.\n Wählen Sie ein bestehendes ",
+                    "Feld aus oder fügen Sie es neu hinzu:"
+                ))
             )
             # If the user cancelled the menu
             if (field_choice==0) {
@@ -96,9 +93,14 @@ change_meta <- function(var = NULL, field = NULL, new_entry = NULL) {
                 yaml::write_yaml(meta, yaml_path)
 
                 # Return message
-                cli::cli_alert_success("Lokal gespeicherte Metadaten erfolgreich aktualisiert.")
-                cli::cli_alert_info("Für Änderungen am öffentlichen Metadatensatz ",
-                                    "kann ein Pull Request erstellt werden.")
+                cli::cli_alert_success(
+                    "Lokal gespeicherte Metadaten erfolgreich aktualisiert."
+                    )
+                cli::cli_alert_info(paste0(
+                    "Für Änderungen am öffentlichen Metadatensatz ",
+                    "kann ein Pull Request erstellt werden."
+                ))
+                cat("\n")
             }
 
             # If user meant an existing field
@@ -108,6 +110,7 @@ change_meta <- function(var = NULL, field = NULL, new_entry = NULL) {
                 field <- names(var_info)[field_choice-1]
 
                 # Confirm that the chosen field should be replaced
+                # and overwrite meta
                 # -> use internal helper function from helpers.R
                 confirm_replacement(yaml_path, meta, var, field, new_entry)
             }
