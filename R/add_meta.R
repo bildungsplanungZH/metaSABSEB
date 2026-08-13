@@ -42,7 +42,7 @@ add_meta <- function(var = NULL,
                      values = NULL,
                      ...) {
 
-    # 1 Get current metadata --------------------------------------------------
+    # 0 Get current metadata --------------------------------------------------
 
     # Get path to metadata yaml
     yaml_path <- system.file(
@@ -52,6 +52,26 @@ add_meta <- function(var = NULL,
 
     # Read yaml
     meta <- yaml::read_yaml(yaml_path)
+
+    # 1 Ensure that all arguments are named -----------------------------------
+    call_args <- as.list(sys.call())[-1]  # drop the function name itself
+
+    if (length(call_args) > 0 &&
+        (is.null(names(call_args)) || any(names(call_args) == ""))) {
+        cli::cli_alert_warning(c(
+            "{.strong Alle Argumente müssen explizit benannt werden.}\n",
+            paste0(
+                "{.fn add_meta} erlaubt keine unbenannten (positionellen) ",
+                "Argumente, da dies leicht zu Verwechslungen führen kann.\n\n",
+                "Bitte geben Sie jedes Argument explizit mit Namen an, ",
+                "z.B.\n {.code add_meta({.field var} = {.val test_var}, ",
+                "{.field oberthema} = {.val beispielthema})}\n\n",
+                "Auch neue Argumente, die mit {.code ...} übergeben ",
+                "werden, müssen zwingend benannt sein."
+            )
+        ))
+        abort_changes_msg()
+    }
 
     # 2 Ensure required fields are not empty ----------------------------------
 
@@ -81,13 +101,13 @@ add_meta <- function(var = NULL,
         needs_skalenberechnung <-
             !is.null(var_typ) &&
             stringr::str_detect(var_typ, "Skalenitem:") &&
-            is.null(skalen_berechnung)
+            is.null(skalenberechnung)
 
         # Abort if any of the conditions are not satisfied
         if (missing_required ||
             needs_itemformulierung ||
             needs_skalenberechnung) {
-            cli::cli_abort(c(
+            cli::cli_abort(paste0(
                 "{.strong Nicht alle obligatorischen Argumente definiert.}\n\n",
                 "In einer nicht-interaktiven Sitzung müssen alle ",
                 "erforderlichen Argumente explizit übergeben werden:\n",
@@ -96,7 +116,7 @@ add_meta <- function(var = NULL,
                 "- {.field var_typ}\n",
                 "- {.field umfrage_item}\n",
                 if (needs_itemformulierung) "- {.field itemformulierung}\n",
-                if (needs_skalenberechnung) "- {.field skalen_berechnung}\n"
+                if (needs_skalenberechnung) "- {.field skalenberechnung}\n"
             ), call = NULL)
         }
     }
@@ -115,8 +135,8 @@ add_meta <- function(var = NULL,
             is.na(var) ||
             var == ""
         ) {
-            cli::cli_abort(c(
-                "{.strong Variable nicht definiert.} ",
+            cli::cli_abort(paste0(
+                "{.strong Variable definieren.} ",
                 "Das Argument {.field var} darf nicht leer sein.\n\n"
             ), call = NULL)
         }
@@ -127,7 +147,7 @@ add_meta <- function(var = NULL,
         var <- gsub("\\s+", "_", var) # replace whitespaces with underscore
         var <- gsub("_+", "_", var) # avoid double underscores
         if (!identical(original, var)) { # issue message
-            cli::cli_alert_info(c(
+            cli::cli_alert_info(paste0(
                 "{.strong Die Variablenbezeichnung darf keine Leerschläge ",
                 "enthalten.}\n ",
                 "Variablenname wurde automatisch geändert zu {.field {var}}."
@@ -138,7 +158,7 @@ add_meta <- function(var = NULL,
         # -> if var already exists in meta
         #    abort and suggest change_meta()
         if (var %in% names(meta)) {
-            cli::cli_abort(c(
+            cli::cli_abort(paste0(
                 "{.strong Die Variable {.field {var}}} ",
                 "{.strong ist bereits in den Metadaten erfasst.} \n\n",
                 "Bitte nutzen Sie {.fn metaSABSEB::change_meta()} um die ",
@@ -155,7 +175,7 @@ add_meta <- function(var = NULL,
         if (is.null(oberthema)) {
 
             # Create warning message
-            cli::cli_alert_warning("{.strong Kein Oberthema definiert.}")
+            cli::cli_alert_warning("{.strong Oberthema definieren.}")
 
             # Get vector of current entries
             # -> no duplicates
@@ -214,19 +234,6 @@ add_meta <- function(var = NULL,
                 }
             }
 
-
-            # Now that oberthema should not be empty anymore
-            # -> print info message on Oberthema
-            if (length(oberthema) > 0 && !is.na(oberthema)) {
-                # Return information banner
-                cli::cli_alert_info(c(
-                    "Herzlichen Dank. Sie haben folgendes Oberthema für ",
-                    "die Variable {.code {var}} gesetzt. \n",
-                    "  {.field oberthema:} {.val {oberthema}} \n\n"
-                )
-                )
-                cat("\n")
-            }
         }
 
 
@@ -234,7 +241,7 @@ add_meta <- function(var = NULL,
         if (is.null(var_typ)) {
 
             # Issue warning that var_type empty
-            cli::cli_alert_warning("{.strong Kein Variablentyp definiert.}")
+            cli::cli_alert_warning("{.strong Variablentyp definieren.}")
 
             # Ask to specify one of three types
             typ_choice <- utils::menu(
@@ -264,7 +271,7 @@ add_meta <- function(var = NULL,
                 repeat {
 
                     # Issue warning to specify
-                    cli::cli_alert_warning(c(
+                    cli::cli_alert_warning(paste0(
                         "{.strong Einzelitem genauer spezifizieren.} \n",
                         "Beschreiben sie das Einzelitem in Kürze"
                     ))
@@ -353,7 +360,7 @@ add_meta <- function(var = NULL,
                     umfrage_item <- matching_meta[[1]]$umfrage_item
 
                     # Print info message
-                    cli::cli_alert_info(c(
+                    cli::cli_alert_info(paste0(
                         "Die Beschreibung des Umfrage-Items wurde automatisch ",
                         "anhand der ausgewählten Item-Gruppe übernommen.\n\n",
                         "{.strong {selected_group_raw}} \n",
@@ -379,7 +386,7 @@ add_meta <- function(var = NULL,
                         if (nzchar(description))  break
 
                         # Issue warning otherwise
-                        cli::cli_alert_danger(c(
+                        cli::cli_alert_danger(paste0(
                             "Gruppenname für Item-Gruppe muss ",
                             "zwingend definiert werden. "
                         ))
@@ -412,7 +419,7 @@ add_meta <- function(var = NULL,
                 current_scales <- sub("^Skalenitem:\\s*", "", current_scales_raw)
 
                 # Issue warning that group must be specified
-                cli::cli_alert_warning(c(
+                cli::cli_alert_warning(paste0(
                     "{.strong Skala spezifizieren}\n ",
                     "{.emph Zu welcher Skala gehört das Skalenitem?}"
                 ))
@@ -461,7 +468,7 @@ add_meta <- function(var = NULL,
                     skalenberechnung <-matching_meta[[1]]$skalenberechnung
 
                     # Print info message
-                    cli::cli_alert_info(c(
+                    cli::cli_alert_info(paste0(
                         "Die Beschreibung des Umfrage-Items sowie die Angaben ",
                         "zur Berechnung der Skala wurden automatisch ",
                         "anhand der ausgewählten Skala übernommen.\n\n",
@@ -506,7 +513,7 @@ add_meta <- function(var = NULL,
             repeat {
 
                 # Issue warning to specify
-                cli::cli_alert_warning(c(
+                cli::cli_alert_warning(paste0(
                     "{.strong Umfrage-Item definieren}\n\n",
                     "Beschreiben sie den Wortlaut des Umfrage-Items \n",
                     "{.emph (Welche Frage wurde gestellt?)}"
@@ -536,7 +543,7 @@ add_meta <- function(var = NULL,
             # Repeat until itemformulierung is provided
             repeat {
                 # Issue warning to specify
-                cli::cli_alert_warning(c(
+                cli::cli_alert_warning(paste0(
                     "{.strong Itemformulierung definieren}\n\n",
                     "Geben Sie die konkrete Formulierung des Items an. \n",
                     "{.emph (Welche Unterfrage, Ausprägung oder ",
@@ -547,7 +554,7 @@ add_meta <- function(var = NULL,
                 itemformulierung <- trimws(readline("Itemformulierung: "))
 
                 # Break repetition loop if umfrage_item is not empty anymore
-                if (nzchar(itemformulierung))  break
+                if (nzchar(itemformulierung)) break
 
                 # Issue warning otherwise
                 cli::cli_alert_danger(
@@ -563,7 +570,7 @@ add_meta <- function(var = NULL,
 
             # Repeat until skalenberechnung is specified
             repeat {
-                cli::cli_alert_warning(c(
+                cli::cli_alert_warning(paste0(
                     "{.strong Skalenberechnung definieren}\n\n",
                     "Geben Sie an, wie die Skala, die zu diesem Item gehört,",
                     "berechnet wird. \n",
@@ -584,14 +591,136 @@ add_meta <- function(var = NULL,
         }
 
         # 2.7 Values ----------------------------------------------------------
-        if (is.null(values)){
+        if (is.null(values)) {
 
+            # Create warning
+            cli::cli_alert_warning(
+                "{.strong Wertekodierungen nicht definiert}"
+            )
 
+            # Ask if the variable is encoded or not
+            encoding_choice <- utils::menu(
+                choices = c("Ja", "Nein"),
+                title = cli::format_inline(
+                    "Enthält die Variable {.field {var}} kodierte Werte?"
+                )
+            )
+
+            # If yes, interactively determine encoding. If no, continue without
+            if (encoding_choice == 1) {
+
+                # Create empty list to store encoding
+                values <-list()
+
+                cli::cli_alert_info(paste0(
+                    "{.strong Wertekodierung interaktiv hinzufügen} \n\n",
+                    "Geben Sie im Terminal jeweils abwechselnd den Wert und ",
+                    "dessen Label ein, bis alle Ausprägungen der Variable ",
+                    "abgedeckt sind. \n\n",
+                    "{.emph Beispiel:}\n",
+                    "Wert: 1 \n",
+                    "Label: Ja \n",
+                    "Wert: 2 \n",
+                    "Label: Nein \n"
+                )
+                )
+
+                # Keep asking for value-label pairs until user is finished
+                repeat {
+                    # Value
+                    repeat {
+
+                        # Enter value to encode
+                        value <- trimws(readline("Wert: "))
+
+                        # Break if value has been entered
+                        if (nzchar(value)) break
+
+                        # Issue warning if value wasn't provided
+                        cli::cli_alert_danger(
+                            "Es muss zwingend ein Wert angegeben werden."
+                        )
+                    }
+
+                    # Label
+                    repeat {
+
+                        # Enter corresponding value label
+                        label <- trimws(readline("Label: "))
+
+                        # Break if value has been entered
+                        if (nzchar(value)) break
+
+                        # Issue warning if label wasn't provided
+                        cli::cli_alert_danger(paste0(
+                            "Es muss zwingend ein Label für den Wert",
+                            "{.field {value}} eingegeben werden."
+                        ))
+                    }
+
+                    # Add value-label pair to list
+                    values[[value]] <- label
+
+                    # Show current encoding
+                    cli::cli_alert_info(paste0(
+                        "Liste mit aktueller Wertekodierung für die Variable ",
+                        "{.field {var}}"
+                    ))
+
+                    for (i in seq_along(values)) {
+                        cli::cli_text(paste0(
+                            "{.field {names(values)[i]}} ",
+                            "= {.val {values[[i]]}}"
+                        ))
+                    }
+
+                    cat("\n")
+
+                    # Ask whether another value should be added
+                    more <- utils::menu(
+                        choices = c("Ja", "Nein"),
+                        title = "Möchten Sie weitere Wertekodierungen hinzufügen?"
+                    )
+
+                    if (more == 2) break
+                }
+            }
         }
-
     }
 
+    # 3 Construct meta entry --------------------------------------------------
+    # Create list
+    new_entry <- list(
+        oberthema = oberthema,
+        unterthema = unterthema,
+        var_typ = var_typ,
+        umfrage_item = umfrage_item,
+        itemformulierung = itemformulierung,
+        skalenberechnung = skalenberechnung,
+        umfrage_filter = umfrage_filter,
+        quelle = quelle,
+        status = status,
+        values = values,
+        ...
+    )
 
+    # Drop any fields that weren't provided
+    new_entry <- Filter(Negate(is.null), new_entry)
 
-    # 4 Add list-object to metadata -------------------------------------------
+    # 4 Save to YAML ----------------------------------------------------------
+    # Insert (or overwrite) the entry under the variable name
+    meta[[var]] <- new_entry
+
+    # Write yaml
+    yaml::write_yaml(meta, yaml_path)
+
+    # Info message
+    cli::cli_alert_success(paste0(
+        "{.strong Metadaten für die Variable {.field {var}} hinzugefügt.}",
+        "Lokal gespeicherte Metadaten erfolgreich aktualisiert."
+    ))
+    cli::cli_alert_info(paste0(
+        "Für Änderungen am öffentlichen Metadatensatz ",
+        "kann ein Pull Request erstellt werden."
+    ))
 }
