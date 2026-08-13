@@ -1,22 +1,26 @@
-################################################################################
-### Import metadata in CSV structure and transform to a YAML
-################################################################################
-
-# Load necessary libraries
-library(readr)
-library(yaml)
+# -----------------------------------------------------------------------------
+# TRANSFORM METADATA FROM CSV TO YAML
+#
+# Note: This is a one-time migration script. It converts the initially
+#       collected metadata (from ZEM CES) into the new YAML Format.
+#
+# WARNING: This script must not be re-run after the initial migration.
+#          Doing so will overwrite any metadata added or changed using
+#          `add_meta()` or `change_meta()` since the initial migration
+# -----------------------------------------------------------------------------
 
 # Ensure UTF-8 encoding
 Sys.setlocale("LC_CTYPE", "German_Switzerland.utf8")
 
 # Read the CSVs (semicolon delimited)
-variable_meta <- read_csv2("data-raw/qm_sekII_variable-meta.csv")
-value_meta <- read_csv2("data-raw/qm_sekII_value-meta.csv")
+variable_meta <- readr::read_csv2("data-raw/qm_sekII_variable-meta.csv")
+value_meta <- readr::read_csv2("data-raw/qm_sekII_value-meta.csv")
 
 # Drop variables for other cantons
 variable_meta <- variable_meta[
     is.na(variable_meta$umfrage_item) |
-        variable_meta$umfrage_item != "Zusatzfragen von anderen Kantonen/Schulen, ignorieren",
+        variable_meta$umfrage_item !=
+        "Zusatzfragen von anderen Kantonen/Schulen, ignorieren",
 ]
 
 # Loop over each variable i in variable_meta and create a list
@@ -60,5 +64,5 @@ dir.create("inst", recursive = TRUE)
 # Convert R list into YAML format and save it
 # Please do not overwrite the YAML again.
 # Otherwise changes made using `add_meta` or `update_meta` may be lost.
-# write_yaml(variables_list, "inst/qm_sekII_metadata.yaml", indent = 2)
+# yaml::write_yaml(variables_list, "inst/qm_sekII_metadata.yaml", indent = 2)
 
