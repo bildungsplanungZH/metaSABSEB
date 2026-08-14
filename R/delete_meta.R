@@ -41,7 +41,7 @@ delete_meta <- function(var = NULL) {
     # Write confirmation message
     cli::cli_alert_success(paste0(
         "{.strong Metadaten für die Variable {.field {var}} gelöscht.} \n",
-        "Lokal gespeicherte Metadaten erfolgreich aktualisiert.\n\m"
+        "Lokal gespeicherte Metadaten erfolgreich aktualisiert.\n\n"
     ))
     cli::cli_alert_info(paste0(
         "Für Änderungen am öffentlichen Metadatensatz",
