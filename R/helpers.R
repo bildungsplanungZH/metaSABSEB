@@ -101,6 +101,9 @@ confirm_replacement <- function(yaml_path, meta, var, field, new_entry) {
         # Overwrite yaml on disk
         yaml::write_yaml(meta, yaml_path)
 
+        # Update cache (used for get_meta())
+        .meta_env$meta <- meta
+
         # Return message
         cli::cli_alert_success("Lokal gespeicherte Metadaten erfolgreich aktualisiert.")
         cli::cli_alert_info(paste0(

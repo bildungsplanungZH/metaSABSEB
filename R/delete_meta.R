@@ -35,6 +35,9 @@ delete_meta <- function(var = NULL) {
     # Write updated metadata back to YAML
     yaml::write_yaml(meta, yaml_path)
 
+    # Update cache (used for get_meta())
+    .meta_env$meta <- meta
+
     # Write confirmation message
     cli::cli_alert_success(paste0(
         "{.strong Metadaten für die Variable {.field {var}} gelöscht.} \n",
