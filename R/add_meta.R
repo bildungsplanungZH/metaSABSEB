@@ -28,6 +28,11 @@
 #' or deprecated. Default when adding a new variable to metadata is "aktiv"
 #' @param values List-Object. Lists encoding of all values.
 #' (required if values are encoded)
+#'
+#' @param yaml_path Character string specifying the path to the metadata YAML
+#' file. By default, the package's metadata YAML file is used. This argument
+#' can be changed, e.g. for testing with a temporary YAML file.
+#'
 #' @param ... Character string. Allows to add more metadata entries.
 #' Must be a named argument.
 #'
@@ -44,17 +49,14 @@ add_meta <- function(var = NULL,
                      quelle = NULL,
                      status = "aktiv",
                      values = NULL,
-                     ...) {
+                     ...,
+                     yaml_path = system.file(
+                         "qm_sekII_metadata.yaml",
+                         package = "metaSABSEB"
+                     )
+                     ) {
 
     # 0 Get current metadata --------------------------------------------------
-
-    # Get path to metadata yaml
-    yaml_path <- system.file(
-        "qm_sekII_metadata.yaml",
-        package = "metaSABSEB"
-    )
-
-    # Read yaml
     meta <- yaml::read_yaml(yaml_path)
 
     # 1 Ensure that all arguments are named -----------------------------------

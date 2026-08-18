@@ -11,11 +11,19 @@
 #' @param field A character string specifying the metadata field
 #' to be changed
 #' @param new_entry String or numeric, new value for the metadata field
+#' @param yaml_path Character string specifying the path to the metadata YAML
+#' file. By default, the package's metadata YAML file is used. This argument
+#' can be changed, e.g. for testing with a temporary YAML file.
 #'
 #' @export
 
-change_meta <- function(var = NULL, field = NULL, new_entry = NULL) {
-
+change_meta <- function(var = NULL,
+                        field = NULL,
+                        new_entry = NULL,
+                        yaml_path = system.file(
+                            "qm_sekII_metadata.yaml",
+                            package = "metaSABSEB")
+                        ) {
 
     # 1. Enforce no missing args ----------------------------------------------
     if (is.null(var)) {
@@ -33,19 +41,10 @@ change_meta <- function(var = NULL, field = NULL, new_entry = NULL) {
         ), call = NULL)
     }
 
-    # . Get metadata from disk -----------------------------------------------
-
-    # Get path to metadata yaml
-    yaml_path <- system.file(
-        "qm_sekII_metadata.yaml",
-        package = "metaSABSEB"
-    )
-
-    # Read yaml
+    # 2. Get metadata from disk -----------------------------------------------
     meta <- yaml::read_yaml(yaml_path)
 
-
-    # 3 Check variable existence ---------------------------------------------
+    # 3 Check variable existence ----------------------------------------------
 
     # Check if the variable already is in the metadata.
     # -> use internal helper function from helpers.R
@@ -54,7 +53,7 @@ change_meta <- function(var = NULL, field = NULL, new_entry = NULL) {
     # Retrieve metadata for the requested variable and save in vector
     var_info <- meta[[var]]
 
-    # 4 Check field existence and replace field ------------------------------
+    # 4 Check field existence and replace field -------------------------------
     # If field exists for specified variable
     # Confirm that the field should be replaced
     # -> use internal helper function from helpers.R
@@ -117,6 +116,28 @@ change_meta <- function(var = NULL, field = NULL, new_entry = NULL) {
                 # -> use internal helper function from helpers.R
                 confirm_replacement(yaml_path, meta, var, field, new_entry)
             }
+        }
+
+        # If not interactive, just add new field
+        else{
+            # Add new entry to meta
+            meta[[var]][[field]] <- new_entry
+
+            # Overwrite yaml on disk
+            yaml::write_yaml(meta, yaml_path)
+
+            # Update cache (used for get_meta())
+            .meta_env$meta <- meta
+
+            # Return message
+            cli::cli_alert_success(
+                "Lokal gespeicherte Metadaten erfolgreich aktualisiert."
+            )
+            cli::cli_alert_info(paste0(
+                "Für Änderungen am öffentlichen Metadatensatz ",
+                "kann ein Pull Request erstellt werden."
+            ))
+            cat("\n")
         }
     }
 }

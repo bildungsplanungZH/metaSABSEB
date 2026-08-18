@@ -66,7 +66,7 @@ check_var_exists <- function(var, meta) {
 #' Asks interactively, if the entry should be replaced
 #' Replaces entry on disk or
 #'
-#' @param yaml_path Path to metadata on disk
+#' @param yaml_path Path to metadata
 #' @param meta A named list as returned by [yaml::read_yaml()].
 #' @param var A character string specifying the variable that should be changed
 #' @param field A character string specyifing the field

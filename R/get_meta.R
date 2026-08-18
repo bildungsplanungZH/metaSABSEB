@@ -10,6 +10,10 @@
 #' (e.g. during development or after updating the package).
 #' Default is FALSE.
 #'
+#' @param yaml_path Character string specifying the path to the metadata YAML
+#' file. By default, the package's metadata YAML file is used. This argument
+#' can be changed, e.g. for testing with a temporary YAML file. description
+#'
 #' @return If `field = NULL`, a named list containing all metadata
 #' associated with `var`. Otherwise the value of the requested
 #' metadata field
@@ -19,19 +23,23 @@
 #' get_meta(var = "Anst_best", "quelle")
 #'
 #' @export
-get_meta <- function(var, field = NULL, refresh = FALSE) {
+get_meta <- function(var,
+                     field = NULL,
+                     refresh = FALSE,
+                     yaml_path = system.file(
+                         "qm_sekII_metadata.yaml",
+                         package = "metaSABSEB"
+                     )
+                     ) {
 
     # --------------------------------
     # 1. Get metadata
     # --------------------------------
 
-    # Set file path
-    file <- system.file("qm_sekII_metadata.yaml", package = "metaSABSEB")
-
     # Update cache if it is empty or refresh = TRUE
     # Note: metadata is cached for better performance
     if (is.null(.meta_env$meta) || refresh) {
-        .meta_env$meta <- yaml::read_yaml(file)
+        .meta_env$meta <- yaml::read_yaml(yaml_path)
     }
 
     # Get metadata from cache

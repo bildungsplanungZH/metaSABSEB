@@ -5,9 +5,19 @@
 #' @param var Characters string. Defines variable for which
 #' the metadata should be deleted
 #'
+#' @param yaml_path Character string specifying the path to the metadata YAML
+#' file. By default, the package's metadata YAML file is used. This argument
+#' can be changed, e.g. for testing with a temporary YAML file. description
+#'
 #' @export
 
-delete_meta <- function(var = NULL) {
+delete_meta <- function(
+        var = NULL,
+        yaml_path = system.file(
+            "qm_sekII_metadata.yaml",
+            package = "metaSABSEB"
+        )
+        ) {
 
     # Require var to be specified
     if (is.null(var))  {
@@ -16,12 +26,6 @@ delete_meta <- function(var = NULL) {
             "{.strong die Metadaten gelöscht werden sollen.}"
         ))
     }
-
-    # Get path to metadata yaml
-    yaml_path <- system.file(
-        "qm_sekII_metadata.yaml",
-        package = "metaSABSEB"
-    )
 
     # Read yaml
     meta <- yaml::read_yaml(yaml_path)
