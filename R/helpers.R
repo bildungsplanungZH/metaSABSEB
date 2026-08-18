@@ -36,24 +36,26 @@ check_var_exists <- function(var, meta) {
     }
 
     # Close match found, interactive
-    var_choice <- utils::menu(
-        choices = c(close_match, "Keine der oben genannten"),
-        title = cli::format_inline(
-            "Variable {.var {var}} nicht gefunden. Meinten Sie vielleicht?"
+    if (interactive()) {
+        var_choice <- utils::menu(
+            choices = c(close_match, "Keine der oben genannten"),
+            title = cli::format_inline(
+                "Variable {.var {var}} nicht gefunden. Meinten Sie vielleicht?"
+            )
         )
-    )
 
-    # User does not take any suggestions or aborts
-    if (var_choice == 0 || var_choice == length(close_match) + 1) {
-        cli::cli_abort("Das Anpassen der Metadaten wurde abgebrochen.
+        # User does not take any suggestions or aborts
+        if (var_choice == 0 || var_choice == length(close_match) + 1) {
+            cli::cli_abort("Das Anpassen der Metadaten wurde abgebrochen.
                                Variable {.var {var}} konnte nicht in den Metadaten gefunden werden.",
-                       call = NULL)
+                           call = NULL)
 
-    }
+        }
 
-    # User chooses close match
-    if (var_choice <= length(close_match)) {
-        return(close_match[var_choice])
+        # User chooses close match
+        if (var_choice <= length(close_match)) {
+            return(close_match[var_choice])
+        }
     }
 }
 
@@ -77,24 +79,8 @@ check_var_exists <- function(var, meta) {
 #'
 confirm_replacement <- function(yaml_path, meta, var, field, new_entry) {
 
-    # Get current entry
-    current_entry <- meta[[var]][[field]]
-
-    # Ask if current entry should be replaced
-    replace_choice <- utils::menu(
-        choices = c("Ja", "Nein"),
-        title = cli::format_inline(
-            "Sind Sie sicher, dass Sie den aktuellen Eintrag ",
-            "für die Variable {.var {var}} ersetzen möchten?\n\n",
-            "  Aktuell:  {.field {field}}: {.val {current_entry}}\n",
-            "  Neu:      {.field {field}}: {.val {new_entry}}"
-        )
-    )
-
-
-    # "Yes" = Replace current entry
-    if (replace_choice == 1) {
-
+    # If not interactive just replace
+    if (!interactive()) {
         # Add new entry to meta
         meta[[var]][[field]] <- new_entry
 
@@ -103,20 +89,50 @@ confirm_replacement <- function(yaml_path, meta, var, field, new_entry) {
 
         # Update cache (used for get_meta())
         .meta_env$meta <- meta
-
-        # Return message
-        cli::cli_alert_success("Lokal gespeicherte Metadaten erfolgreich aktualisiert.")
-        cli::cli_alert_info(paste0(
-            "Für Änderungen am öffentlichen Metadatensatz ",
-            "kann ein Pull Request erstellt werden."
-        ))
     }
 
-    # "No" = Exit, no change made
-    if (replace_choice !=1) {
-        abort_changes_msg()
-    }
+    # If interactive ask if replacing is correct
+    if (interactive()) {
+        # Get current entry
+        current_entry <- meta[[var]][[field]]
 
+        # Ask if current entry should be replaced
+        replace_choice <- utils::menu(
+            choices = c("Ja", "Nein"),
+            title = cli::format_inline(
+                "Sind Sie sicher, dass Sie den aktuellen Eintrag ",
+                "für die Variable {.var {var}} ersetzen möchten?\n\n",
+                "  Aktuell:  {.field {field}}: {.val {current_entry}}\n",
+                "  Neu:      {.field {field}}: {.val {new_entry}}"
+            )
+        )
+
+
+        # "Yes" = Replace current entry
+        if (replace_choice == 1) {
+
+            # Add new entry to meta
+            meta[[var]][[field]] <- new_entry
+
+            # Overwrite yaml on disk
+            yaml::write_yaml(meta, yaml_path)
+
+            # Update cache (used for get_meta())
+            .meta_env$meta <- meta
+
+            # Return message
+            cli::cli_alert_success("Lokal gespeicherte Metadaten erfolgreich aktualisiert.")
+            cli::cli_alert_info(paste0(
+                "Für Änderungen am öffentlichen Metadatensatz ",
+                "kann ein Pull Request erstellt werden."
+            ))
+        }
+
+        # "No" = Exit, no change made
+        if (replace_choice !=1) {
+            abort_changes_msg()
+        }
+    }
 }
 
 #' @description
