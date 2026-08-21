@@ -6,12 +6,35 @@
 setup_temp_meta <- function() {
     tmp_path <- withr::local_tempfile(fileext = ".yaml", .local_envir = parent.frame())
     meta <- list(
-        TEST_VAR = list(
-            umfrage_item = "Testbeschreibung",
-            oberthema   = "alter Wert"
+        TEST_VAR1 = list(
+            oberthema = "Kernobst",
+            unterthema = "Äpfel",
+            var_typ = "Skalenitem: Beliebtheit Kernobst",
+            umfrage_item = "Wie gerne mögen Sie Äpfel?",
+            skalenberechnung = "Mean",
+            status = "aktiv",
+            values = list(
+                "1" = "gar nicht",
+                "2" = "eher nicht",
+                "3" = "mittel",
+                "4" = "eher gerne",
+                "5" = "sehr gerne"
+            )
         ),
-        OTHER_VAR = list(
-            umfrage_item = "test"
+        TEST_VAR2 = list(
+            oberthema = "Kernobst",
+            unterthema = "Birnen",
+            var_typ = "Skalenitem: Beliebtheit Kernobst",
+            umfrage_item = "Wie gerne mögen Sie Birnen?",
+            skalenberechnung = "Mean",
+            status = "aktiv",
+            values = list(
+                "1" = "gar nicht",
+                "2" = "eher nicht",
+                "3" = "mittel",
+                "4" = "eher gerne",
+                "5" = "sehr gerne"
+            )
         )
     )
     yaml::write_yaml(meta, tmp_path)

@@ -11,14 +11,14 @@ test_that("change_meta() fails if var is not specified", {
 
 test_that("change_meta() fails if field is not specified", {
     expect_error(
-        change_meta(var = "TEST_VAR"),
+        change_meta(var = "TEST_VAR1"),
         "muss mitgegeben werden"
     )
 })
 
 test_that("change_meta() fails if new_entry is not specified", {
     expect_error(
-        change_meta(var = "TEST_VAR", field = "oberthema"),
+        change_meta(var = "TEST_VAR1", field = "oberthema"),
         "muss mitgegeben werden"
     )
 })
@@ -47,13 +47,13 @@ test_that("change_meta() actually changes meta for an existing field", {
     before <- yaml::read_yaml(tmp_path)$TEST_VAR$oberthema
 
     change_meta(
-        var = "TEST_VAR",
+        var = "TEST_VAR1",
         field = "oberthema",
         new_entry = "TEST",
         yaml_path = tmp_path
     )
 
-    after <- .meta_env$meta$TEST_VAR$oberthema
+    after <- .meta_env$meta$TEST_VAR1$oberthema
 
     expect_true(called)
     expect_false(identical(before, after))
