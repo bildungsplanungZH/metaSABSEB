@@ -15,14 +15,18 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, include=FALSE}
-# Create Function to nicely print results
-print_list <- function(x, indent = 0, title = NULL, title_level = 4, field = NULL) {
-  
-  # Start blockquote frame
+```{r setup, include = FALSE}
+library(metaSABSEB)
+
+# Funktion zur übersichtlichen Darstellung von Listen
+print_list <- function(x,
+                       indent = 0,
+                       title = NULL,
+                       title_level = 4,
+                       field = NULL) {
+
   cat("> \n")
-  
-  # Print title with same indentation as content
+
   if (!is.null(title)) {
     cat(
       "> ",
@@ -34,12 +38,9 @@ print_list <- function(x, indent = 0, title = NULL, title_level = 4, field = NUL
       sep = ""
     )
   }
-  
-  # ---------------------------------------------------------
-  # Handle a single non-list value
-  # ---------------------------------------------------------
+
+  # Einzelner Wert
   if (!is.list(x)) {
-    
     cat(
       "> ",
       strrep("  ", indent),
@@ -48,18 +49,15 @@ print_list <- function(x, indent = 0, title = NULL, title_level = 4, field = NUL
       "\n",
       sep = ""
     )
-    
+
     return(invisible(NULL))
   }
-  
-  # ---------------------------------------------------------
-  # Handle lists
-  # ---------------------------------------------------------
+
+  # Liste
   nm <- names(x)
-  
+
   for (i in seq_along(x)) {
-    
-    # Determine label
+
     label <- if (!is.null(nm) &&
                  !is.na(nm[i]) &&
                  nzchar(nm[i])) {
@@ -67,12 +65,10 @@ print_list <- function(x, indent = 0, title = NULL, title_level = 4, field = NUL
     } else {
       paste0("[[", i, "]]")
     }
-    
-    # -------------------------------------------------------
-    # Nested list
-    # -------------------------------------------------------
+
+    # Verschachtelte Liste
     if (is.list(x[[i]])) {
-      
+
       cat(
         "> ",
         strrep("  ", indent),
@@ -82,17 +78,15 @@ print_list <- function(x, indent = 0, title = NULL, title_level = 4, field = NUL
         "</span>:\n",
         sep = ""
       )
-      
+
       print_list(
         x[[i]],
         indent = indent + 1
       )
-      
-    # -------------------------------------------------------
-    # Regular value
-    # -------------------------------------------------------
+
+    # Einfacher Wert
     } else {
-      
+
       cat(
         "> ",
         strrep("  ", indent),
@@ -106,50 +100,122 @@ print_list <- function(x, indent = 0, title = NULL, title_level = 4, field = NUL
       )
     }
   }
+
+  invisible(NULL)
 }
 ```
 
+Die Funktion `metaSABSEB::get_meta()` ermöglicht es, die im Metadatensatz hinterlegten Informationen zu einer Variable abzufragen. Dabei kann entweder der gesamte Metadateneintrag einer Variable oder ein bestimmtes Metadatenfeld abgefragt werden.
 
-Die Funktion `metaSABSEB::get_meta()` ermöglicht es, Metadaten für die SAB und SEB Datensätze abzufragen. Dabei können entweder alle zur Variable zugehörigen Metadaten abgefragt werden oder nur ein spezifisches Feld. 
+Die Metadaten werden beim ersten Aufruf aus der YAML-Datei eingelesen und anschliessend zwischengespeichert. Dadurch können weitere Abfragen effizient durchgeführt werden.
 
-## 📄 Alle Metadaten für eine Variable abfragen 
-Wenn alle Metadateneinträge für eine Variable abgefragt werden sollen, kann im Funktionsaufruf nur die Variable spezifiziert werden. Die zugehörigen Metadaten werden als Liste zurückgegeben.
-```{r}
-# Execute function get_meta()
-# -> hint: only specify variable name to obtain all available metadata
-meta_aktiv_aktu <- metaSABSEB::get_meta(var = "Aktiv_aktu")
+## ℹ️ Funktionsbeschreibung
 
-# Print list using custom function for nice list display
-print_list(meta_aktiv_aktu, title = "Metadaten für Aktiv_aktu")
+Die Funktion `metaSABSEB::get_meta()` besitzt folgende Argumente:
 
+```{r, eval = FALSE}
+metaSABSEB::get_meta(
+  var,
+  field = NULL,
+  refresh = FALSE,
+  yaml_path = system.file(
+    "qm_sekII_metadata.yaml",
+    package = "metaSABSEB"
+  )
+)
 ```
 
-## 🔎 Ein spezifisches Metadatenfeld abfragen
-Falls nur ein spezifisches Metadatenfeld abgefragt werden soll. Kann das im Funktionsaufruf unter `field` ergänzt werden:
+Die Argumente haben folgende Bedeutung:
+
+* `var`: Name der Variable, deren Metadaten abgefragt werden sollen. Das Argument ist erforderlich.
+* `field`: Name des Metadatenfeldes, das abgefragt werden soll. Wird kein Feld angegeben (`field = NULL`), gibt die Funktion alle für die Variable verfügbaren Metadaten zurück.
+* `refresh`: Logical (`TRUE` oder `FALSE`), der angibt, ob die Metadaten erneut aus der YAML-Datei eingelesen werden sollen. Standardmässig ist `refresh = FALSE`. Die Option `refresh = TRUE` ist insbesondere dann sinnvoll, wenn die zugrunde liegende Metadatendatei seit dem letzten Aufruf verändert wurde.
+* `yaml_path`: Pfad zur Metadaten-YAML-Datei. Standardmässig wird die im Paket enthaltene Datei `qm_sekII_metadata.yaml` verwendet. Der Pfad kann beispielsweise für Tests mit einer temporären oder einer lokal bearbeiteten YAML-Datei angepasst werden.
+
+## 📄 Alle Metadaten einer Variable abfragen
+
+Wenn alle verfügbaren Metadaten einer Variable abgefragt werden sollen, muss lediglich der Name der Variable mit `var` angegeben werden.
+
 ```{r}
-# Execute function get_meta()
-umfrage_item_komp_wenig <- metaSABSEB::get_meta(var = "Komp_wenig", field = "umfrage_item")
+meta_aktiv_aktu <- metaSABSEB::get_meta(
+  var = "Aktiv_aktu"
+)
 
-# Print returned field
-print_list(umfrage_item_komp_wenig, title = "Umfrage-Item von Komp_wenig")
-
+print_list(
+  meta_aktiv_aktu,
+  title = "Metadaten für Aktiv_aktu"
+)
 ```
+
+Die Funktion gibt eine benannte Liste zurück. Jeder Eintrag der Liste entspricht einem Metadatenfeld der betreffenden Variable.
+
+Diese Variante eignet sich insbesondere dann, wenn ein vollständiger Überblick über die zu einer Variable hinterlegten Informationen benötigt wird.
+
+## 🔎 Ein bestimmtes Metadatenfeld abfragen
+
+Wenn nur eine bestimmte Information benötigt wird, kann zusätzlich das Argument `field` angegeben werden.
+
+Beispielsweise kann das Umfrage-Item einer Variable wie folgt abgefragt werden:
+
+```{r}
+umfrage_item_komp_wenig <- metaSABSEB::get_meta(
+  var = "Komp_wenig",
+  field = "umfrage_item"
+)
+
+print_list(
+  umfrage_item_komp_wenig,
+  title = "Umfrage-Item von Komp_wenig"
+)
+```
+
+In diesem Fall wird nicht die gesamte Metadatenliste zurückgegeben, sondern nur der Wert des angegebenen Feldes.
 
 ## 💡 Verfügbare Metadatenfelder
-Bei der Konzeption des Metadatensatzes wurden folgende Metadatenfelder angelegt (Stand 26.08.2026):
 
-- **oberthema:** Bezeichnet das übergeordnete Thema, dem das Item zugeordnet ist.
-- **unterthema:** Bezeichnet das Unterthema, sofern eine weitere inhaltliche Differenzierung des Oberthemas vorliegt.
-- **umfrage-item:** Enthält die konkrete Frage aus dem Fragebogen. Bei administrativen Variablen wird stattdessen eine Beschreibung der Variable hinterlegt.
-- **itemformulierung:** Enthält die konkrete Formulierung des Items. Dies kann beispielsweise eine einzelne Antwortoption bei Multiple-Choice-Fragen sein, wenn für jede Antwortoption eine eigene Variable erzeugt wird. Das Feld wird zudem für Skalen verwendet, bei denen die Items mit einer identischen Frage beginnen und sich lediglich in einzelnen Bestandteilen unterscheiden.
-- **var_typ:** Beschreibt den Typ der Variable und enthält neben der Typbezeichnung eine entsprechende Beschreibung. Es werden drei Typen unterschieden: Einzelitem, Item-Gruppe und Skalenitem.
-- **skalenberechnung:** Beschreibt, wie die jeweilige Skala berechnet wird.
-- **umfrage_filter:** Gibt an, ob bei der Durchführung der Umfrage Filter verwendet wurden. Hier wird beispielsweise dokumentiert, wenn ein Item nur bestimmten Schultypen angezeigt wurde.
-- **quelle:** Gibt die Quelle bzw. Grundlage für die Konstruktion des Umfrageitems an.
-- **status:** Gibt an, ob ein Item aktuell verwendet wird oder bis zu welcher Befragungswelle es eingesetzt wurde.
-- **values:** Enthält die Wertekodierungen für die jeweiligen Antwortmöglichkeiten des Umfrageitems.
+Der Metadatensatz enthält verschiedene Felder, mit denen die Variablen inhaltlich und technisch beschrieben werden.
 
-Die definierten Metadatenfelder orientieren sich dabei stark an den Informationen, die in den bestehenden PDF-Dokumentationen der vergangenen Befragungen verfügbar waren. Ziel war es, die dort enthaltenen Informationen möglichst strukturiert und einheitlich in einem Metadatensatz abzubilden.
+**Stand: 26.08.2026**
 
-Es besteht die Möglichkeit in Zukunft neue Metadatenfelder hinzuzufügen mit den Funktionen `metaSABSEB::add_meta()` und `metaSABSEB::change_meta()`.
+* **`oberthema`**: Bezeichnet das übergeordnete Thema, dem das Item zugeordnet ist.
+* **`unterthema`**: Bezeichnet das Unterthema, sofern eine weitere inhaltliche Differenzierung des Oberthemas vorliegt.
+* **`umfrage_item`**: Enthält die konkrete Frage aus dem Fragebogen. Bei administrativen Variablen wird stattdessen eine Beschreibung der Variable hinterlegt.
+* **`itemformulierung`**: Enthält die konkrete Formulierung des Items. Dies kann beispielsweise eine einzelne Antwortoption bei Multiple-Choice-Fragen sein, wenn für jede Antwortoption eine eigene Variable erzeugt wird. Das Feld wird zudem für Skalen verwendet, bei denen die Items mit einer identischen Frage beginnen und sich lediglich in einzelnen Bestandteilen unterscheiden.
+* **`var_typ`**: Beschreibt den Typ der Variable. Es werden drei Typen unterschieden: Einzelitem, Item-Gruppe und Skalenitem.
+* **`skalenberechnung`**: Beschreibt, wie die jeweilige Skala berechnet wird.
+* **`umfrage_filter`**: Gibt an, ob bei der Durchführung der Umfrage Filter verwendet wurden. Hier wird beispielsweise dokumentiert, wenn ein Item nur bestimmten Schultypen angezeigt wurde.
+* **`quelle`**: Gibt die Quelle bzw. Grundlage für die Konstruktion des Umfrage-Items an.
+* **`status`**: Gibt an, ob ein Item aktuell verwendet wird oder bis zu welcher Befragungswelle es eingesetzt wurde.
+* **`values`**: Enthält die Wertekodierungen für die jeweiligen Antwortmöglichkeiten des Umfrage-Items.
+
+Die definierten Metadatenfelder orientieren sich an den Informationen, die in den bestehenden PDF-Dokumentationen der vergangenen Befragungen verfügbar waren. Ziel ist es, diese Informationen möglichst strukturiert und einheitlich in einem Metadatensatz abzubilden.
+
+Der Metadatensatz kann zukünftig um weitere Metadatenfelder ergänzt werden. Dafür stehen die Funktionen `metaSABSEB::add_meta()` und `metaSABSEB::change_meta()` zur Verfügung.
+
+
+## 💁 Hilfestellungen bei der Metadatenabfrage
+
+### Wenn die Variable nicht existiert
+Dann wird der Metadatensatz nach Variablen durchsucht, die ähnlich geschrieben werden. In RStudio wird dann im Terminal interaktiv gefragt, ob nicht eine der gefundenen "close matches" gemeint war. So können Typos im Variablennamen leicht identifiziert werden. 
+
+### Wenn das angegebene Feld nicht existiert
+
+Wird ein Feld angegeben, das für die betreffende Variable nicht vorhanden ist, gibt `metaSABSEB::get_meta()` eine Warnung aus.
+
+Anschliessend werden automatisch alle verfügbaren Metadateneinträge der Variable zurückgegeben. Dadurch kann direkt überprüft werden, welche Felder für die Variable tatsächlich vorhanden sind.
+
+Beispielsweise:
+
+```{r, eval = FALSE}
+metaSABSEB::get_meta(
+  var = "Komp_wenig",
+  field = "nicht_vorhandenes_feld"
+)
+```
+
+Die Funktion weist in diesem Fall darauf hin, dass kein Metadateneintrag für das angegebene Feld existiert, und gibt anschliessend die vollständigen Metadaten der Variable zurück.
+
+Dies kann insbesondere hilfreich sein, wenn der genaue Name eines Metadatenfeldes nicht bekannt ist.
+
+
 
