@@ -10,10 +10,146 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  results = "asis"
 )
 ```
 
-```{r setup}
-library(metaSABSEB)
+```{r setup, include=FALSE}
+# Create Function to nicely print results
+print_list <- function(x, indent = 0, title = NULL, title_level = 4, field = NULL) {
+  
+  # Start blockquote frame
+  cat("> \n")
+  
+  # Print title with same indentation as content
+  if (!is.null(title)) {
+    cat(
+      "> ",
+      strrep("  ", indent),
+      strrep("#", title_level),
+      " ",
+      title,
+      "\n",
+      sep = ""
+    )
+  }
+  
+  # ---------------------------------------------------------
+  # Handle a single non-list value
+  # ---------------------------------------------------------
+  if (!is.list(x)) {
+    
+    cat(
+      "> ",
+      strrep("  ", indent),
+      "- ",
+      paste(x, collapse = ", "),
+      "\n",
+      sep = ""
+    )
+    
+    return(invisible(NULL))
+  }
+  
+  # ---------------------------------------------------------
+  # Handle lists
+  # ---------------------------------------------------------
+  nm <- names(x)
+  
+  for (i in seq_along(x)) {
+    
+    # Determine label
+    label <- if (!is.null(nm) &&
+                 !is.na(nm[i]) &&
+                 nzchar(nm[i])) {
+      nm[i]
+    } else {
+      paste0("[[", i, "]]")
+    }
+    
+    # -------------------------------------------------------
+    # Nested list
+    # -------------------------------------------------------
+    if (is.list(x[[i]])) {
+      
+      cat(
+        "> ",
+        strrep("  ", indent),
+        "- ",
+        '<span style="color: #2C7FB8; font-weight: 600;">',
+        label,
+        "</span>:\n",
+        sep = ""
+      )
+      
+      print_list(
+        x[[i]],
+        indent = indent + 1
+      )
+      
+    # -------------------------------------------------------
+    # Regular value
+    # -------------------------------------------------------
+    } else {
+      
+      cat(
+        "> ",
+        strrep("  ", indent),
+        "- ",
+        '<span style="color: #2C7FB8; font-weight: 600;">',
+        label,
+        "</span>: ",
+        paste(x[[i]], collapse = ", "),
+        "\n",
+        sep = ""
+      )
+    }
+  }
+}
 ```
+
+
+Die Funktion `metaSABSEB::get_meta()` ermöglicht es, Metadaten für die SAB und SEB Datensätze abzufragen. Dabei können entweder alle zur Variable zugehörigen Metadaten abgefragt werden oder nur ein spezifisches Feld. 
+
+## 📄 Alle Metadaten für eine Variable abfragen 
+Wenn alle Metadateneinträge für eine Variable abgefragt werden sollen, kann im Funktionsaufruf nur die Variable spezifiziert werden. Die zugehörigen Metadaten werden als Liste zurückgegeben.
+```{r}
+# Execute function get_meta()
+# -> hint: only specify variable name to obtain all available metadata
+meta_aktiv_aktu <- metaSABSEB::get_meta(var = "Aktiv_aktu")
+
+# Print list using custom function for nice list display
+print_list(meta_aktiv_aktu, title = "Metadaten für Aktiv_aktu")
+
+```
+
+## 🔎 Ein spezifisches Metadatenfeld abfragen
+Falls nur ein spezifisches Metadatenfeld abgefragt werden soll. Kann das im Funktionsaufruf unter `field` ergänzt werden:
+```{r}
+# Execute function get_meta()
+umfrage_item_komp_wenig <- metaSABSEB::get_meta(var = "Komp_wenig", field = "umfrage_item")
+
+# Print returned field
+print_list(umfrage_item_komp_wenig, title = "Umfrage-Item von Komp_wenig")
+
+```
+
+## 💡 Verfügbare Metadatenfelder
+Bei der Konzeption des Metadatensatzes wurden folgende Metadatenfelder angelegt (Stand 26.08.2026):
+
+- **oberthema:** Bezeichnet das übergeordnete Thema, dem das Item zugeordnet ist.
+- **unterthema:** Bezeichnet das Unterthema, sofern eine weitere inhaltliche Differenzierung des Oberthemas vorliegt.
+- **umfrage-item:** Enthält die konkrete Frage aus dem Fragebogen. Bei administrativen Variablen wird stattdessen eine Beschreibung der Variable hinterlegt.
+- **itemformulierung:** Enthält die konkrete Formulierung des Items. Dies kann beispielsweise eine einzelne Antwortoption bei Multiple-Choice-Fragen sein, wenn für jede Antwortoption eine eigene Variable erzeugt wird. Das Feld wird zudem für Skalen verwendet, bei denen die Items mit einer identischen Frage beginnen und sich lediglich in einzelnen Bestandteilen unterscheiden.
+- **var_typ:** Beschreibt den Typ der Variable und enthält neben der Typbezeichnung eine entsprechende Beschreibung. Es werden drei Typen unterschieden: Einzelitem, Item-Gruppe und Skalenitem.
+- **skalenberechnung:** Beschreibt, wie die jeweilige Skala berechnet wird.
+- **umfrage_filter:** Gibt an, ob bei der Durchführung der Umfrage Filter verwendet wurden. Hier wird beispielsweise dokumentiert, wenn ein Item nur bestimmten Schultypen angezeigt wurde.
+- **quelle:** Gibt die Quelle bzw. Grundlage für die Konstruktion des Umfrageitems an.
+- **status:** Gibt an, ob ein Item aktuell verwendet wird oder bis zu welcher Befragungswelle es eingesetzt wurde.
+- **values:** Enthält die Wertekodierungen für die jeweiligen Antwortmöglichkeiten des Umfrageitems.
+
+Die definierten Metadatenfelder orientieren sich dabei stark an den Informationen, die in den bestehenden PDF-Dokumentationen der vergangenen Befragungen verfügbar waren. Ziel war es, die dort enthaltenen Informationen möglichst strukturiert und einheitlich in einem Metadatensatz abzubilden.
+
+Es besteht die Möglichkeit in Zukunft neue Metadatenfelder hinzuzufügen mit den Funktionen `metaSABSEB::add_meta()` und `metaSABSEB::change_meta()`.
+
