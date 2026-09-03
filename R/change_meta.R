@@ -15,6 +15,15 @@
 #' file. By default, the package's metadata YAML file is used. This argument
 #' can be changed, e.g. for testing with a temporary YAML file.
 #'
+#' @examples
+#' \dontrun{
+#' metaSABSEB::change_meta(
+#'   var = "TESTVARIABLE",
+#'   field = "umfrage_item",
+#'   new_entry = "Wie zufrieden sind Sie mit Ihrer Lehrperson?"
+#' )
+#' }
+#'
 #' @export
 
 change_meta <- function(var = NULL,

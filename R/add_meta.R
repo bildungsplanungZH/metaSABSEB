@@ -36,6 +36,24 @@
 #' @param ... Character string. Allows to add more metadata entries.
 #' Must be a named argument.
 #'
+#' @examples
+#' \dontrun{
+#' metaSABSEB::add_meta(
+#'   var = "TESTVARIABLE",
+#'   oberthema = "Lehrpersonen",
+#'   var_typ = "Einzelitem: Nettigkeit",
+#'   umfrage_item = "Wie nett finden Sie Ihre Lehrperson?",
+#'   values = list(
+#'     "1" = "gar nicht",
+#'     "2" = "eher nicht",
+#'     "3" = "weder noch",
+#'     "4" = "eher",
+#'     "5" = "sehr"
+#'   )
+#' )
+#' }
+#'
+#'
 #' @export
 
 add_meta <- function(var = NULL,

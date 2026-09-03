@@ -2,12 +2,15 @@
 #' This function is used to delete metadata entries
 #' May be used if an entry was wrongfully added
 #'
-#' @param var Characters string. Defines variable for which
+#' @param var Character string. Defines variable for which
 #' the metadata should be deleted
 #'
 #' @param yaml_path Character string specifying the path to the metadata YAML
 #' file. By default, the package's metadata YAML file is used. This argument
-#' can be changed, e.g. for testing with a temporary YAML file. description
+#' can be changed, e.g. for testing with a temporary YAML file.
+#'
+#' @examples
+#' \dontrun{metaSABSEB::delete_meta("TESTVAR")}
 #'
 #' @export
 
