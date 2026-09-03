@@ -105,6 +105,8 @@ print_list <- function(x,
 }
 ```
 
+## 💡 Übersicht
+
 Die Funktion `metaSABSEB::get_meta()` ermöglicht es, die im Metadatensatz hinterlegten Informationen zu einer Variable abzufragen. Dabei kann entweder der gesamte Metadateneintrag einer Variable oder ein bestimmtes Metadatenfeld abgefragt werden.
 
 Die Metadaten werden beim ersten Aufruf aus der YAML-Datei eingelesen und anschliessend zwischengespeichert. Dadurch können weitere Abfragen effizient durchgeführt werden.

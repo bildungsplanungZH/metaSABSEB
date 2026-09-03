@@ -1,0 +1,236 @@
+---
+title: "Metadaten bearbeiten (hinzufügen, ändern, löschen)"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{metadaten_bearbeiten}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(metaSABSEB)
+```
+
+
+## 💡 Übersicht
+Diese Vignette beschreibt, wie der Metadatensatz für die Standardisierte Abschlussklassenbefragung (SAB) und die Standardisierte Ehemaligenbefragung (SEB) bearbeitet werden können. Dafür wurden drei Funktionen konzipiert:
+
+* `add_meta()` ermöglicht es, eine neue Variable in den Metadatensatz aufzunehmen. Es wird sichergestellt, dass alle erforderlichen Metadatenfelder definiert werden.
+* `change_meta()` passt Metadateneinträge für bereits erfasste Variablen an. 
+* `delete_meta()` löscht Metadateneinträge. (Nur für Tests oder Fehlerkorrektur)
+
+## ✅ Setup
+
+**Gemeinsames Prinzip der Metadatenbearbeitung**
+
+Alle drei Funktionen zum Bearbeiten der Metadaten basieren auf dem selben Prinzip: Sie bearbeiten zuerst den lokalen Metadatensatz. Die Änderungen können anschliessend mit einem Pull-Request in den Main-Branch gemerged werden. Der Pull-Request erfordert eine Überprüfung der Code Owner, erst dann werden Änderungen auch im zentralen Metadatensatz übernommen. So wird das Vier-Augen-Prinzip sichergestellt werden. 
+
+**Repository klonen**
+
+Damit die Metadaten lokal angepasst werden können, reicht es nicht, das Paket nur zu installieren. Es muss lokal geklont werden. Dies kann beispielsweise direkt im Terminal von RStudio mit folgendem Befehl ausgeführt werden: 
+
+```{bash, eval = FALSE}
+git clone https://github.com/bildungsplanungZH/metaSABSEB.git
+```
+
+**Pfadinfo**
+
+Die Funktionen arbeiten standardmässig mit der Metadatendatei des lokal installierten Pakets. Der Pfad zur YAML-Datei kann jedoch über das Argument `yaml_path` angepasst werden.
+
+## 📝 Metadaten hinzufügen `add_meta()`
+
+
+Die Funktion besitzt folgende Argumente:
+
+```{r, eval = FALSE}
+metaSABSEB::add_meta(
+  var = NULL,
+  oberthema = NULL,
+  unterthema = NULL,
+  var_typ = NULL,
+  umfrage_item = NULL,
+  itemformulierung = NULL,
+  skalenberechnung = NULL,
+  umfrage_filter = NULL,
+  quelle = NULL,
+  status = "aktiv",
+  values = NULL,
+  ...,
+  yaml_path = system.file(
+    "qm_sekII_metadata.yaml",
+    package = "metaSABSEB"
+  )
+)
+```
+
+Die Argumente haben folgende Bedeutung:
+
+* `var`: Name der neuen Variable. Der Variablenname darf keine Leerschläge enthalten und sollte im Snake-Case-Format angegeben werden. Das Argument ist erforderlich.
+* `oberthema`: Übergeordnetes Thema, dem die Variable zugeordnet wird. Das Argument ist erforderlich.
+* `unterthema`: Unterthema der Variable. Das Argument ist optional.
+* `var_typ`: Typ der Variable und Beschreibung des Typs nach dem Doppelpunkt (siehe [Übersicht der Variablentypen](#sec-var_typ)). Es werden die Typen `Einzelitem:`, `Item-Gruppe:` und `Skalenitem:` unterschieden. Das Argument ist erforderlich.
+* `umfrage_item`: Konkrete Frage bzw. Beschreibung des Umfrage-Items. Das Argument ist erforderlich.
+* `itemformulierung`: Konkrete Formulierung bzw. Ausprägung des Items. Das Argument ist erforderlich, wenn es sich um eine `Item-Gruppe` oder ein `Skalenitem` handelt.
+* `skalenberechnung`: Beschreibung der Berechnung der zugehörigen Skala. Das Argument ist erforderlich, wenn es sich um ein `Skalenitem` handelt.
+* `umfrage_filter`: Beschreibung eines allfälligen Filters, der bestimmt, unter welchen Bedingungen das Item in der Umfrage angezeigt wurde. Das Argument ist optional.
+* `quelle`: Quelle bzw. Grundlage für die Konstruktion des Umfrage-Items. Das Argument ist optional.
+* `status`: Status der Variable. Standardmässig wird eine neu hinzugefügte Variable als `aktiv` erfasst.
+* `values`: Wertekodierungen der Variable. Das Argument wird benötigt, wenn die Variable kodierte Werte enthält.
+* `...`: Zusätzliche Metadatenfelder. Damit können weitere, nicht vordefinierte Metadatenfelder hinzugefügt werden. Die Argumente müssen dabei benannt werden.
+* `yaml_path`: Pfad zur Metadaten-YAML-Datei. Standardmässig wird die im Paket enthaltene Datei `qm_sekII_metadata.yaml` verwendet. Der Pfad kann beispielsweise für Tests mit einer temporären oder einer lokal bearbeiteten YAML-Datei angepasst werden.
+
+### Übersicht der Variablentypen {#sec-var_typ}
+Das Feld `var_typ` ist wichtig. Es bestimmt, welche zusätzlichen Metadatenfelder für den Eintrag obligatorisch sind. In den Metadaten zu SAB und SEB wird zwischen drei Typen unterschieden. 
+
+* **Einzelitem**: Einzelne, in sich geschlossene Items. Erfordert keine zusätzlichen Metadatenfelder. 
+* **Item-Gruppe**: Items, die konzeptuell zusammengehören, aber nicht Teil einer Skala sind, beispielsweise mehrere Antwortoptionen eines Multiple-Choice-Items. Erfordert zusätzliche Angaben bei `itemformulierung`
+* **Skalenitem**: Items, die zu einer gemeinsamen Skala gehören. Erfordert zusätzliche Angaben bei `itemformulierung` und `skalenberechnung`.
+
+Bei direkter Angabe des Arguments `var_typ` muss der Typ zusammen mit einer Beschreibung angegeben werden. Beispielsweise:
+
+```{r, eval = FALSE}
+var_typ = "Einzelitem: Zufriedenheit mit dem Unterricht"
+```
+
+Für eine Item-Gruppe wird zusätzlich die Bezeichnung der Gruppe angegeben:
+
+```{r, eval = FALSE}
+var_typ = "Item-Gruppe: Gründe für die Wahl der Schule"
+```
+
+Für ein Skalenitem wird entsprechend die zugehörige Skala angegeben:
+
+```{r, eval = FALSE}
+var_typ = "Skalenitem: Schulzufriedenheit"
+```
+
+So können später zusammenhängende Items einander zugeordnet werden, da sie alle die gleiche Beschreibung des Variablentyps aufweisen. Beispielsweise hätten alle Items der Skala zur Schulzufriedenheit den `var_typ = "Skalenitem: Schulzufriedenheit"`.
+
+### Wertekodierungen
+
+Falls die Variable kodierte Werte enthält, können diese über `values` angegeben werden.
+
+Die Wertekodierungen sollten als benannte Liste übergeben werden. Beispielsweise so:
+
+```{r, eval = FALSE}
+metaSABSEB::add_meta(
+  var = "Beispiel_variable",
+  oberthema = "Beispielthema",
+  var_typ = "Einzelitem: Beispielbeschreibung",
+  umfrage_item = "Beispielhafte Frage",
+  values = list(
+    "1" = "Ja",
+    "2" = "Nein",
+    "99" = "Keine Antwort"
+  )
+)
+```
+
+### Neue Metadatenfelder
+
+Über `...` können zusätzliche Metadatenfelder angegeben werden, die nicht als eigene Funktionsargumente definiert sind.
+
+Beispielsweise:
+
+```{r, eval = FALSE}
+metaSABSEB::add_meta(
+  var = "Beispiel_variable",
+  oberthema = "Beispielthema",
+  var_typ = "Einzelitem: Beispielbeschreibung",
+  umfrage_item = "Beispielhafte Frage",
+  neues_feld = "Test"
+)
+```
+
+Das zusätzliche Feld `neues_feld` wird dadurch direkt in den Metadateneintrag aufgenommen.
+
+## ✍️ Metadaten anpassen `change_meta()`
+Die Funktion besitzt folgende Argumente:
+
+```{r, eval = FALSE}
+metaSABSEB::change_meta(
+  var = NULL,
+  field = NULL,
+  new_entry = NULL,
+  yaml_path = system.file(
+    "qm_sekII_metadata.yaml",
+    package = "metaSABSEB"
+  )
+)
+```
+
+Die Argumente haben folgende Bedeutung:
+
+* `var`: Name der Variable, deren Metadaten angepasst werden sollen.
+* `field`: Name des Metadatenfeldes, das angepasst oder ergänzt werden soll.
+* `new_entry`: Neuer Wert des Metadatenfeldes. Es können Zeichenketten oder numerische Werte verwendet werden.
+* `yaml_path`: Pfad zur verwendeten Metadaten-YAML-Datei. Standardmässig wird die im Paket enthaltene YAML-Datei verwendet.
+
+## ❌ Metadaten löschen `delete_meta()`
+Die Funktion besitzt folgende Argumente:
+
+```{r, eval = FALSE}
+metaSABSEB::delete_meta(
+  var = NULL,
+  yaml_path = system.file(
+    "qm_sekII_metadata.yaml",
+    package = "metaSABSEB"
+  )
+)
+```
+
+Die Argumente haben folgende Bedeutung:
+
+* `var`: Name der Variable, deren Metadateneintrag gelöscht werden soll.
+* `yaml_path`: Pfad zur verwendeten Metadaten-YAML-Datei. Standardmässig wird die im Paket enthaltene YAML-Datei verwendet.
+
+**⚠️ Warnhinweis:** `delete_meta()` löscht den gesamten Metadateneintrag einer Variable. Die Funktion sollte daher insbesondere für Tests oder zur Korrektur versehentlich hinzugefügter Variablen verwendet werden. Nicht geeignet ist das Löschen des Metadateneintrags, wenn die Variable in einer neuen Befragungswelle nicht mehr verwendet wird, früher aber Teil der Befragung war. In diesem Fall sollte nicht der ganze Eintrag gelöscht werden, sondern das Feld `status = aktiv` sollten dann aktualisiert werden zu `status = Item erhoben bis YYYY`. Dazu kann die Funktion `change_meta()` genutzt werden.
+
+## 💁 Interaktive Hilfestellungen
+Alle Funktionen enthalten interaktive Hilfestellungen. Zur Nutzung der Hilfestellungen muss R in einer interaktiven Umgebung (z.B. RStudio) verwendet werden. Die interaktiven Hilfestellungen fordern Nutzende im Terminal auf, fehlende Angaben zu vervollständigen. 
+
+Bei einer nicht-interaktiven Umgebung, entstehen Fehlermeldungen, falls nicht alle erforderlichen Argumente übergeben werden. 
+
+
+## 🔍 Änderungen überprüfen
+Nach einer erfolgreichen Änderung werden die Metadaten in der YAML-Datei auf der Festplatte aktualisiert. Zusätzlich wird der interne Metadaten-Cache aktualisiert.
+
+**Mithilfe von `get_meta()`**
+Die Funktion `get_meta()` bezieht Metadaten aus dem aktuellen Metadatencache. Mit dieser Funktion können die Einträge einzelner Variablen überprüft werden. Das Argument `refresh = TRUE` ist optional, aktualisiert aber den Cache. 
+```{r, eval = FALSE}
+metaSABSEB::get_meta("VARIABLE", refresh = TRUE)
+```
+
+**Mithilfe von Git**
+Änderungen der lokalen YAML-Datei können auch im git-Terminal überprüft werden, sofern sie noch nicht gepushed wurden. Dafür können im Terminal folgende Befehle verwendet werden:
+```{bash, eval = FALSE}
+git status
+git diff
+```
+
+## 🌐 Änderungen veröffentlichen
+Um die Änderung vom lokalen in den zentralen Metadatensatz zu übertragen, kann ein Pull-Request erstellt werden. 
+
+Der folgende Befehl erstellt den Branch `update-metadata` und wechselt direkt auf diesen Branch.
+
+```{bash, eval = FALSE}
+git checkout -b update-metadata
+```
+
+
+Anschliessend können die Änderungen hinzugefügt, committed und gepushed werden: 
+```{bash, eval = FALSE}
+git add .
+git commit -m "Metadaten aktualisieren für Variable XY"
+git push -u origin update-metadata
+```
+Auf GitHub kann dann anschliessend ein Pull-Request erstellt werden. Im Rahmen des Pull-Requests können die Änderungen durch eine zweite Person überprüft werden. Nach erfolgreichem Code-Review kann der Pull-Request in den Main-Branch gemerged werden. 
