@@ -25,6 +25,14 @@ check_var_exists <- function(var, meta) {
         max.distance = 0.2
     )
 
+    # No close match found
+    if (length(close_match) == 0) {
+        cli::cli_abort(
+            "Variable {.var {var}} konnte nicht in den Metadaten gefunden werden.",
+            call = NULL
+        )
+    }
+
 
     # Close match found, but non-interactive
     if (!interactive()) {
