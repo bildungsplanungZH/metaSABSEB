@@ -26,60 +26,56 @@ get_meta <- function(var,
                      field = NULL,
                      refresh = FALSE,
                      yaml_path = system.file(
-                         "qm_sekII_metadata.yaml",
-                         package = "metaSABSEB"
-                     )
-                     ) {
+                       "qm_sekII_metadata.yaml",
+                       package = "metaSABSEB"
+                     )) {
+  # --------------------------------
+  # 1. Get metadata
+  # --------------------------------
 
-    # --------------------------------
-    # 1. Get metadata
-    # --------------------------------
+  # Update cache if it is empty or refresh = TRUE
+  # Note: metadata is cached for better performance
+  if (is.null(.meta_env$meta) || refresh) {
+    .meta_env$meta <- yaml::read_yaml(yaml_path)
+  }
 
-    # Update cache if it is empty or refresh = TRUE
-    # Note: metadata is cached for better performance
-    if (is.null(.meta_env$meta) || refresh) {
-        .meta_env$meta <- yaml::read_yaml(yaml_path)
+  # Get metadata from cache
+  meta <- .meta_env$meta
+
+  # --------------------------------
+  # 2. Check variable existence
+  # --------------------------------
+
+  # Check if the variable already is in the metadata.
+  # -> use internal helper function from helpers.R
+  var <- check_var_exists(var, meta)
+
+  # Retrieve metadata for the requested variable and save in vector
+  var_info <- meta[[var]]
+
+  # --------------------------------
+  # 3. Check field (if specified)
+  # --------------------------------
+
+  # If a field is specified
+  if (!is.null(field)) {
+    # and it exists for that var
+    if (field %in% names(var_info)) {
+      # Condense info returned to field info
+      var_info[[field]]
     }
 
-    # Get metadata from cache
-    meta <- .meta_env$meta
-
-    # --------------------------------
-    # 2. Check variable existence
-    # --------------------------------
-
-    # Check if the variable already is in the metadata.
-    # -> use internal helper function from helpers.R
-    var <- check_var_exists(var, meta)
-
-    # Retrieve metadata for the requested variable and save in vector
-    var_info <- meta[[var]]
-
-    # --------------------------------
-    # 3. Check field (if specified)
-    # --------------------------------
-
-    # If a field is specified
-    if (!is.null(field)) {
-
-        # and it exists for that var
-        if(field %in% names(var_info)) {
-
-            # Condense info returned to field info
-            return(var_info[[field]])
-            }
-
-        # If a field is specified but it does not exist for that var
-        else {
-            cli::cli_alert_warning(paste0(
-                "Es existiert kein Metadateneintrag für das Feld ",
-                "{.field {field}}. \n\n",
-                "Es werden alle verfügbaren Einträge für die ",
-                "Variable {.var {var}} aufgelistet."
-            ))
-            return(var_info)
-        }}
-
-    # If no field is specified return all medadata for the variable
-    else {return(var_info)}
+    # If a field is specified but it does not exist for that var
+    if (!(field %in% names(var_info))) {
+      cli::cli_alert_warning(paste0(
+        "Es existiert kein Metadateneintrag für das Feld ",
+        "{.field {field}}. \n\n",
+        "Es werden alle verfügbaren Einträge für die ",
+        "Variable {.var {var}} aufgelistet."
+      ))
+      var_info
+    }
+  } else {
+    var_info
+  }
 }

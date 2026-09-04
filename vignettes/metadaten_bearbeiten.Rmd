@@ -98,19 +98,19 @@ Das Feld `var_typ` ist wichtig. Es bestimmt, welche zusätzlichen Metadatenfelde
 Bei direkter Angabe des Arguments `var_typ` muss der Typ zusammen mit einer Beschreibung angegeben werden. Beispielsweise:
 
 ```{r, eval = FALSE}
-var_typ = "Einzelitem: Zufriedenheit mit dem Unterricht"
+var_typ <- "Einzelitem: Zufriedenheit mit dem Unterricht"
 ```
 
 Für eine Item-Gruppe wird zusätzlich die Bezeichnung der Gruppe angegeben:
 
 ```{r, eval = FALSE}
-var_typ = "Item-Gruppe: Gründe für die Wahl der Schule"
+var_typ <- "Item-Gruppe: Gründe für die Wahl der Schule"
 ```
 
 Für ein Skalenitem wird entsprechend die zugehörige Skala angegeben:
 
 ```{r, eval = FALSE}
-var_typ = "Skalenitem: Schulzufriedenheit"
+var_typ <- "Skalenitem: Schulzufriedenheit"
 ```
 
 So können später zusammenhängende Items einander zugeordnet werden, da sie alle die gleiche Beschreibung des Variablentyps aufweisen. Beispielsweise hätten alle Items der Skala zur Schulzufriedenheit den `var_typ = "Skalenitem: Schulzufriedenheit"`.

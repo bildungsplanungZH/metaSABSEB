@@ -18,9 +18,9 @@ value_meta <- readr::read_csv2("data-raw/qm_sekII_value-meta.csv")
 
 # Drop variables for other cantons
 variable_meta <- variable_meta[
-    is.na(variable_meta$umfrage_item) |
-        variable_meta$umfrage_item !=
-        "Zusatzfragen von anderen Kantonen/Schulen, ignorieren",
+  is.na(variable_meta$umfrage_item) |
+    variable_meta$umfrage_item !=
+      "Zusatzfragen von anderen Kantonen/Schulen, ignorieren",
 ]
 
 # Loop over each variable i in variable_meta and create a list
@@ -41,9 +41,9 @@ variables_list <- setNames(
       matching <- value_meta[value_meta$value_label_key == key, ]
 
       # Add value labels to the list
-      row$values <-  setNames (
-          as.list(matching$value_label),
-          matching$value
+      row$values <- setNames(
+        as.list(matching$value_label),
+        matching$value
       )
     } else {
       # Handle variables without value labels
@@ -65,4 +65,3 @@ dir.create("inst", recursive = TRUE)
 # Please do not overwrite the YAML again.
 # Otherwise changes made using `add_meta` or `update_meta` may be lost.
 # yaml::write_yaml(variables_list, "inst/qm_sekII_metadata.yaml", indent = 2)
-
