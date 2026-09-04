@@ -8,7 +8,6 @@ Description: Enthält Metadaten auf Variablen- und Werteebene für die SAB und S
 License: `use_mit_license()`
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Suggests: 
     knitr,
     rmarkdown,
@@ -18,3 +17,4 @@ Imports:
     cli,
     yaml
 VignetteBuilder: knitr
+Config/roxygen2/version: 8.1.0
