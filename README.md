@@ -36,9 +36,13 @@ Darüber hinaus enthält das Package **Funktionen**, zum Abrufen, Anpassen und E
 
 Eine genaue Anleitung zur Nutzung der Funktionen findet sich in den Vignetten zum Paket. 
 
-Installation des Pakets mit:
+## Installation
+Das Paket kann direkt in R mit folgendem Befehl installiert werden:
 ```
 devtools::install_github("bildungsplanungZH/metaSABSEB", build_vignettes = T)
 ```
+## Änderungen veröffentlichen
+Der `main`-Branch ist geschützt. Alle Änderungen müssen zuerst in einem sepearaten Branch vorgenommen werden. 
+Danach muss ein Pull-Request erstellt werden. Für eine Integration in den Main-Branch muss der Pull-Request durch den Code-Owner approved werden. Bei Fragen kann Christina Arn (<christina.arn@bi.zh.ch>) kontaktiert werden.
 
 
