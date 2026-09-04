@@ -1,6 +1,6 @@
 Package: metaSABSEB
 Title: Metadaten für SAB und SEB
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Christina", "Arn", , "christina.arn@bi.zh.ch", role = c("aut", "cre"))
 Description: Enthält Metadaten auf Variablen- und Werteebene für die SAB und SEB Befragungen.
