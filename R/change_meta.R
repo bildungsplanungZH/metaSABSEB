@@ -1,4 +1,3 @@
-#' @description
 #' Change metadata for a variable that is already registered
 #' The function:
 #' - reads the metadata yaml

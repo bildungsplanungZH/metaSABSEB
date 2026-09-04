@@ -1,4 +1,3 @@
-#' @description
 #' This function is used to delete metadata entries
 #' May be used if an entry was wrongfully added
 #'

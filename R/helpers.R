@@ -1,4 +1,3 @@
-#' @description
 #' Check variable existence in metadata
 #'
 #' Checks if a variable name exists in the metadata list.
@@ -67,8 +66,6 @@ check_var_exists <- function(var, meta) {
     }
 }
 
-#' @description
-#'
 #' Confirm that an existing entry should be replaced
 #' Compares current metadata entry to new entry
 #' Asks interactively, if the entry should be replaced
@@ -143,7 +140,6 @@ confirm_replacement <- function(yaml_path, meta, var, field, new_entry) {
     }
 }
 
-#' @description
 #' Error message, for when menu has been exited
 #' or changes have been aborted
 #'

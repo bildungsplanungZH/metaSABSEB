@@ -1,4 +1,3 @@
-#' @description
 #' Add a new variable to the metadata
 #' The function:
 #' - creates a list-object with metadata

@@ -1,5 +1,4 @@
-#' @description
-#' Retrieves metadata fields for a specified variable.
+#' Retrieve metadata fields for a specified variable.
 #' If no field is specified, all metadata is returned.
 #'
 #' @param var A character string specifying the variable name
