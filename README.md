@@ -1,7 +1,7 @@
 # Metadaten SAB/SEB
 
 Repository erstellt am: 07.10.2025
-Release v0.1 am: 04.09.2026
+Release v0.1.1 am: 15.09.2026
 
 **Kontakt**
 
