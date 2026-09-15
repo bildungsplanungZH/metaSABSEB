@@ -62,7 +62,7 @@ get_meta <- function(var,
     # and it exists for that var
     if (field %in% names(var_info)) {
       # Condense info returned to field info
-      var_info[[field]]
+      return(var_info[[field]])
     }
 
     # If a field is specified but it does not exist for that var
