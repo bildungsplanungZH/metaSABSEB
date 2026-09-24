@@ -1,0 +1,224 @@
+---
+title: "[metaSABSEB](https://github.com/bildungsplanungZH/metaSABSEB)"
+subtitle: "Ein R-Package für die Nutzung und Pflege der Metadaten im Qualitätsmonitoring Sek II."
+author: 
+  - name: "Christina Arn"
+    email: "christina.arn@bi.zh.ch"
+    affiliation: "Bildungsplanung Kanton Zürich"
+lang: de
+affiliation-title: "Organisationseinheit"
+
+format:
+    revealjs:
+        template-partials: 
+            - _extensions/biplaR-revealjs/partials/title-slide.html
+        theme:
+            - _extensions/biplaR-revealjs/style/bipla.scss
+            - _extensions/biplaR-revealjs/style/pres.css
+            - default
+        #Wenn kein Hintergrundbild für die Titelseite gewünscht ist kann data-background-image und data-background-positon auskommentiert werden. Bedingt dass title_logo_white und title_font_color_white auf false gesetzt werden.
+        title-slide-attributes:
+            data-background-opacity: 80%
+            data-background-position: left
+            #ohne Hintergrundbild zwingend notwendig
+            data-background-color: white
+        embed-resources: true
+        fig-cap-location: top
+        logo: _extensions/biplaR-revealjs/images/logo.png
+        css: _extensions/biplaR-revealjs/style/logo.css
+
+#Definiert ob die Logo und Schrift dazu in weiss oder in schwarz dargestellt wird. Es hängt vom Hintergrundbild ab, was sinnvoll ist.
+title_logo_white: false
+
+#Definiert ob die Schriftfarbe auf der Titelseite weiss ist. Wenn false ist der Haupttitel blau und der rest schwarz.
+title_font_color_white: false
+
+#Definiert ob der blaue Spikel angezeigt werden soll. Wenn der Spikel angezeigt wird, wird im Logo die kleine Flage ausgeblendet.
+show_spikel: true
+
+#Text der Neben dem Logo auf der Titelseite unterhalb von "Kanton Zürich" dargestellt wird.
+direktion: "Bildungsdirektion"
+abteilung: "Bildungsplanung Kanton Zürich"
+
+execute: 
+  echo: false
+  warning: false
+---
+
+```{r setup}
+# adapt font size in plots in revealjs-output with showtext
+if (!interactive()) showtext::showtext_opts(dpi = 200)
+
+# grab your data
+```
+
+## Ausgangslage
+
+::: {.columns}
+::: {.column width="50%"}
+**Bisher**
+
+* PDF-Berichte
+* Aufwändige Aktualisierung
+* Nicht maschinenlesbar
+* Informationen teils schwer auffindbar
+
+:::
+::: {.column width="50%"}
+**Neu**
+
+- R-Package mit strukturierten Metadaten
+- maschinen- und menschenlesbar
+- versioniert, nachvollziehbar
+- Funktionen für Nutzung und Unterhalt
+
+:::
+::: 
+
+## Verwendung von metaSABSEB
+* **Metadaten abfragen**: R-Package installieren:
+  * Entweder: `devtools::install_github("bildungsplanungZH/metaSABSEB", build_vignettes = T)`
+  * Oder: `pak::pkg_install("github::bildungsplanungZH/metaSABSEB")`
+
+* **Metadaten bearbeiten**: R-Package klonen und installieren. 
+
+* Ausführliche **Dokumentation** gibt es in den Vignetten. Diese können nach der Installation abgerufen werden mit:
+  * Metadaten abfragen: `utils::vignette("metadaten_abfragen", "metaSABSEB")`
+  * Metadaten bearbeiten: `utils::vignette("metadaten_bearbeiten", "metaSABSEB")`
+
+
+## Metadaten abfragen 
+**Alle Metadaten für eine Variable abfragen**
+```{r}
+#| echo: true    # show the code
+
+# Alle Metadaten einer Variable abfragen
+metaSABSEB::get_meta(var = "Bll_ober")
+
+```
+
+
+## Metadaten abfragen 
+**Spezifische Metadatenfelder**
+```{r}
+#| echo: true    # show the code
+
+# Ein spezifisches Feld abfragen
+metaSABSEB::get_meta(var = "Lgkg", field = "var_typ" )
+
+```
+
+
+## Metadaten abfragen
+**Anwendungsbeispiel - Testaten**
+```{r}
+# Erstelle Testdatensatz
+set.seed(123)
+testdaten <- data.frame(
+  person_id = 1:20,
+  Lgkg = factor(
+    sample(
+      c(1, 2),
+      size = 20,
+      replace = TRUE,
+      prob = c(0.6, 0.4)
+    )
+  )
+)
+testdaten
+
+```
+
+## Metadaten abfragen
+**Anwendungsbeispiel - Code**
+
+```{r}
+#| echo: true    # show the code
+#| eval: false  # do not execute
+#| code-line-numbers: "11,16"
+
+ggplot2::ggplot(testdaten, ggplot2::aes(x = Lgkg)) +
+    ggplot2::geom_bar(
+      ggplot2::aes(
+        y = ggplot2::after_stat(count / sum(count)),
+        fill = Lgkg
+      ),
+      show.legend = FALSE
+    ) +
+    ggplot2::scale_x_discrete(
+      labels = stringr::str_wrap(
+        unlist(metaSABSEB::get_meta(var = "Lgkg", field = "values")),
+        width = 40
+      )
+    ) +
+    ggplot2::labs(
+      title = metaSABSEB::get_meta(var = "Lgkg", field = "umfrage_item"),
+      x = NULL
+    ) + 
+    biplaRplot::scale_fill_zhweb("zhweb") +
+    biplaRplot::scale_y_pct() +
+    biplaRplot::theme_biplar()
+
+```
+## Metadaten abfragen
+**Anwendungsbeispiel - Ergebnis**
+```{r}
+#| echo: false    # do not show the code
+#| eval: true  # execute
+
+ggplot2::ggplot(testdaten, ggplot2::aes(x = Lgkg)) +
+    ggplot2::geom_bar(
+      ggplot2::aes(
+        y = ggplot2::after_stat(count / sum(count)),
+        fill = Lgkg
+      ),
+      show.legend = FALSE
+    ) +
+    ggplot2::scale_x_discrete(
+      labels = stringr::str_wrap(
+        unlist(metaSABSEB::get_meta(
+          var = "Lgkg",
+          field = "values"
+        )),
+        width = 40
+      )
+    ) +
+    ggplot2::labs(
+      title = metaSABSEB::get_meta(
+        var = "Lgkg",
+        field = "umfrage_item"
+      ),
+      x = NULL
+    ) + 
+    biplaRplot::scale_fill_zhweb("zhweb") +
+    biplaRplot::scale_y_pct() +
+    biplaRplot::theme_biplar()
+
+```
+
+## Metadaten bearbeiten
+**Funktionsübersicht**
+
+Metadaten sollen nicht nur genutzt sondern auch gepflegt werden. Das R-Package `metaSABSEB` bietet auch Funktionen zum Unterhalt des Metadatensatzes an. 
+
+- `metaSABSEB::change_meta()`: Ändert Metadateneinträge von bereits erfassten Variablen
+- `metaSABSEB::add_meta()`: Fügt dem Metadatensatz eine neue Variable inkl. erforderlicher Metadatenfelder hinzu. 
+- `metaSABSEB::delete_meta()`: Löscht alle Metadateneinträge einer Variable. 
+
+## Metadaten bearbeiten
+**Prozess**
+
+1. Package lokal klonen
+2. Einen neuen Branch erstellen und in diesem Branch arbeiten
+3. Änderungen mit `change_meta()`, `add_meta()` und `delete_meta` vornehmen.
+4. Commit
+5. Push
+6. Pull-Request für Überführung in den Main-Branch
+
+**Wie genau das funktioniert, können wir gemeinsam an einem Beispiel durchspielen.**
+
+
+
+
+
+
