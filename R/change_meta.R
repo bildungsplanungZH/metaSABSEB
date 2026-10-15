@@ -28,10 +28,8 @@
 change_meta <- function(var = NULL,
                         field = NULL,
                         new_entry = NULL,
-                        yaml_path = system.file(
-                          "qm_sekII_metadata.yaml",
-                          package = "metaSABSEB"
-                        )) {
+                        yaml_path = "inst/qm_sekII_metadata.yaml"
+                        ) {
   # 1. Enforce no missing args ----------------------------------------------
   if (is.null(var)) {
     cli::cli_abort("Das Argument {.field var} muss mitgegeben werden.",

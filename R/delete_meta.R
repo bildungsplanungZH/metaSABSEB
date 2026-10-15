@@ -16,10 +16,8 @@
 #' @export
 
 delete_meta <- function(var = NULL,
-                        yaml_path = system.file(
-                          "qm_sekII_metadata.yaml",
-                          package = "metaSABSEB"
-                        )) {
+                        yaml_path = "inst/qm_sekII_metadata.yaml"
+                        ) {
   # Require var to be specified
   if (is.null(var)) {
     cli::cli_abort(paste0(

@@ -66,10 +66,8 @@ add_meta <- function(var = NULL,
                      status = "aktiv",
                      values = NULL,
                      ...,
-                     yaml_path = system.file(
-                       "qm_sekII_metadata.yaml",
-                       package = "metaSABSEB"
-                     )) {
+                     yaml_path = "inst/qm_sekII_metadata.yaml"
+                     ) {
   # 0 Get current metadata --------------------------------------------------
   meta <- yaml::read_yaml(yaml_path)
 
