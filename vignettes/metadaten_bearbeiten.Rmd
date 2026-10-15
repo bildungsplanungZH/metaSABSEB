@@ -32,7 +32,7 @@ Diese Vignette beschreibt, wie der Metadatensatz für die Standardisierte Abschl
 
 **Gemeinsames Prinzip der Metadatenbearbeitung**
 
-Alle drei Funktionen zum Bearbeiten der Metadaten basieren auf dem selben Prinzip: Sie bearbeiten zuerst den lokalen Metadatensatz. Die Änderungen können anschliessend mit einem Pull-Request in den Main-Branch gemerged werden. Der Pull-Request erfordert eine Überprüfung der Code Owner, erst dann werden Änderungen auch im zentralen Metadatensatz übernommen. So wird das Vier-Augen-Prinzip sichergestellt werden. 
+Alle drei Funktionen zum Bearbeiten der Metadaten basieren auf dem selben Prinzip: Sie bearbeiten zuerst den lokalen Metadatensatz in einem dezidierten Branch. Die Änderungen können anschliessend mit einem Pull-Request in den Main-Branch gemerged werden. Der Pull-Request erfordert eine Überprüfung der Code Owner, erst dann werden Änderungen auch im zentralen Metadatensatz übernommen. So soll das Vier-Augen-Prinzip sichergestellt werden. 
 
 **Repository klonen**
 
@@ -42,9 +42,18 @@ Damit die Metadaten lokal angepasst werden können, reicht es nicht, das Paket n
 git clone https://github.com/bildungsplanungZH/metaSABSEB.git
 ```
 
+**Neuen Branch eröffnen**
+
+Änderungen sollten in einem dezidierten Branch vorgenommen werden. Mit folgendem Befehl wird ein Branch namens `beispiel-branch` erstellt und direkt in den Branch gewechselt: 
+```{bash, eval = FALSE}
+git switch -c beispiel-branch
+```
+
 **Pfadinfo**
 
-Die Funktionen arbeiten standardmässig mit der Metadatendatei des lokal installierten Pakets. Der Pfad zur YAML-Datei kann jedoch über das Argument `yaml_path` angepasst werden.
+Die Funktionen zum Bearbeiten der Metadaten arbeiten standardmässig mit der Metadatendatei im lokalen Git-Repository (`inst/qm_sekII_metadata.yaml`). Der Pfad ist abhängig vom Arbeitsverzeichnis. Folglich müssen die Funktionen zur Bearbeitung der Metadaten aus dem geklonten Repository aufgerufen werden. Änderungen werden so direkt in der versionierten Datei gespeichert und können committed und per Pull-Request in den Main-Branch übernommen werden. 
+
+Der Pfad zur YAML-Datei kann jedoch bei Bedarf über das Argument `yaml_path` angepasst werden.
 
 ## 📝 Metadaten hinzufügen `add_meta()`
 
@@ -65,10 +74,7 @@ metaSABSEB::add_meta(
   status = "aktiv",
   values = NULL,
   ...,
-  yaml_path = system.file(
-    "qm_sekII_metadata.yaml",
-    package = "metaSABSEB"
-  )
+  yaml_path = "inst/qm_sekII_metadata.yaml"
 )
 ```
 
@@ -205,9 +211,9 @@ Bei einer nicht-interaktiven Umgebung, entstehen Fehlermeldungen, falls nicht al
 Nach einer erfolgreichen Änderung werden die Metadaten in der YAML-Datei auf der Festplatte aktualisiert. Zusätzlich wird der interne Metadaten-Cache aktualisiert.
 
 **Mithilfe von `get_meta()`**
-Die Funktion `get_meta()` bezieht Metadaten aus dem aktuellen Metadatencache. Mit dieser Funktion können die Einträge einzelner Variablen überprüft werden. Das Argument `refresh = TRUE` ist optional, aktualisiert aber den Cache. 
+Die Funktion `get_meta()` bezieht Metadaten aus dem aktuellen Metadatencache. Mit dieser Funktion können die Einträge einzelner Variablen im Cache überprüft werden.
 ```{r, eval = FALSE}
-metaSABSEB::get_meta("VARIABLE", refresh = TRUE)
+metaSABSEB::get_meta("VARIABLE")
 ```
 
 **Mithilfe von Git**
@@ -218,19 +224,10 @@ git diff
 ```
 
 ## 🌐 Änderungen veröffentlichen
-Um die Änderung vom lokalen in den zentralen Metadatensatz zu übertragen, kann ein Pull-Request erstellt werden. 
-
-Der folgende Befehl erstellt den Branch `update-metadata` und wechselt direkt auf diesen Branch.
-
-```{bash, eval = FALSE}
-git checkout -b update-metadata
-```
-
-
-Anschliessend können die Änderungen hinzugefügt, committed und gepushed werden: 
+Anschliessend können die Änderungen gestaged, committed und gepushed werden: 
 ```{bash, eval = FALSE}
 git add .
 git commit -m "Metadaten aktualisieren für Variable XY"
-git push -u origin update-metadata
+git push -u origin beispiel-branch
 ```
 Auf GitHub kann dann anschliessend ein Pull-Request erstellt werden. Im Rahmen des Pull-Requests können die Änderungen durch eine zweite Person überprüft werden. Nach erfolgreichem Code-Review kann der Pull-Request in den Main-Branch gemerged werden. 

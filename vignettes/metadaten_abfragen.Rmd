@@ -128,7 +128,7 @@ Die Argumente haben folgende Bedeutung:
 * `var`: Name der Variable, deren Metadaten abgefragt werden sollen. Das Argument ist erforderlich.
 * `field`: Name des Metadatenfeldes, das abgefragt werden soll. Wird kein Feld angegeben (`field = NULL`), gibt die Funktion alle für die Variable verfügbaren Metadaten zurück.
 * `refresh`: Logical (`TRUE` oder `FALSE`), der angibt, ob die Metadaten erneut aus der YAML-Datei eingelesen werden sollen. Standardmässig ist `refresh = FALSE`. Die Option `refresh = TRUE` ist insbesondere dann sinnvoll, wenn die zugrunde liegende Metadatendatei seit dem letzten Aufruf verändert wurde.
-* `yaml_path`: Pfad zur Metadaten-YAML-Datei. Standardmässig wird die im Paket enthaltene Datei `qm_sekII_metadata.yaml` verwendet. Der Pfad kann beispielsweise für Tests mit einer temporären oder einer lokal bearbeiteten YAML-Datei angepasst werden.
+* `yaml_path`: Pfad zur Metadaten-YAML-Datei. Standardmässig wird die Metadatendatei des installierten R-Packages verwendet. Der Pfad kann beispielsweise für Tests mit einer temporären oder einer lokal bearbeiteten YAML-Datei angepasst werden.
 
 ## 📄 Alle Metadaten einer Variable abfragen
 
