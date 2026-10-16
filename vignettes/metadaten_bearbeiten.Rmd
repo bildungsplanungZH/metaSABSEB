@@ -30,11 +30,9 @@ Diese Vignette beschreibt, wie der Metadatensatz für die Standardisierte Abschl
 
 ## ✅ Setup
 
-**Gemeinsames Prinzip der Metadatenbearbeitung**
-
 Alle drei Funktionen zum Bearbeiten der Metadaten basieren auf dem selben Prinzip: Sie bearbeiten zuerst den lokalen Metadatensatz in einem dezidierten Branch. Die Änderungen können anschliessend mit einem Pull-Request in den Main-Branch gemerged werden. Der Pull-Request erfordert eine Überprüfung der Code Owner, erst dann werden Änderungen auch im zentralen Metadatensatz übernommen. So soll das Vier-Augen-Prinzip sichergestellt werden. 
 
-**Repository klonen**
+### Repository klonen
 
 Damit die Metadaten lokal angepasst werden können, reicht es nicht, das Paket nur zu installieren. Es muss lokal geklont werden. Dies kann beispielsweise direkt im Terminal von RStudio mit folgendem Befehl ausgeführt werden: 
 
@@ -42,14 +40,21 @@ Damit die Metadaten lokal angepasst werden können, reicht es nicht, das Paket n
 git clone https://github.com/bildungsplanungZH/metaSABSEB.git
 ```
 
-**Neuen Branch eröffnen**
+### Neuen Branch eröffnen
 
 Änderungen sollten in einem dezidierten Branch vorgenommen werden. Mit folgendem Befehl wird ein Branch namens `beispiel-branch` erstellt und direkt in den Branch gewechselt: 
 ```{bash, eval = FALSE}
 git switch -c beispiel-branch
 ```
 
-**Pfadinfo**
+### Interaktivität festlegen
+Die Funktionen `metaSABSEB::interactive_mode_on()` und `metaSABSEB::interactive_mode_off()` erlauben es, für eine R-Session global festzulegen, ob die Funktionen `metaSABSEB::add_meta()` und `metaSABSEB::change_meta()` interaktiv verwendet werden sollen oder nicht. Ein explizit übergebenes Argument `interactive_mode` innerhalb von  `metaSABSEB::add_meta` und `metaASABSEB::get_meta()` übersteuert den global festgelegten Standard. 
+
+Werden die Metadaten Skript-basiert hinzugefügt/angepasst, wird empfohlen, den interaktiven Modus auszuschalten. So ist sichergestellt, dass alle Anpassungen im Skript dokumentiert sind. Alle Pflichtargumente müssen dann explizit übergeben werden, andernfalls bricht die Funktion mit einer Fehlermeldung ab.
+
+Der interaktive Modus ist hingegen bei kleineren Anpassungen nützlich und bietet zusätzliche Hilfestellungen basierend auf den bereits erfassten Metadaten an. 
+
+### Pfadinfo
 
 Die Funktionen zum Bearbeiten der Metadaten arbeiten standardmässig mit der Metadatendatei im lokalen Git-Repository (`inst/qm_sekII_metadata.yaml`). Der Pfad ist abhängig vom Arbeitsverzeichnis. Folglich müssen die Funktionen zur Bearbeitung der Metadaten aus dem geklonten Repository aufgerufen werden. Änderungen werden so direkt in der versionierten Datei gespeichert und können committed und per Pull-Request in den Main-Branch übernommen werden. 
 
