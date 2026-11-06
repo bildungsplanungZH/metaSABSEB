@@ -11,11 +11,11 @@
 #' @param field A character string specifying the metadata field
 #' to be changed
 #' @param new_entry String or numeric, new value for the metadata field
-#' @param interactive_mode Whether to enable interactive console
+#' @param interactive_mode Logical. Whether to enable interactive console
 #' prompts. If not passed explicitly defaults to:
 #' 1. Session Setting: `metaSABSEB.interactive_mode`, set by
 #'    [interactive_mode_on()] and [interactive_mode_off()]
-#' 2. `interactive()
+#' 2. Current environment: `interactive()
 #' @param yaml_path Character string specifying the path to the metadata YAML
 #' file. By default, the package's metadata YAML file is used. This argument
 #' can be changed, e.g. for testing with a temporary YAML file.

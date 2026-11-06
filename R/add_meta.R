@@ -27,16 +27,16 @@
 #' @param status Character string. Defines whether variable is actively used
 #' or deprecated. Default when adding a new variable to metadata is "aktiv"
 #' @param values List-Object. Lists encoding of all values.
-#' @param interactive_mode Whether to enable interactive console
+#' @param interactive_mode Logical. Whether to enable interactive console
 #' prompts. If not passed explicitly defaults to:
 #' 1. Session Setting: `metaSABSEB.interactive_mode`, set by
 #'    [interactive_mode_on()] and [interactive_mode_off()]
-#' 2. `interactive()`
-#' @param ... Character string. Allows to add more metadata entries.
-#' Must be a named argument.
+#' 2. Current environment: `interactive()`
 #' @param yaml_path Character string specifying the path to the metadata YAML
 #' file. By default, the package's metadata YAML file is used. This argument
 #' can be changed, e.g. for testing with a temporary YAML file.
+#' @param ... Character string. Allows to add more metadata entries.
+#' Must be a named argument.
 #'
 #'
 #' @examples
@@ -70,8 +70,8 @@ add_meta <- function(var = NULL,
                      status = "aktiv",
                      values = NULL,
                      interactive_mode = NULL,
-                     ...,
-                     yaml_path = "inst/qm_sekII_metadata.yaml"
+                     yaml_path = "inst/qm_sekII_metadata.yaml",
+                     ...
                      ) {
   # 1 Setup -------------------------------------------------------------------
   

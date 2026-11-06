@@ -2,30 +2,40 @@
 % Please edit documentation in R/get_meta.R
 \name{get_meta}
 \alias{get_meta}
-\title{Retrieve metadata fields for a specified variable.
-If no field is specified, all metadata is returned.}
+\title{Retrieve metadata fields}
 \usage{
 get_meta(
   var,
   field = NULL,
+  interactive_mode = NULL,
   refresh = FALSE,
   yaml_path = system.file("qm_sekII_metadata.yaml", package = "metaSABSEB")
 )
 }
 \arguments{
-\item{var}{A character string specifying the variable name}
+\item{var}{A character string. The variable name. Cannot be empty
+and must exist in metadata. If close matches are found, suggestions are
+offerd in the console.}
 
-\item{field}{A character string specifying the field to retrieve}
+\item{field}{A character string. The metadata field to retrieve.
+If no \code{field} or the field does not exist for \code{var}is defined, all metadata
+for \code{var} is returned.}
 
-\item{refresh}{Logical. If TRUE,
-the metadata cache is reloaded from disk.
-Use this if the underlying metadata file has changed
-(e.g. during development or after updating the package).
-Default is FALSE.}
+\item{interactive_mode}{Whether to enable interactive console prompts. If
+not passed explicitly defaults to:
+\enumerate{
+\item Session Setting: \code{metaSABSEB.interactive_mode}, set by
+\code{\link[=interactive_mode_on]{interactive_mode_on()}} and \code{\link[=interactive_mode_off]{interactive_mode_off()}}
+\item `interactive()
+}}
 
-\item{yaml_path}{Character string specifying the path to the metadata YAML
-file. By default, the package's metadata YAML file is used. This argument
-can be changed, e.g. for testing with a temporary YAML file. description}
+\item{refresh}{Logical. If TRUE, the metadata cache is reloaded from
+\code{yaml_path}. Default is FALSE.}
+
+\item{yaml_path}{Character string specifying the path to the metadata YAML.
+Used if \code{refresh = TRUE} or if the metadata cache is empty. Defaults to
+the file installed with the package; can be changed e.g. for testing with
+a temporary file}
 }
 \value{
 If \code{field = NULL}, a named list containing all metadata
@@ -33,11 +43,13 @@ associated with \code{var}. Otherwise the value of the requested
 metadata field
 }
 \description{
-Retrieve metadata fields for a specified variable.
-If no field is specified, all metadata is returned.
+Retrieve metadata fields
 }
 \examples{
+# All metadata for a variable
 get_meta(var = "EFZ_Typ")
-get_meta(var = "Anst_best", "quelle")
+
+# Only a specific metadata field
+get_meta(var = "Anst_best", field = "quelle")
 
 }

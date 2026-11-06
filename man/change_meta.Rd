@@ -2,21 +2,14 @@
 % Please edit documentation in R/change_meta.R
 \name{change_meta}
 \alias{change_meta}
-\title{Change metadata for a variable that is already registered
-The function:
-\itemize{
-\item reads the metadata yaml
-\item locates the desired variable and field
-\item shows the current metadata entry
-\item asks for confirmation to change it
-\item changes the metadata yaml on disk
-}}
+\title{Change metadata for a variable that is already registered}
 \usage{
 change_meta(
   var = NULL,
   field = NULL,
   new_entry = NULL,
-  yaml_path = system.file("qm_sekII_metadata.yaml", package = "metaSABSEB")
+  interactive_mode = NULL,
+  yaml_path = "inst/qm_sekII_metadata.yaml"
 )
 }
 \arguments{
@@ -27,12 +20,19 @@ to be changed}
 
 \item{new_entry}{String or numeric, new value for the metadata field}
 
+\item{interactive_mode}{Logical. Whether to enable interactive console
+prompts. If not passed explicitly defaults to:
+\enumerate{
+\item Session Setting: \code{metaSABSEB.interactive_mode}, set by
+\code{\link[=interactive_mode_on]{interactive_mode_on()}} and \code{\link[=interactive_mode_off]{interactive_mode_off()}}
+\item Current environment: `interactive()
+}}
+
 \item{yaml_path}{Character string specifying the path to the metadata YAML
 file. By default, the package's metadata YAML file is used. This argument
 can be changed, e.g. for testing with a temporary YAML file.}
 }
 \description{
-Change metadata for a variable that is already registered
 The function:
 \itemize{
 \item reads the metadata yaml

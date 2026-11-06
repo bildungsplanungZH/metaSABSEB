@@ -2,13 +2,9 @@
 % Please edit documentation in R/delete_meta.R
 \name{delete_meta}
 \alias{delete_meta}
-\title{This function is used to delete metadata entries
-May be used if an entry was wrongfully added}
+\title{This function is used to delete metadata entries}
 \usage{
-delete_meta(
-  var = NULL,
-  yaml_path = system.file("qm_sekII_metadata.yaml", package = "metaSABSEB")
-)
+delete_meta(var = NULL, yaml_path = "inst/qm_sekII_metadata.yaml")
 }
 \arguments{
 \item{var}{Character string. Defines variable for which
@@ -17,12 +13,21 @@ the metadata should be deleted}
 \item{yaml_path}{Character string specifying the path to the metadata YAML
 file. By default, the package's metadata YAML file is used. This argument
 can be changed, e.g. for testing with a temporary YAML file.}
+
+\item{interactive_mode}{Logical. Whether to enable interactive console
+prompts. If not passed explicitly defaults to:
+\enumerate{
+\item Session Setting: \code{metaSABSEB.interactive_mode}, set by
+\code{\link[=interactive_mode_on]{interactive_mode_on()}} and \code{\link[=interactive_mode_off]{interactive_mode_off()}}
+\item Current environment: `interactive()
+}}
 }
 \description{
-This function is used to delete metadata entries
-May be used if an entry was wrongfully added
+-> May be used if an entry was wrongfully added
 }
 \examples{
-\dontrun{metaSABSEB::delete_meta("TESTVAR")}
+\dontrun{
+metaSABSEB::delete_meta("TESTVAR")
+}
 
 }
