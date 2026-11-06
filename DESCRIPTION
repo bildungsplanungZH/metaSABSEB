@@ -11,10 +11,12 @@ Roxygen: list(markdown = TRUE)
 Suggests: 
     knitr,
     rmarkdown,
+    withr,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
     cli,
-    yaml
+    yaml,
+    stringr
 VignetteBuilder: knitr
 Config/roxygen2/version: 8.1.0

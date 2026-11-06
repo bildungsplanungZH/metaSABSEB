@@ -4,15 +4,15 @@
 \alias{delete_meta}
 \title{This function is used to delete metadata entries}
 \usage{
-delete_meta(var = NULL, yaml_path = "inst/qm_sekII_metadata.yaml")
+delete_meta(
+  var = NULL,
+  interactive_mode = NULL,
+  yaml_path = "inst/qm_sekII_metadata.yaml"
+)
 }
 \arguments{
 \item{var}{Character string. Defines variable for which
 the metadata should be deleted}
-
-\item{yaml_path}{Character string specifying the path to the metadata YAML
-file. By default, the package's metadata YAML file is used. This argument
-can be changed, e.g. for testing with a temporary YAML file.}
 
 \item{interactive_mode}{Logical. Whether to enable interactive console
 prompts. If not passed explicitly defaults to:
@@ -21,6 +21,10 @@ prompts. If not passed explicitly defaults to:
 \code{\link[=interactive_mode_on]{interactive_mode_on()}} and \code{\link[=interactive_mode_off]{interactive_mode_off()}}
 \item Current environment: `interactive()
 }}
+
+\item{yaml_path}{Character string specifying the path to the metadata YAML
+file. By default, the package's metadata YAML file is used. This argument
+can be changed, e.g. for testing with a temporary YAML file.}
 }
 \description{
 -> May be used if an entry was wrongfully added

@@ -25,6 +25,7 @@
 #' @export
 
 delete_meta <- function(var = NULL,
+                        interactive_mode = NULL,
                         yaml_path = "inst/qm_sekII_metadata.yaml") {
   # Resolve interactive mode
   interactive_mode <- resolve_interactive_mode(interactive_mode)
