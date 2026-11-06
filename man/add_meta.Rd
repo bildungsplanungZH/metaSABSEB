@@ -2,15 +2,7 @@
 % Please edit documentation in R/add_meta.R
 \name{add_meta}
 \alias{add_meta}
-\title{Add a new variable to the metadata
-The function:
-\itemize{
-\item creates a list-object with metadata
-\item ensures that required fields are complete,
-\item allows to add more fields to the list
-\item tries to ensure proper formatting and valid entries
-\item updates current metadata yaml
-}}
+\title{Add a new variable to the metadata}
 \usage{
 add_meta(
   var = NULL,
@@ -24,8 +16,9 @@ add_meta(
   quelle = NULL,
   status = "aktiv",
   values = NULL,
-  ...,
-  yaml_path = system.file("qm_sekII_metadata.yaml", package = "metaSABSEB")
+  interactive_mode = NULL,
+  yaml_path = "inst/qm_sekII_metadata.yaml",
+  ...
 )
 }
 \arguments{
@@ -58,18 +51,24 @@ question. (required if var_typ = Item-Gruppe)}
 \item{status}{Character string. Defines whether variable is actively used
 or deprecated. Default when adding a new variable to metadata is "aktiv"}
 
-\item{values}{List-Object. Lists encoding of all values.
-(required if values are encoded)}
+\item{values}{List-Object. Lists encoding of all values.}
 
-\item{...}{Character string. Allows to add more metadata entries.
-Must be a named argument.}
+\item{interactive_mode}{Logical. Whether to enable interactive console
+prompts. If not passed explicitly defaults to:
+\enumerate{
+\item Session Setting: \code{metaSABSEB.interactive_mode}, set by
+\code{\link[=interactive_mode_on]{interactive_mode_on()}} and \code{\link[=interactive_mode_off]{interactive_mode_off()}}
+\item Current environment: \code{interactive()}
+}}
 
 \item{yaml_path}{Character string specifying the path to the metadata YAML
 file. By default, the package's metadata YAML file is used. This argument
 can be changed, e.g. for testing with a temporary YAML file.}
+
+\item{...}{Character string. Allows to add more metadata entries.
+Must be a named argument.}
 }
 \description{
-Add a new variable to the metadata
 The function:
 \itemize{
 \item creates a list-object with metadata
@@ -95,6 +94,5 @@ metaSABSEB::add_meta(
   )
 )
 }
-
 
 }

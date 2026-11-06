@@ -1,4 +1,5 @@
 #' Add a new variable to the metadata
+#'
 #' The function:
 #' - creates a list-object with metadata
 #' - ensures that required fields are complete,
@@ -26,14 +27,17 @@
 #' @param status Character string. Defines whether variable is actively used
 #' or deprecated. Default when adding a new variable to metadata is "aktiv"
 #' @param values List-Object. Lists encoding of all values.
-#' (required if values are encoded)
-#'
+#' @param interactive_mode Logical. Whether to enable interactive console
+#' prompts. If not passed explicitly defaults to:
+#' 1. Session Setting: `metaSABSEB.interactive_mode`, set by
+#'    [interactive_mode_on()] and [interactive_mode_off()]
+#' 2. Current environment: `interactive()`
 #' @param yaml_path Character string specifying the path to the metadata YAML
 #' file. By default, the package's metadata YAML file is used. This argument
 #' can be changed, e.g. for testing with a temporary YAML file.
-#'
 #' @param ... Character string. Allows to add more metadata entries.
 #' Must be a named argument.
+#'
 #'
 #' @examples
 #' \dontrun{
@@ -65,21 +69,26 @@ add_meta <- function(var = NULL,
                      quelle = NULL,
                      status = "aktiv",
                      values = NULL,
-                     ...,
-                     yaml_path = system.file(
-                       "qm_sekII_metadata.yaml",
-                       package = "metaSABSEB"
-                     )) {
-  # 0 Get current metadata --------------------------------------------------
+                     interactive_mode = NULL,
+                     yaml_path = "inst/qm_sekII_metadata.yaml",
+                     ...) {
+  # 1 Setup -------------------------------------------------------------------
+
+  # 1.1 Get metadata ----------------------------------------------------------
   meta <- yaml::read_yaml(yaml_path)
 
-  # 1 Ensure that all arguments are named -----------------------------------
-  call_args <- as.list(sys.call())[-1] # drop the function name itself
+  # 1.2 Ensure all arguments are named ----------------------------------------
+  # Note: This is to ensure that metadata does not get added wrongly due to
+  #       changes in the order of the provided metadata
 
+  # Get arguments, drop function name itself
+  call_args <- as.list(sys.call())[-1]
+
+  # Check that arguments are named
   if (length(call_args) > 0 &&
-        (is.null(names(call_args)) ||
-           any(names(call_args) == ""))) {
-
+      (is.null(names(call_args)) || any(names(call_args) == ""))
+  ) {
+    # Issue warning if arguments are not named
     cli::cli_alert_warning(c(
       "{.strong Alle Argumente müssen explizit benannt werden.}\n",
       paste0(
@@ -96,13 +105,62 @@ add_meta <- function(var = NULL,
     abort_changes_msg()
   }
 
-  # 2 Ensure required fields are not empty ----------------------------------
+  # 1.3 Determine interactivity -----------------------------------------------
+  interactive_mode <- resolve_interactive_mode(interactive_mode)
 
-  # -> First handle the non interactive case.
-  #    This is used as a fallback for non-interactive R-Sessions that do not
-  #    allow inputs directly from the terminal.
+  # 2 Ensure required fields are not empty ------------------------------------
 
-  if (!interactive()) {
+  # Note: Function operates in two modes:
+  #       - Not interactive: All required parameters must be determined from
+  #         the start.
+  #       - Interactive: Missing paramters are interactively determined using
+  #         the RStudio console.
+
+  # 2.1 Requirements for BOTH MODES -------------------------------------------
+  # -> Handles variable name
+
+  # Var must not be empty
+  if (
+    is.null(var) ||
+      !is.character(var) ||
+      length(var) != 1L ||
+      is.na(var) ||
+      var == ""
+  ) {
+    cli::cli_abort(paste0(
+      "{.strong Variable definieren.} ",
+      "Das Argument {.field var} darf nicht leer sein.\n\n"
+    ), call = NULL)
+  }
+
+  # Var cannot have white  spaces
+  original <- var
+  var <- trimws(var) # remove leading and trailing whitespace
+  var <- gsub("\\s+", "_", var) # replace whitespaces with underscore
+  var <- gsub("_+", "_", var) # avoid double underscores
+  if (!identical(original, var)) { # issue message
+    cli::cli_alert_info(paste0(
+      "{.strong Die Variablenbezeichnung darf keine Leerschläge ",
+      "enthalten.}\n ",
+      "Variablenname wurde automatisch geändert zu {.field {var}}."
+    ))
+    cat("\n")
+  }
+
+  # Var must not exist in meta already
+  # -> abort and suggest change_meta()
+  if (var %in% names(meta)) {
+    cli::cli_abort(paste0(
+      "{.strong Die Variable {.field {var}}} ",
+      "{.strong ist bereits in den Metadaten erfasst.} \n\n",
+      "Bitte nutzen Sie {.fn metaSABSEB::change_meta()} um die ",
+      "Metadaten von bereits existierenden Variablen anzupassen.\n\n"
+    ), call = NULL)
+  }
+
+  # 2.2 Ensure requirements in NON-INTERACTIVE MODE ---------------------------
+
+  if (interactive_mode == FALSE) {
     # Ensure that required arguments are complete. Otherwise, abort
 
     # Arguments that are always required
@@ -113,13 +171,12 @@ add_meta <- function(var = NULL,
       is.null(values)
 
     # Itemformulierung (only required if var_typ is Item-Gruppe/Skalenitem)
-    needs_itemformulierung <-
-      !is.null(var_typ) &&
+    needs_itemformulierung <- !is.null(var_typ) &&
       (stringr::str_detect(var_typ, "Item-Gruppe:") ||
-       stringr::str_detect(var_typ, "Skalenitem:")) &&
+         stringr::str_detect(var_typ, "Skalenitem:")) &&
       is.null(itemformulierung)
 
-    # Skalenberechnung (only required if var_typ is a skala)
+    # Skalenberechnung (only required if var_typ is a Skalenitem)
     needs_skalenberechnung <-
       !is.null(var_typ) &&
       stringr::str_detect(var_typ, "Skalenitem:") &&
@@ -139,58 +196,18 @@ add_meta <- function(var = NULL,
           "- {.field var_typ}\n",
           "- {.field umfrage_item}\n",
           if (needs_itemformulierung) "- {.field itemformulierung}\n",
-          if (needs_skalenberechnung) "- {.field skalenberechnung}\n"
+          if (needs_skalenberechnung) "- {.field skalenberechnung}\n",
+          "- {.field values}"
         ),
         call = NULL
       )
     }
   }
 
-  # Otherwise if it is interactive:
+  # 2.3 Ensure Requirements in INTERACTIVE MODE -------------------------------
   # Use console inputs and suggestions to complete the metadata entry
-  if (interactive()) {
-    # 2.1 Variable name ---------------------------------------------------
-
-    # -> if var is not specified, abort changes
-    if (
-      is.null(var) ||
-        !is.character(var) ||
-        length(var) != 1L ||
-        is.na(var) ||
-        var == ""
-    ) {
-      cli::cli_abort(paste0(
-        "{.strong Variable definieren.} ",
-        "Das Argument {.field var} darf nicht leer sein.\n\n"
-      ), call = NULL)
-    }
-
-    # -> make sure that var does not have whitespaces
-    original <- var
-    var <- trimws(var) # remove leading and trailing whitespace
-    var <- gsub("\\s+", "_", var) # replace whitespaces with underscore
-    var <- gsub("_+", "_", var) # avoid double underscores
-    if (!identical(original, var)) { # issue message
-      cli::cli_alert_info(paste0(
-        "{.strong Die Variablenbezeichnung darf keine Leerschläge ",
-        "enthalten.}\n ",
-        "Variablenname wurde automatisch geändert zu {.field {var}}."
-      ))
-      cat("\n")
-    }
-
-    # -> if var already exists in meta
-    #    abort and suggest change_meta()
-    if (var %in% names(meta)) {
-      cli::cli_abort(paste0(
-        "{.strong Die Variable {.field {var}}} ",
-        "{.strong ist bereits in den Metadaten erfasst.} \n\n",
-        "Bitte nutzen Sie {.fn metaSABSEB::change_meta()} um die ",
-        "Metadaten von bereits existierenden Variablen anzupassen.\n\n"
-      ), call = NULL)
-    }
-
-    # 2.2. Oberthema ------------------------------------------------------
+  if (interactive_mode == TRUE) {
+    # 2.3.1 Oberthema ---------------------------------------------------------
 
     # if oberthema is empty, ask user to
     # - either choose an already existing option
@@ -255,7 +272,7 @@ add_meta <- function(var = NULL,
     }
 
 
-    # 2.3 Variablentyp ----------------------------------------------------
+    # 2.3.2 Variablentyp ------------------------------------------------------
     if (is.null(var_typ)) {
       # Issue warning that var_type empty
       cli::cli_alert_warning("{.strong Variablentyp definieren.}")
@@ -281,7 +298,7 @@ add_meta <- function(var = NULL,
         abort_changes_msg()
       }
 
-      # 2.3.1 Einzelitem ------------------------------------------------
+      # 2.3.2.1 Einzelitem ----------------------------------------------------
       # -> ask for description
       if (typ_choice == 1) {
         # Repeat until description has been entered into console
@@ -308,7 +325,7 @@ add_meta <- function(var = NULL,
         var_typ <- paste0("Einzelitem: ", description)
       }
 
-      # 2.3.2 Item-Gruppe -----------------------------------------------
+      # 2.3.2.2 Item-Gruppe ---------------------------------------------------
       # -> ask to choose existing group or create new group
       if (typ_choice == 2) {
         # Get current groups in metadata
@@ -412,7 +429,7 @@ add_meta <- function(var = NULL,
       }
 
 
-      # 2.3.3 Skalenitem ------------------------------------------------
+      # 2.3.2.3 Skalenitem ----------------------------------------------------
       if (typ_choice == 3) {
         # Get current scales in metadata
 
@@ -522,7 +539,7 @@ add_meta <- function(var = NULL,
       }
     }
 
-    # 2.4 Umfrageitem ---------------------------------------------------------
+    # 2.3.3 Umfrageitem -------------------------------------------------------
     # Ask user to define survey question
     if (is.null(umfrage_item)) {
       # Repeat until description has been entered into console
@@ -547,7 +564,7 @@ add_meta <- function(var = NULL,
       }
     }
 
-    # 2.5  Itemformulierung ---------------------------------------------------
+    # 2.3.4 Itemformulierung --------------------------------------------------
     # Note: This field is only mandatory if var_typ is
     # either "Item-Gruppe" or "Skalenitem"
     if ((stringr::str_detect(var_typ, "Item-Gruppe:") ||
@@ -576,7 +593,7 @@ add_meta <- function(var = NULL,
       }
     }
 
-    # 2.6 Skalenberechnung-----------------------------------------------------
+    # 2.3.5 Skalenberechnung---------------------------------------------------
     # Note: This field is only mandatory if var_typ = Skalenitem
     if (stringr::str_detect(var_typ, "Skalenitem:") &&
           is.null(skalenberechnung)) {
@@ -584,7 +601,7 @@ add_meta <- function(var = NULL,
       repeat {
         cli::cli_alert_warning(paste0(
           "{.strong Skalenberechnung definieren}\n\n",
-          "Geben Sie an, wie die Skala, die zu diesem Item gehört,",
+          "Geben Sie an, wie die Skala, die zu diesem Item gehört, ",
           "berechnet wird. \n",
           "{.emph (z.B. Mean, Ausschluss wenn Missings >1)}"
         ))
@@ -602,7 +619,7 @@ add_meta <- function(var = NULL,
       }
     }
 
-    # 2.7 Values ----------------------------------------------------------
+    # 2.3.6 Values --------------------------------------------------------
     if (is.null(values)) {
       # Create warning
       cli::cli_alert_warning(
@@ -660,7 +677,7 @@ add_meta <- function(var = NULL,
 
             # Issue warning if label wasn't provided
             cli::cli_alert_danger(paste0(
-              "Es muss zwingend ein Label für den Wert",
+              "Es muss zwingend ein Label für den Wert ",
               "{.field {value}} eingegeben werden."
             ))
           }

@@ -1,4 +1,5 @@
 #' Change metadata for a variable that is already registered
+#'
 #' The function:
 #' - reads the metadata yaml
 #' - locates the desired variable and field
@@ -10,6 +11,11 @@
 #' @param field A character string specifying the metadata field
 #' to be changed
 #' @param new_entry String or numeric, new value for the metadata field
+#' @param interactive_mode Logical. Whether to enable interactive console
+#' prompts. If not passed explicitly defaults to:
+#' 1. Session Setting: `metaSABSEB.interactive_mode`, set by
+#'    [interactive_mode_on()] and [interactive_mode_off()]
+#' 2. Current environment: `interactive()
 #' @param yaml_path Character string specifying the path to the metadata YAML
 #' file. By default, the package's metadata YAML file is used. This argument
 #' can be changed, e.g. for testing with a temporary YAML file.
@@ -28,11 +34,13 @@
 change_meta <- function(var = NULL,
                         field = NULL,
                         new_entry = NULL,
-                        yaml_path = system.file(
-                          "qm_sekII_metadata.yaml",
-                          package = "metaSABSEB"
-                        )) {
-  # 1. Enforce no missing args ----------------------------------------------
+                        interactive_mode = NULL,
+                        yaml_path = "inst/qm_sekII_metadata.yaml") {
+  # 1 Setup -------------------------------------------------------------------
+  # Resolve interactive mode
+  interactive_mode <- resolve_interactive_mode(interactive_mode)
+
+  # Enforce that required parameters are not missing
   if (is.null(var)) {
     cli::cli_abort("Das Argument {.field var} muss mitgegeben werden.",
       call = NULL
@@ -73,7 +81,7 @@ change_meta <- function(var = NULL,
   # If field does not exist yet
   if (!(field %in% names(var_info))) {
     # Ask user if they meant a different, already existing field
-    if (interactive()) {
+    if (interactive_mode == TRUE) {
       # Create choice menu
       field_choice <- utils::menu(
         choices = c(
@@ -126,7 +134,7 @@ change_meta <- function(var = NULL,
     }
 
     # If not interactive, just add new field
-    if (!interactive()) {
+    if (interactive_mode == FALSE) {
       # Add new entry to meta
       meta[[var]][[field]] <- new_entry
 
