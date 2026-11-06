@@ -1,10 +1,10 @@
 #' This function is used to delete metadata entries
-#' 
+#'
 #' -> May be used if an entry was wrongfully added
 #'
 #' @param var Character string. Defines variable for which
 #' the metadata should be deleted
-#' 
+#'
 #' @param interactive_mode Logical. Whether to enable interactive console
 #' prompts. If not passed explicitly defaults to:
 #' 1. Session Setting: `metaSABSEB.interactive_mode`, set by
@@ -14,8 +14,8 @@
 #' @param yaml_path Character string specifying the path to the metadata YAML
 #' file. By default, the package's metadata YAML file is used. This argument
 #' can be changed, e.g. for testing with a temporary YAML file.
-#' 
-#' 
+#'
+#'
 #'
 #' @examples
 #' \dontrun{
@@ -25,11 +25,10 @@
 #' @export
 
 delete_meta <- function(var = NULL,
-                        yaml_path = "inst/qm_sekII_metadata.yaml"
-                        ) {
+                        yaml_path = "inst/qm_sekII_metadata.yaml") {
   # Resolve interactive mode
-  interactive_mode <-  resolve_interactive_mode(interactive_mode)
-  
+  interactive_mode <- resolve_interactive_mode(interactive_mode)
+
   # Require var to be specified
   if (is.null(var)) {
     cli::cli_abort(paste0(

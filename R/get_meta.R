@@ -1,20 +1,20 @@
 #' Retrieve metadata fields
 #'
-#' @param var A character string. The variable name. Cannot be empty 
+#' @param var A character string. The variable name. Cannot be empty
 #' and must exist in metadata. If close matches are found, suggestions are
-#' offerd in the console. 
-#' 
-#' @param field A character string. The metadata field to retrieve. 
+#' offerd in the console.
+#'
+#' @param field A character string. The metadata field to retrieve.
 #' If no `field` or the field does not exist for `var`is defined, all metadata
 #' for `var` is returned.
-#' 
-#' @param interactive_mode Whether to enable interactive console prompts. If 
+#'
+#' @param interactive_mode Whether to enable interactive console prompts. If
 #' not passed explicitly defaults to:
 #' 1. Session Setting: `metaSABSEB.interactive_mode`, set by
 #'    [interactive_mode_on()] and [interactive_mode_off()]
 #' 2. `interactive()
-#' 
-#' @param refresh Logical. If TRUE, the metadata cache is reloaded from 
+#'
+#' @param refresh Logical. If TRUE, the metadata cache is reloaded from
 #' `yaml_path`. Default is FALSE.
 #'
 #' @param yaml_path Character string specifying the path to the metadata YAML.
@@ -29,14 +29,14 @@
 #' @examples
 #' # All metadata for a variable
 #' get_meta(var = "EFZ_Typ")
-#' 
+#'
 #' # Only a specific metadata field
 #' get_meta(var = "Anst_best", field = "quelle")
 #'
 #' @export
 get_meta <- function(var,
                      field = NULL,
-                     interactive_mode  = NULL,
+                     interactive_mode = NULL,
                      refresh = FALSE,
                      yaml_path = system.file(
                        "qm_sekII_metadata.yaml",
@@ -45,9 +45,9 @@ get_meta <- function(var,
   # --------------------------------
   # 1. Setup
   # --------------------------------
-  
+
   # Resolve interactive mode
-  interactive_mode <-  resolve_interactive_mode(interactive_mode)
+  interactive_mode <- resolve_interactive_mode(interactive_mode)
 
   # Update cache if it is empty or refresh = TRUE
   # Note: metadata is cached for better performance

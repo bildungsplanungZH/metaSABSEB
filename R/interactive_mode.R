@@ -1,13 +1,13 @@
 #' Turn interactive mode in metaSABSEB ON
-#' 
-#' Activates interactive use by setting the default for the 
+#'
+#' Activates interactive use by setting the default for the
 #' `interactive_mode` argument to `TRUE`
 #' [add_meta], [change_meta], and [delete_meta] for the rest
-#' of the R-Session (or until changed). An explicitly passed 
+#' of the R-Session (or until changed). An explicitly passed
 #' `interactive_mode` argument always takes precedence
-#' 
+#'
 #' @return Logical. TRUE
-#' 
+#'
 #' @export
 
 interactive_mode_on <- function() {
@@ -18,15 +18,15 @@ interactive_mode_on <- function() {
 
 
 #' Turn interactive mode in metaSABSEB OFF
-#' 
-#' Activates interactive use by setting the default for the 
+#'
+#' Activates interactive use by setting the default for the
 #' `interactive_mode` argument to `FALSE`
 #' [add_meta], [change_meta], and [delete_meta] for the rest
-#' of the R-Session (or until changed). An explicitly passed 
+#' of the R-Session (or until changed). An explicitly passed
 #' `interactive_mode` argument always takes precedence
-#' 
+#'
 #' @return Logical. FALSE
-#' 
+#'
 #' @export
 
 interactive_mode_off <- function() {

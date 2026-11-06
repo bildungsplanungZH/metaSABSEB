@@ -1,5 +1,5 @@
 #' Add a new variable to the metadata
-#' 
+#'
 #' The function:
 #' - creates a list-object with metadata
 #' - ensures that required fields are complete,
@@ -71,25 +71,23 @@ add_meta <- function(var = NULL,
                      values = NULL,
                      interactive_mode = NULL,
                      yaml_path = "inst/qm_sekII_metadata.yaml",
-                     ...
-                     ) {
+                     ...) {
   # 1 Setup -------------------------------------------------------------------
-  
+
   # 1.1 Get metadata ----------------------------------------------------------
   meta <- yaml::read_yaml(yaml_path)
 
   # 1.2 Ensure all arguments are named ----------------------------------------
   # Note: This is to ensure that metadata does not get added wrongly due to
   #       changes in the order of the provided metadata
-  
+
   # Get arguments, drop function name itself
   call_args <- as.list(sys.call())[-1]
-  
+
   # Check that arguments are named
   if (length(call_args) > 0 &&
-        (is.null(names(call_args)) ||
-           any(names(call_args) == ""))) {
-    
+      (is.null(names(call_args)) || any(names(call_args) == ""))
+  ) {
     # Issue warning if arguments are not named
     cli::cli_alert_warning(c(
       "{.strong Alle Argumente müssen explizit benannt werden.}\n",
@@ -106,35 +104,35 @@ add_meta <- function(var = NULL,
     # Use internal helper function to abort changes
     abort_changes_msg()
   }
-  
+
   # 1.3 Determine interactivity -----------------------------------------------
   interactive_mode <- resolve_interactive_mode(interactive_mode)
 
   # 2 Ensure required fields are not empty ------------------------------------
-  
+
   # Note: Function operates in two modes:
-  #       - Not interactive: All required parameters must be determined from 
+  #       - Not interactive: All required parameters must be determined from
   #         the start.
   #       - Interactive: Missing paramters are interactively determined using
   #         the RStudio console.
-  
+
   # 2.1 Requirements for BOTH MODES -------------------------------------------
   # -> Handles variable name
-  
+
   # Var must not be empty
   if (
     is.null(var) ||
-    !is.character(var) ||
-    length(var) != 1L ||
-    is.na(var) ||
-    var == ""
+      !is.character(var) ||
+      length(var) != 1L ||
+      is.na(var) ||
+      var == ""
   ) {
     cli::cli_abort(paste0(
       "{.strong Variable definieren.} ",
       "Das Argument {.field var} darf nicht leer sein.\n\n"
     ), call = NULL)
   }
-  
+
   # Var cannot have white  spaces
   original <- var
   var <- trimws(var) # remove leading and trailing whitespace
@@ -148,7 +146,7 @@ add_meta <- function(var = NULL,
     ))
     cat("\n")
   }
-  
+
   # Var must not exist in meta already
   # -> abort and suggest change_meta()
   if (var %in% names(meta)) {
@@ -159,7 +157,7 @@ add_meta <- function(var = NULL,
       "Metadaten von bereits existierenden Variablen anzupassen.\n\n"
     ), call = NULL)
   }
-  
+
   # 2.2 Ensure requirements in NON-INTERACTIVE MODE ---------------------------
 
   if (interactive_mode == FALSE) {
@@ -173,10 +171,9 @@ add_meta <- function(var = NULL,
       is.null(values)
 
     # Itemformulierung (only required if var_typ is Item-Gruppe/Skalenitem)
-    needs_itemformulierung <-
-      !is.null(var_typ) &&
+    needs_itemformulierung <- !is.null(var_typ) &&
       (stringr::str_detect(var_typ, "Item-Gruppe:") ||
-       stringr::str_detect(var_typ, "Skalenitem:")) &&
+         stringr::str_detect(var_typ, "Skalenitem:")) &&
       is.null(itemformulierung)
 
     # Skalenberechnung (only required if var_typ is a Skalenitem)
@@ -210,7 +207,6 @@ add_meta <- function(var = NULL,
   # 2.3 Ensure Requirements in INTERACTIVE MODE -------------------------------
   # Use console inputs and suggestions to complete the metadata entry
   if (interactive_mode == TRUE) {
-
     # 2.3.1 Oberthema ---------------------------------------------------------
 
     # if oberthema is empty, ask user to

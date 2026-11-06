@@ -1,6 +1,6 @@
 # INTERNAL HELPERS ------------------------------------------------------------
-# This script contains internal helper functions. 
-# They are not exported, but used within the functions of the package. 
+# This script contains internal helper functions.
+# They are not exported, but used within the functions of the package.
 # Use the dropdown menu to skip to a specific function.
 
 # check_var_exists() ----------------------------------------------------------
@@ -177,7 +177,7 @@ abort_changes_msg <- function() {
 #'
 #' Internal helper that determines whether a function should prompt the
 #' user for missing input. It is called once at the top of every function
-#' that uses interactive elements such as `readline()` or `menu()` 
+#' that uses interactive elements such as `readline()` or `menu()`
 #' (e.g. [add_meta()] and [change_meta()].
 #'
 #' The value is determined in the following order of priority:
@@ -200,7 +200,6 @@ abort_changes_msg <- function() {
 #' @noRd
 
 resolve_interactive_mode <- function(interactive_mode = NULL) {
-  
   # Determine the requested mode
   # Priority: explicit argument > session option > interactive()
   if (is.null(interactive_mode)) {
@@ -209,17 +208,20 @@ resolve_interactive_mode <- function(interactive_mode = NULL) {
       default = interactive()
     )
   }
-  
+
   # Validate that it is a logical (TRUE or FALSE)
-  if (!is.logical(interactive_mode) || length(interactive_mode) != 1L ||
-      is.na(interactive_mode)) {
+  if (
+    !is.logical(interactive_mode) ||
+      length(interactive_mode) != 1L ||
+      is.na(interactive_mode)
+  ) {
     # Abort with error if validation failed
     cli::cli_abort(
       "{.field interactive_mode} muss {.val TRUE} oder {.val FALSE} sein.",
       call = NULL
     )
   }
-  
+
   # Prevent forcing interactive mode in a non-interactive session
   if (interactive_mode && !interactive()) {
     cli::cli_alert_warning(paste0(
@@ -230,7 +232,7 @@ resolve_interactive_mode <- function(interactive_mode = NULL) {
     ))
     interactive_mode <- FALSE
   }
-  
-  # Return 
+
+  # Return
   interactive_mode
 }

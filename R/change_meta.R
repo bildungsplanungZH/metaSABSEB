@@ -1,5 +1,5 @@
 #' Change metadata for a variable that is already registered
-#' 
+#'
 #' The function:
 #' - reads the metadata yaml
 #' - locates the desired variable and field
@@ -35,13 +35,11 @@ change_meta <- function(var = NULL,
                         field = NULL,
                         new_entry = NULL,
                         interactive_mode = NULL,
-                        yaml_path = "inst/qm_sekII_metadata.yaml"
-                        ) {
-  
+                        yaml_path = "inst/qm_sekII_metadata.yaml") {
   # 1 Setup -------------------------------------------------------------------
   # Resolve interactive mode
-  interactive_mode <-  resolve_interactive_mode(interactive_mode)
-  
+  interactive_mode <- resolve_interactive_mode(interactive_mode)
+
   # Enforce that required parameters are not missing
   if (is.null(var)) {
     cli::cli_abort("Das Argument {.field var} muss mitgegeben werden.",

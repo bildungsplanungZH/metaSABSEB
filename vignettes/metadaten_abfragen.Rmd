@@ -56,9 +56,7 @@ print_list <- function(x,
   nm <- names(x)
 
   for (i in seq_along(x)) {
-    label <- if (!is.null(nm) &&
-                   !is.na(nm[i]) &&
-                   nzchar(nm[i])) {
+    label <- if (!is.null(nm) && !is.na(nm[i]) && nzchar(nm[i])) {
       nm[i]
     } else {
       paste0("[[", i, "]]")
