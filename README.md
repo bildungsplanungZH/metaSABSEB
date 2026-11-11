@@ -2,7 +2,7 @@
 
 Repository erstellt am: 07.10.2025
 
-Release v1.0.0 am: 06.11.2026
+Release v1.0.0 am: 11.11.2026
 
 ## Kontakt
 
