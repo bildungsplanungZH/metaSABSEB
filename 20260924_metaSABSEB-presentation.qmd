@@ -94,7 +94,6 @@ if (!interactive()) showtext::showtext_opts(dpi = 200)
 
 # Alle Metadaten einer Variable abfragen
 metaSABSEB::get_meta(var = "Bll_ober")
-
 ```
 
 
@@ -104,8 +103,7 @@ metaSABSEB::get_meta(var = "Bll_ober")
 #| echo: true    # show the code
 
 # Ein spezifisches Feld abfragen
-metaSABSEB::get_meta(var = "Lgkg", field = "var_typ" )
-
+metaSABSEB::get_meta(var = "Lgkg", field = "var_typ")
 ```
 
 
@@ -126,7 +124,6 @@ testdaten <- data.frame(
   )
 )
 testdaten
-
 ```
 
 ## Metadaten abfragen
@@ -138,27 +135,26 @@ testdaten
 #| code-line-numbers: "11,16"
 
 ggplot2::ggplot(testdaten, ggplot2::aes(x = Lgkg)) +
-    ggplot2::geom_bar(
-      ggplot2::aes(
-        y = ggplot2::after_stat(count / sum(count)),
-        fill = Lgkg
-      ),
-      show.legend = FALSE
-    ) +
-    ggplot2::scale_x_discrete(
-      labels = stringr::str_wrap(
-        unlist(metaSABSEB::get_meta(var = "Lgkg", field = "values")),
-        width = 40
-      )
-    ) +
-    ggplot2::labs(
-      title = metaSABSEB::get_meta(var = "Lgkg", field = "umfrage_item"),
-      x = NULL
-    ) + 
-    biplaRplot::scale_fill_zhweb("zhweb") +
-    biplaRplot::scale_y_pct() +
-    biplaRplot::theme_biplar()
-
+  ggplot2::geom_bar(
+    ggplot2::aes(
+      y = ggplot2::after_stat(count / sum(count)),
+      fill = Lgkg
+    ),
+    show.legend = FALSE
+  ) +
+  ggplot2::scale_x_discrete(
+    labels = stringr::str_wrap(
+      unlist(metaSABSEB::get_meta(var = "Lgkg", field = "values")),
+      width = 40
+    )
+  ) +
+  ggplot2::labs(
+    title = metaSABSEB::get_meta(var = "Lgkg", field = "umfrage_item"),
+    x = NULL
+  ) +
+  biplaRplot::scale_fill_zhweb("zhweb") +
+  biplaRplot::scale_y_pct() +
+  biplaRplot::theme_biplar()
 ```
 ## Metadaten abfragen
 **Anwendungsbeispiel - Ergebnis**
@@ -167,33 +163,32 @@ ggplot2::ggplot(testdaten, ggplot2::aes(x = Lgkg)) +
 #| eval: true  # execute
 
 ggplot2::ggplot(testdaten, ggplot2::aes(x = Lgkg)) +
-    ggplot2::geom_bar(
-      ggplot2::aes(
-        y = ggplot2::after_stat(count / sum(count)),
-        fill = Lgkg
-      ),
-      show.legend = FALSE
-    ) +
-    ggplot2::scale_x_discrete(
-      labels = stringr::str_wrap(
-        unlist(metaSABSEB::get_meta(
-          var = "Lgkg",
-          field = "values"
-        )),
-        width = 40
-      )
-    ) +
-    ggplot2::labs(
-      title = metaSABSEB::get_meta(
+  ggplot2::geom_bar(
+    ggplot2::aes(
+      y = ggplot2::after_stat(count / sum(count)),
+      fill = Lgkg
+    ),
+    show.legend = FALSE
+  ) +
+  ggplot2::scale_x_discrete(
+    labels = stringr::str_wrap(
+      unlist(metaSABSEB::get_meta(
         var = "Lgkg",
-        field = "umfrage_item"
-      ),
-      x = NULL
-    ) + 
-    biplaRplot::scale_fill_zhweb("zhweb") +
-    biplaRplot::scale_y_pct() +
-    biplaRplot::theme_biplar()
-
+        field = "values"
+      )),
+      width = 40
+    )
+  ) +
+  ggplot2::labs(
+    title = metaSABSEB::get_meta(
+      var = "Lgkg",
+      field = "umfrage_item"
+    ),
+    x = NULL
+  ) +
+  biplaRplot::scale_fill_zhweb("zhweb") +
+  biplaRplot::scale_y_pct() +
+  biplaRplot::theme_biplar()
 ```
 
 ## Metadaten bearbeiten

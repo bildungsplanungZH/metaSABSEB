@@ -1,37 +1,53 @@
-#' Retrieve metadata fields for a specified variable.
-#' If no field is specified, all metadata is returned.
+#' Retrieve metadata fields
 #'
-#' @param var A character string specifying the variable name
-#' @param field A character string specifying the field to retrieve
-#' @param refresh Logical. If TRUE,
-#' the metadata cache is reloaded from disk.
-#' Use this if the underlying metadata file has changed
-#' (e.g. during development or after updating the package).
-#' Default is FALSE.
+#' @param var A character string. The variable name. Cannot be empty
+#' and must exist in metadata. If close matches are found, suggestions are
+#' offerd in the console.
 #'
-#' @param yaml_path Character string specifying the path to the metadata YAML
-#' file. By default, the package's metadata YAML file is used. This argument
-#' can be changed, e.g. for testing with a temporary YAML file. description
+#' @param field A character string. The metadata field to retrieve.
+#' If no `field` or the field does not exist for `var`is defined, all metadata
+#' for `var` is returned.
+#'
+#' @param interactive_mode Whether to enable interactive console prompts. If
+#' not passed explicitly defaults to:
+#' 1. Session Setting: `metaSABSEB.interactive_mode`, set by
+#'    [interactive_mode_on()] and [interactive_mode_off()]
+#' 2. `interactive()
+#'
+#' @param refresh Logical. If TRUE, the metadata cache is reloaded from
+#' `yaml_path`. Default is FALSE.
+#'
+#' @param yaml_path Character string specifying the path to the metadata YAML.
+#' Used if `refresh = TRUE` or if the metadata cache is empty. Defaults to
+#' the file installed with the package; can be changed e.g. for testing with
+#' a temporary file
 #'
 #' @return If `field = NULL`, a named list containing all metadata
 #' associated with `var`. Otherwise the value of the requested
 #' metadata field
 #'
 #' @examples
+#' # All metadata for a variable
 #' get_meta(var = "EFZ_Typ")
-#' get_meta(var = "Anst_best", "quelle")
+#'
+#' # Only a specific metadata field
+#' get_meta(var = "Anst_best", field = "quelle")
 #'
 #' @export
 get_meta <- function(var,
                      field = NULL,
+                     interactive_mode = NULL,
                      refresh = FALSE,
                      yaml_path = system.file(
                        "qm_sekII_metadata.yaml",
                        package = "metaSABSEB"
                      )) {
   # --------------------------------
-  # 1. Get metadata
+  # 1. Setup
   # --------------------------------
+
+  # Resolve interactive mode
+  interactive_mode <- resolve_interactive_mode(interactive_mode)
 
   # Update cache if it is empty or refresh = TRUE
   # Note: metadata is cached for better performance
